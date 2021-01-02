@@ -59,6 +59,13 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 public:
+	UFUNCTION()
+	class URedemptionSaveGame* GetSaveGame();
+
+	UFUNCTION()
+	bool RemoveUpgradePoints(int Amount);
+	
+public:
 	UFUNCTION(BlueprintPure)
 	FString GetLevelName();
 

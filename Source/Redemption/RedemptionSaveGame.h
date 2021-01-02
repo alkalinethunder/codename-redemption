@@ -27,6 +27,9 @@ public:
 	int UpgradePoints;
 
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)
+	TArray<FName> UnlockedUpgrades;
+	
+	UPROPERTY(BlueprintReadOnly, EditAnywhere)
 	UWallpaper* DesktopWallpaper;
 
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)

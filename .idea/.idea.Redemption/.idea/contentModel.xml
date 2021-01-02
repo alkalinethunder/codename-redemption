@@ -33685,8 +33685,8 @@
       <e p="UE4Game.Target.cs" t="Include" />
     </e>
     <e p="C:\Users\thepl\AppData\Local\JetBrains\Rider2020.3\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\thepl\AppData\Local\JetBrains\Rider2020.3\resharper-host\Local\Transient\Rider\v203\SolutionCaches\_Redemption.-1817757991.00" t="ExcludeRecursive" />
-    <e p="D:\Projects\Games\Redemption" t="IncludeFlat">
+    <e p="C:\Users\thepl\AppData\Local\JetBrains\Rider2020.3\resharper-host\Local\Transient\Rider\v203\SolutionCaches\_Redemption.-884982305.00" t="ExcludeRecursive" />
+    <e p="Z:\Games\Redemption" t="IncludeFlat">
       <e p="CMakeLists.txt" t="Include" />
       <e p="Config" t="Include">
         <e p="DefaultEditor.ini" t="Include" />
@@ -33782,6 +33782,10 @@
           <e p="SaveSlot.h" t="Include" />
           <e p="SocialGuiState.cpp" t="Include" />
           <e p="SocialGuiState.h" t="Include" />
+          <e p="UpgradeAsset.cpp" t="Include" />
+          <e p="UpgradeAsset.h" t="Include" />
+          <e p="UpgradeCategory.cpp" t="Include" />
+          <e p="UpgradeCategory.h" t="Include" />
           <e p="Wallpaper.cpp" t="Include" />
           <e p="Wallpaper.h" t="Include" />
         </e>

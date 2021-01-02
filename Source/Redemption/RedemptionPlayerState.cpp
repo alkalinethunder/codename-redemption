@@ -5,6 +5,26 @@
 #include "RedemptionGameInstance.h"
 #include "Kismet/GameplayStatics.h"
 #include "RedemptionGameModeBase.h"
+#include "RedemptionSaveGame.h"
+
+URedemptionSaveGame* ARedemptionPlayerState::GetSaveGame()
+{
+	return this->GameInstance->GetSaveGame();
+}
+
+bool ARedemptionPlayerState::RemoveUpgradePoints(int Amount)
+{
+	if (this->GetUpgradePoints() >= Amount)
+	{
+		this->GetSaveGame()->UpgradePoints -= Amount;
+		this->GameInstance->SaveGame();
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
 
 // Sets default values
 ARedemptionPlayerState::ARedemptionPlayerState()
