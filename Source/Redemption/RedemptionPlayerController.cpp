@@ -15,16 +15,13 @@ ARedemptionPlayerController::ARedemptionPlayerController()
 
 // Called when the game starts or when spawned
 void ARedemptionPlayerController::BeginPlay()
-{
+{\
 	Super::BeginPlay();
-
+	
 	this->GameMode = Cast<ARedemptionGameModeBase>(UGameplayStatics::GetGameMode(this));
 
 	if (this->GameMode)
 	{
-		this->Desktop = CreateWidget<UUserWidget, APlayerController>(this, this->GameMode->DesktopWidget);
-		this->Desktop->AddToViewport();
-
 		this->SetShowMouseCursor(true);
 	}
 }

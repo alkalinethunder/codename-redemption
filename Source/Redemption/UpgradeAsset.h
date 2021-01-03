@@ -10,7 +10,7 @@
 /**
  * Contains information about a single player upgrade.
  */
-UCLASS(BlueprintType)
+UCLASS(BlueprintType, Blueprintable)
 class REDEMPTION_API UUpgradeAsset : public UDataAsset
 {
 	GENERATED_BODY()
@@ -35,12 +35,12 @@ public:
 	int RequiredSkillLevel = 1;
 
 public:
-	UFUNCTION()
+	UFUNCTION(BlueprintPure)
 	bool IsUnlocked(class ARedemptionPlayerState* InPlayerState);
 
-	UFUNCTION()
+	UFUNCTION(BlueprintPure)
 	bool IsAvailable(class ARedemptionPlayerState* InPlayerState);
 
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 	bool TryUnlock(class ARedemptionPlayerState* InPlayerState);
 };

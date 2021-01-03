@@ -3,24 +3,23 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/PlayerController.h"
-#include "RedemptionPlayerController.generated.h"
+#include "GameFramework/GameStateBase.h"
+#include "RedemptionGameState.generated.h"
 
-class UUserWidget;
-class ARedemptionGameModeBase;
+class UUpgradeAsset;
 
-UCLASS()
-class REDEMPTION_API ARedemptionPlayerController : public APlayerController
+UCLASS(BlueprintType)
+class REDEMPTION_API ARedemptionGameState : public AGameStateBase
 {
 	GENERATED_BODY()
 
 private:
 	UPROPERTY()
-	ARedemptionGameModeBase* GameMode;
-	
+	TArray<UUpgradeAsset*> Upgrades;
+
 public:
 	// Sets default values for this actor's properties
-	ARedemptionPlayerController();
+	ARedemptionGameState();
 
 protected:
 	// Called when the game starts or when spawned
@@ -29,4 +28,8 @@ protected:
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+public:
+	UFUNCTION()
+	TArray<UUpgradeAsset*> GetAllUpgrades();
 };

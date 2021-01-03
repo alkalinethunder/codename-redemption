@@ -6,6 +6,9 @@
 #include "Kismet/GameplayStatics.h"
 #include "RedemptionGameModeBase.h"
 #include "RedemptionSaveGame.h"
+#include "UpgradeAsset.h"
+#include "Blueprint/UserWidget.h"
+#include "RedemptionGameState.h"
 
 URedemptionSaveGame* ARedemptionPlayerState::GetSaveGame()
 {
@@ -26,6 +29,22 @@ bool ARedemptionPlayerState::RemoveUpgradePoints(int Amount)
 	}
 }
 
+void ARedemptionPlayerState::NotifyUpgradeUnlocked()
+{
+	this->SortUpgrades();
+	this->OnUpgradeUnlocked.Broadcast();
+}
+
+TArray<UUpgradeAsset*> ARedemptionPlayerState::GetAvailableUpgrades()
+{
+	return this->AvailableUpgrades;
+}
+
+TArray<UUpgradeAsset*> ARedemptionPlayerState::GetUnlockedUpgrades()
+{
+	return this->UnlockedUpgrades;
+}
+
 // Sets default values
 ARedemptionPlayerState::ARedemptionPlayerState()
 {
@@ -38,12 +57,17 @@ void ARedemptionPlayerState::BeginPlay()
 {
 	Super::BeginPlay();
 
+	this->GameState = Cast<ARedemptionGameState>(this->GetWorld()->GetGameState());
 	this->GameInstance = Cast<URedemptionGameInstance>(this->GetGameInstance());
 	this->GameMode = Cast<ARedemptionGameModeBase>(UGameplayStatics::GetGameMode(this));
 	
 	this->GameInstance->OnExperienceAdded.AddUniqueDynamic(this, &ARedemptionPlayerState::UpdateSkillState);
 	
 	this->UpdateSkillState();
+	this->SortUpgrades();
+
+	this->Desktop = CreateWidget<UUserWidget, APlayerController>(UGameplayStatics::GetPlayerController(this, 0), this->GameMode->DesktopWidget);
+	this->Desktop->AddToViewport();
 }
 
 // Called every frame
@@ -101,6 +125,30 @@ void ARedemptionPlayerState::UpdateSkillState()
 	this->LevelName = levelName;
 }
 
+void ARedemptionPlayerState::SortUpgrades()
+{
+	// clear upgrade lists
+	this->UnlockedUpgrades.Empty();
+	this->AvailableUpgrades.Empty();
+	this->UnavailableUpgrades.Empty();
+	
+	for(UUpgradeAsset* upgrade : this->GameState->GetAllUpgrades())
+	{
+		if (upgrade->IsUnlocked(this))
+		{
+			this->UnlockedUpgrades.Add(upgrade);
+		}
+		else if (upgrade->IsAvailable(this))
+		{
+			this->AvailableUpgrades.Add(upgrade);
+		}
+		else
+		{
+			this->UnavailableUpgrades.Add(upgrade);
+		}
+	}
+}
+
 FString ARedemptionPlayerState::GetLevelName()
 {
 	return this->LevelName;
@@ -121,6 +169,11 @@ float ARedemptionPlayerState::GetLevelPercentage()
 int ARedemptionPlayerState::GetUpgradePoints()
 {
 	return this->GameInstance->GetSaveGame()->UpgradePoints;
+}
+
+bool ARedemptionPlayerState::IsUpgradeUnlocked(UUpgradeAsset* Upgrade)
+{
+	return Upgrade && Upgrade->IsUnlocked(this);
 }
 
 int ARedemptionPlayerState::GetTotalXP()

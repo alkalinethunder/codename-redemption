@@ -36,7 +36,7 @@ public:
 	int GuiOpenConsoles;
 
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)
-	TEnumAsByte<ESocialGuiState> LastSocialState;
+	ESocialGuiState LastSocialState;
 
 	
 };

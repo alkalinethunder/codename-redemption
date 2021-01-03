@@ -8,8 +8,12 @@
 #include "RedemptionPlayerState.generated.h"
 
 class URedemptionGameInstance;
+class UUpgradeAsset;
+class UUserWidget;
+class ARedemptionGameState;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnUserLevelUp, FProgressionLevel, InLevel);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnUpgradeUnlocked);
 
 UCLASS()
 class REDEMPTION_API ARedemptionPlayerState : public APlayerState
@@ -17,6 +21,12 @@ class REDEMPTION_API ARedemptionPlayerState : public APlayerState
 	GENERATED_BODY()
 
 private:
+	UPROPERTY()
+	UUserWidget* Desktop;
+	
+	UPROPERTY()
+	ARedemptionGameState* GameState;
+	
 	UPROPERTY()
 	int LevelStartXP;
 	
@@ -37,6 +47,15 @@ private:
 
 	UPROPERTY()
 	FString LevelName;
+
+	UPROPERTY()
+	TArray<UUpgradeAsset*> AvailableUpgrades;
+
+	UPROPERTY()
+	TArray<UUpgradeAsset*> UnlockedUpgrades;
+
+	UPROPERTY()
+	TArray<UUpgradeAsset*> UnavailableUpgrades;
 	
 public:
 	// Sets default values for this actor's properties
@@ -45,11 +64,17 @@ public:
 public:
 	UPROPERTY(BlueprintAssignable)
 	FOnUserLevelUp OnLevelUp;
+
+	UPROPERTY(BlueprintAssignable)
+	FOnUpgradeUnlocked OnUpgradeUnlocked;
 	
 private:
 	UFUNCTION()
 	void UpdateSkillState();
-	
+
+	UFUNCTION()
+	void SortUpgrades();
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -64,8 +89,17 @@ public:
 
 	UFUNCTION()
 	bool RemoveUpgradePoints(int Amount);
+
+	UFUNCTION()
+	void NotifyUpgradeUnlocked();
 	
 public:
+	UFUNCTION(BlueprintPure)
+	TArray<UUpgradeAsset*> GetAvailableUpgrades();
+
+	UFUNCTION(BlueprintPure)
+    TArray<UUpgradeAsset*> GetUnlockedUpgrades();
+	
 	UFUNCTION(BlueprintPure)
 	FString GetLevelName();
 
@@ -83,4 +117,7 @@ public:
 
 	UFUNCTION(BlueprintPure)
 	int GetUpgradePoints();
+
+	UFUNCTION(BlueprintPure)
+	bool IsUpgradeUnlocked(UUpgradeAsset* Upgrade);
 };

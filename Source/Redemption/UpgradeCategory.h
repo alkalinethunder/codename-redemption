@@ -3,9 +3,6 @@
 #pragma once
 
 #include "CoreMinimal.h"
-
-#include <ShObjIdl.h>
-
 #include "UpgradeCategory.generated.h"
 
 /**

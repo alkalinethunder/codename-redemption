@@ -53,6 +53,9 @@ bool UUpgradeAsset::TryUnlock(ARedemptionPlayerState* InPlayerState)
 	{
 		// mark the upgrade as unlocked.
 		InPlayerState->GetSaveGame()->UnlockedUpgrades.Add(this->GetFName());
+
+		// update the player's upgrade state
+		InPlayerState->NotifyUpgradeUnlocked();
 		
 		// subtract upgrade points
 		InPlayerState->RemoveUpgradePoints(this->RequiredUpgradePoints);

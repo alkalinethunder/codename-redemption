@@ -2,7 +2,6 @@
 
 
 #include "RedemptionGameInstance.h"
-
 #include "RedemptionGameModeBase.h"
 #include "Kismet/GameplayStatics.h"
 

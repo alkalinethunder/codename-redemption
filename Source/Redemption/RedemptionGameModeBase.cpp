@@ -8,12 +8,16 @@
 #include "RedemptionState.h"
 #include "Blueprint/UserWidget.h"
 #include "RedemptionPlayerState.h"
+#include "RedemptionGameState.h"
 
 ARedemptionGameModeBase::ARedemptionGameModeBase()
 {
+	PrimaryActorTick.bCanEverTick = true;
+	
 	this->GameStateClass = ARedemptionState::StaticClass();
 	this->PlayerControllerClass = ARedemptionPlayerController::StaticClass();
 	this->PlayerStateClass = ARedemptionPlayerState::StaticClass();
+	this->GameStateClass = ARedemptionGameState::StaticClass();
 }
 
 void ARedemptionGameModeBase::BeginPlay()
@@ -24,7 +28,8 @@ void ARedemptionGameModeBase::BeginPlay()
 	{
 		this->GameInstance->StartSession(this);
 	}
-	
+
+	Super::BeginPlay();
 }
 
 void ARedemptionGameModeBase::EndPlay(const EEndPlayReason::Type EndPlayReason)
