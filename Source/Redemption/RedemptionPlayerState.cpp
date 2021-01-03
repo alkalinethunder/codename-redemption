@@ -9,6 +9,7 @@
 #include "UpgradeAsset.h"
 #include "Blueprint/UserWidget.h"
 #include "RedemptionGameState.h"
+#include "DiskNode.h"
 
 URedemptionSaveGame* ARedemptionPlayerState::GetSaveGame()
 {

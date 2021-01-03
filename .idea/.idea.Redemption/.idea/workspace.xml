@@ -6,30 +6,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="06c14ef7-907b-4990-b8f7-291c57d35a51" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Source/Redemption/AssetUtils.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/Redemption/RedemptionGameState.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/riderModule.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/riderModule.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Redemption/DiskNode.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Config/DefaultGame.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultGame.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/GuiFunctions.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/GuiFunctions.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Gui/Cmponents/ChatMessage.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Gui/Cmponents/ModalHost.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Gui/Cmponents/PlayerSkillInfo.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Gui/Cmponents/UpgradePointsDisplay.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Gui/OS/Desktop.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Gui/OS/Desktop.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Levels/MainMenu.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Levels/MainMenu.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Modes/Campaign.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Modes/Campaign.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Redemption/RedemptionGameInstance.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/RedemptionGameInstance.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Redemption/RedemptionGameModeBase.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/RedemptionGameModeBase.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerController.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerController.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerController.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerController.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerState.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerState.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerState.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerState.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Redemption/RedemptionSaveGame.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/RedemptionSaveGame.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Redemption/UpgradeAsset.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/UpgradeAsset.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Redemption/UpgradeAsset.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/UpgradeAsset.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Redemption/UpgradeCategory.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/UpgradeCategory.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,12 +42,13 @@
       <option value="$PROJECT_DIR$/Source/Redemption/RedemptionGameModeBase.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/UpgradeAsset.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/RedemptionGameState.h" />
-      <option value="$PROJECT_DIR$/Source/Redemption/UpgradeAsset.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/AssetUtils.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/RedemptionGameState.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/AssetUtils.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerController.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerController.cpp" />
+      <option value="$PROJECT_DIR$/Source/Redemption/UpgradeAsset.h" />
+      <option value="$PROJECT_DIR$/Source/Redemption/DiskNode.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerState.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerState.cpp" />
     </changedPaths>
@@ -323,7 +304,7 @@
       <workItem from="1609523621905" duration="6924000" />
       <workItem from="1609607693155" duration="9769000" />
       <workItem from="1609619950108" duration="5828000" />
-      <workItem from="1609626155127" duration="11723000" />
+      <workItem from="1609626155127" duration="12963000" />
     </task>
     <servers />
   </component>

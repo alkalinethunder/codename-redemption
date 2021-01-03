@@ -34278,6 +34278,8 @@
         <e p="Redemption" t="Include">
           <e p="AssetUtils.cpp" t="Include" />
           <e p="AssetUtils.h" t="Include" />
+          <e p="DiskNode.cpp" t="Include" />
+          <e p="DiskNode.h" t="Include" />
           <e p="Profile.cpp" t="Include" />
           <e p="Profile.h" t="Include" />
           <e p="ProgressionLevel.cpp" t="Include" />

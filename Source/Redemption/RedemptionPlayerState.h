@@ -10,6 +10,7 @@
 class URedemptionGameInstance;
 class UUpgradeAsset;
 class UUserWidget;
+class UDiskNode;
 class ARedemptionGameState;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnUserLevelUp, FProgressionLevel, InLevel);
@@ -21,6 +22,9 @@ class REDEMPTION_API ARedemptionPlayerState : public APlayerState
 	GENERATED_BODY()
 
 private:
+	UPROPERTY()
+	UDiskNode* RootDiskNode;
+	
 	UPROPERTY()
 	UUserWidget* Desktop;
 	
