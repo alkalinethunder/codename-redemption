@@ -9,18 +9,19 @@
 /**
  * Internal representation of a Unix directory node.
  */
-UCLASS()
+UCLASS(Abstract)
 class REDEMPTION_API UDiskNode : public UObject
 {
 	GENERATED_BODY()
 
 public:
-	UPROPERTY()
-	UDiskNode* Parent;
+	virtual UDiskNode* GetParent() PURE_VIRTUAL(UDiskNode::GetParent, return nullptr; );
+	virtual FString GetDiskNodeName() PURE_VIRTUAL(UDiskNode::GetDiskNodeName, return ""; );
+	virtual TArray<UDiskNode*> GetChildNodes() PURE_VIRTUAL(UDiskNode::GetChildNodes, return TArray<UDiskNode*>(); );
 
-	UPROPERTY()
-	FString Name;
+	UFUNCTION()
+	UDiskNode* GetChild(FString InName);
 
-	UPROPERTY()
-	TArray<UDiskNode*> Children;
+	UFUNCTION()
+	bool DoesChildExist(FString InName);
 };

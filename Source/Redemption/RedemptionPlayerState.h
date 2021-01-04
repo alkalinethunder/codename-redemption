@@ -5,12 +5,12 @@
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerState.h"
 #include "ProgressionLevel.h"
+#include "VirtualFileSystem.h"
 #include "RedemptionPlayerState.generated.h"
 
 class URedemptionGameInstance;
 class UUpgradeAsset;
 class UUserWidget;
-class UDiskNode;
 class ARedemptionGameState;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnUserLevelUp, FProgressionLevel, InLevel);
@@ -23,7 +23,7 @@ class REDEMPTION_API ARedemptionPlayerState : public APlayerState
 
 private:
 	UPROPERTY()
-	UDiskNode* RootDiskNode;
+	UVirtualFileSystem* VirtualFileSystem;
 	
 	UPROPERTY()
 	UUserWidget* Desktop;

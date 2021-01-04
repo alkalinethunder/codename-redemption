@@ -141,6 +141,15 @@ void URedemptionGameInstance::StartSession(ARedemptionGameModeBase* GameMode)
 			this->CurrentGameSave->DesktopWallpaper = GameMode->DefaultWallpaper;
 			this->CurrentGameSave->Experience = GameMode->StartingExperiencePoints;
 			this->CurrentGameSave->UpgradePoints = GameMode->StartingUpgradePoints;
+
+			// Create the player's root node for the directory system.
+			FDirectoryEntry RootNodeForPlayer;
+			RootNodeForPlayer.Id = 0;
+			RootNodeForPlayer.Name = "/";
+			this->CurrentGameSave->Directories.Add(RootNodeForPlayer);
+
+			// Add the relevant disk root.
+			this->CurrentGameSave->DiskRoots.Add(-1, 0); // -1 is root id, 0 is directory id.
 		}
 
 		this->GetSlotInfo().LastPlayed = FDateTime::Now();

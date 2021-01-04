@@ -6,6 +6,7 @@
 #include "GameFramework/SAveGame.h"
 #include "Wallpaper.h"
 #include "SocialGuiState.h"
+#include "DirectoryEntry.h"
 #include "RedemptionSaveGame.generated.h"
 
 /**
@@ -17,6 +18,12 @@ class REDEMPTION_API URedemptionSaveGame : public USaveGame
 	GENERATED_BODY()
 
 public:
+	UPROPERTY(BlueprintReadOnly, EditAnywhere)
+	TMap<int, int> DiskRoots;
+	
+	UPROPERTY(BlueprintReadOnly, EditAnywhere)
+	TArray<FDirectoryEntry> Directories;
+	
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)
 	int Experience;
 
@@ -38,5 +45,10 @@ public:
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)
 	ESocialGuiState LastSocialState;
 
-	
+public:
+	UFUNCTION()
+	bool FindDirectoryIndex(int DirectoryId, int& OutDirectoryIndex);
+
+	UFUNCTION()
+	int GetAvailableDirectoryId();
 };
