@@ -34288,6 +34288,8 @@
           <e p="DirectoryNode.h" t="Include" />
           <e p="DiskNode.cpp" t="Include" />
           <e p="DiskNode.h" t="Include" />
+          <e p="PathUtils.cpp" t="Include" />
+          <e p="PathUtils.h" t="Include" />
           <e p="Profile.cpp" t="Include" />
           <e p="Profile.h" t="Include" />
           <e p="ProgressionLevel.cpp" t="Include" />
