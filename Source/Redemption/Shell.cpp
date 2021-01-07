@@ -7,6 +7,18 @@
 #include "ShellManagementActor.h"
 #include "VirtualFileSystem.h"
 
+void UShell::Exit()
+{
+	if (!this->bExited)
+	{
+		this->bExited = true;
+		this->OnExited.Broadcast();
+		this->Console->OnTextSubmitted.RemoveDynamic(this, &UShell::HandleConsoleTextSubmitted);
+		this->Console = nullptr;
+		this->PlayerController = nullptr;
+	}
+}
+
 void UShell::HandleConsoleTextSubmitted(FString InText)
 {
 	if (!this->CurrentCommandScript)
@@ -77,10 +89,18 @@ void UShell::LinkToConsole(AShellManagementActor* Owner, UConsoleWidget* InConso
 	this->WritePrompt();
 }
 
+void UShell::MakeLoginShell()
+{
+	this->IsLoginShell = true;
+}
+
 void UShell::WritePrompt()
 {
-	this->Console->Write(FText::FromString(this->WorkingDirectory));
-	this->Console->Write(FText::FromString("$ "));
+	if (!this->bExited)
+	{
+		this->Console->Write(FText::FromString(this->WorkingDirectory));
+		this->Console->Write(FText::FromString("$ "));
+	}
 }
 
 bool UShell::BreakCommandLine(FString InText, TArray<FString>& OutParts, FString& OutError)
@@ -231,6 +251,19 @@ bool UShell::ProcessBuiltin(FString InName, TArray<FString> InArgs)
 	if (InName == "clear")
 	{
 		this->Console->ClearScreen();
+		return true;
+	}
+	else if (InName == "exit")
+	{
+		if (this->IsLoginShell)
+		{
+			this->Console->WriteLine(FText::FromString("exit: cannot exit login shell"));
+		}
+		else
+		{
+			this->Exit();
+		}
+
 		return true;
 	}
 	else if (InName == "cd")
