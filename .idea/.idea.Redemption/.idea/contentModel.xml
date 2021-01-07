@@ -34286,6 +34286,8 @@
           <e p="ConsoleTextData.h" t="Include" />
           <e p="ConsoleWidget.cpp" t="Include" />
           <e p="ConsoleWidget.h" t="Include" />
+          <e p="DesktopWidget.cpp" t="Include" />
+          <e p="DesktopWidget.h" t="Include" />
           <e p="DirectoryEntry.cpp" t="Include" />
           <e p="DirectoryEntry.h" t="Include" />
           <e p="DirectoryNode.cpp" t="Include" />

@@ -7,7 +7,7 @@
 #include "RedemptionGameModeBase.h"
 #include "RedemptionSaveGame.h"
 #include "UpgradeAsset.h"
-#include "Blueprint/UserWidget.h"
+#include "DesktopWidget.h"
 #include "RedemptionGameState.h"
 
 URedemptionSaveGame* ARedemptionPlayerState::GetSaveGame()
@@ -69,7 +69,7 @@ void ARedemptionPlayerState::BeginPlay()
 	this->VirtualFileSystem = NewObject<UVirtualFileSystem>();
 	this->VirtualFileSystem->MountRootNode(this->GetSaveGame(), -1);
 	
-	this->Desktop = CreateWidget<UUserWidget, APlayerController>(UGameplayStatics::GetPlayerController(this, 0), this->GameMode->DesktopWidget);
+	this->Desktop = CreateWidget<UDesktopWidget, APlayerController>(UGameplayStatics::GetPlayerController(this, 0), this->GameMode->DesktopWidget);
 	this->Desktop->AddToViewport();
 }
 

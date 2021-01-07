@@ -10,7 +10,7 @@
 
 class URedemptionGameInstance;
 class UUpgradeAsset;
-class UUserWidget;
+class UDesktopWidget;
 class ARedemptionGameState;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnUserLevelUp, FProgressionLevel, InLevel);
@@ -26,7 +26,7 @@ private:
 	UVirtualFileSystem* VirtualFileSystem;
 	
 	UPROPERTY()
-	UUserWidget* Desktop;
+	UDesktopWidget* Desktop;
 	
 	UPROPERTY()
 	ARedemptionGameState* GameState;

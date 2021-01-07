@@ -6,10 +6,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="06c14ef7-907b-4990-b8f7-291c57d35a51" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Source/Redemption/DisplayTarget.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/Redemption/GraphicalAppAsset.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Redemption/DesktopWidget.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Redemption/CommandFlags.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/CommandFlags.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Gui/OS/Desktop.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Gui/OS/Desktop.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Redemption/RedemptionGameModeBase.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/RedemptionGameModeBase.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Redemption/RedemptionGameModeBase.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/RedemptionGameModeBase.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerState.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerState.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerState.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerState.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,7 +37,6 @@
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Intermediate/ProjectFiles/UProgressionLevelsListAsset.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/ProgressionLevel.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/ProgressionLevelsListAsset.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/ProgressionLevelsListAsset.cpp" />
@@ -64,15 +67,11 @@
       <option value="$PROJECT_DIR$/Source/Redemption/ConsoleWidget.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/ShellManagementActor.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/ShellManagementActor.cpp" />
-      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerState.h" />
-      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerState.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/PathUtils.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/PathUtils.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/ShellCommandAsset.h" />
-      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionGameModeBase.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerController.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerController.cpp" />
-      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionGameModeBase.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/CommandScript.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/CommandScript.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/VirtualFileSystem.h" />
@@ -84,6 +83,11 @@
       <option value="$PROJECT_DIR$/Source/Redemption/DisplayTarget.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/CommandFlags.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/GraphicalAppAsset.h" />
+      <option value="$PROJECT_DIR$/Source/Redemption/DesktopWidget.h" />
+      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionGameModeBase.h" />
+      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionGameModeBase.cpp" />
+      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerState.h" />
+      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerState.cpp" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1mSCTesrzm0AEkY2lywPjJ7v9sD" />
@@ -345,7 +349,7 @@
       <workItem from="1609895506667" duration="70000" />
       <workItem from="1609896529138" duration="5150000" />
       <workItem from="1609962035455" duration="2196000" />
-      <workItem from="1609966628501" duration="17786000" />
+      <workItem from="1609966628501" duration="18806000" />
     </task>
     <servers />
   </component>

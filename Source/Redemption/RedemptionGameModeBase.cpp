@@ -9,7 +9,7 @@
 #include "RedemptionGameInstance.h"
 #include "RedemptionPlayerController.h"
 #include "RedemptionState.h"
-#include "Blueprint/UserWidget.h"
+#include "DesktopWidget.h"
 #include "RedemptionPlayerState.h"
 #include "RedemptionGameState.h"
 #include "ShellManagementActor.h"

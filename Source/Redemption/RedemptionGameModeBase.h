@@ -8,7 +8,7 @@
 #include "ProgressionLevelsListAsset.h"
 #include "RedemptionGameModeBase.generated.h"
 
-class UUserWidget;
+class UDesktopWidget;
 class URedemptionGameInstance;
 class ARedemptionPlayerState;
 class AShellManagementActor;
@@ -45,7 +45,7 @@ public:
 	UProgressionLevelsListAsset* LevelsList;
 
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Progression")
-	TSubclassOf<UUserWidget> DesktopWidget;
+	TSubclassOf<UDesktopWidget> DesktopWidget;
 	
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "OS")
 	FString PlayerHostName = "localhost";
