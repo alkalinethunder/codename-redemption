@@ -79,6 +79,11 @@ void ARedemptionPlayerState::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 }
 
+UVirtualFileSystem* ARedemptionPlayerState::GetFileSystem()
+{
+	return this->VirtualFileSystem;
+}
+
 void ARedemptionPlayerState::UpdateSkillState()
 {
 	// set our total XP internally

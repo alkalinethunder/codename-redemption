@@ -284,12 +284,16 @@ FReply UConsoleWidget::NativeOnKeyChar(const FGeometry& InGeometry, const FChara
 {
 	TCHAR c = InCharEvent.GetCharacter();
 
+	FString input = this->InputBuffer;
+
 	switch (c)
+	
 	{
 		case '\r':
 			this->WriteLine(FText::FromString(this->InputBuffer));
 			this->InputBuffer = "";
 			this->InputPos = 0;
+			this->OnTextSubmitted.Broadcast(input);
 			break;
 		case '\b':
 			if (this->InputPos > 0)

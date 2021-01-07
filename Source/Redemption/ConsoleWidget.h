@@ -10,6 +10,7 @@
 #include "ConsoleWidget.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnConsoleTextWritten);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnTextSubmitted, FString, InText);
 
 /**
  * Renders the in-game console.
@@ -56,6 +57,9 @@ private:
 	TArray<FString> Future;
 
 public:
+	UPROPERTY(BlueprintAssignable)
+	FOnTextSubmitted OnTextSubmitted;
+	
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)
 	FSlateBrush Brush;
 	

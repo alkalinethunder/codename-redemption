@@ -3,11 +3,14 @@
 #pragma once
 
 #include "CoreMinimal.h"
+
+#include "ShellCommandAsset.h"
 #include "GameFramework/PlayerController.h"
 #include "RedemptionPlayerController.generated.h"
 
 class UUserWidget;
 class ARedemptionGameModeBase;
+class UVirtualFileSystem;
 
 UCLASS()
 class REDEMPTION_API ARedemptionPlayerController : public APlayerController
@@ -29,4 +32,11 @@ protected:
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+public:
+	UFUNCTION(BlueprintPure)
+	UVirtualFileSystem* GetFileSystem();
+
+	UFUNCTION()
+	bool TryGetCommandByName(FString InCommandName, UShellCommandAsset*& OutCommand);
 };

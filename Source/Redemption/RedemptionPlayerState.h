@@ -88,6 +88,9 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 public:
+	UFUNCTION(BlueprintPure)
+	UVirtualFileSystem* GetFileSystem();
+	
 	UFUNCTION()
 	class URedemptionSaveGame* GetSaveGame();
 

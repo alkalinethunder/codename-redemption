@@ -11,6 +11,10 @@
 class UUserWidget;
 class URedemptionGameInstance;
 class ARedemptionPlayerState;
+class AShellManagementActor;
+class UConsoleWidget;
+class UShell;
+class UShellCommandAsset;
 
 /**
  * 
@@ -21,6 +25,12 @@ class REDEMPTION_API ARedemptionGameModeBase : public AGameModeBase
 	GENERATED_BODY()
 
 private:
+	UPROPERTY()
+	TArray<UShellCommandAsset*> ShellCommands;
+	
+	UPROPERTY()
+	AShellManagementActor* ShellManager;
+	
 	UPROPERTY()
 	URedemptionGameInstance* GameInstance;
 	
@@ -58,4 +68,11 @@ public:
 protected:
 	virtual void BeginPlay() override;
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
+
+public:
+	UFUNCTION(BlueprintCallable)
+	UShell* CreateShell(UConsoleWidget* InConsoleWidget);
+
+	UFUNCTION()
+	UShellCommandAsset* FindCommand(FString InName);
 };

@@ -34278,6 +34278,10 @@
         <e p="Redemption" t="Include">
           <e p="AssetUtils.cpp" t="Include" />
           <e p="AssetUtils.h" t="Include" />
+          <e p="CommandFlags.cpp" t="Include" />
+          <e p="CommandFlags.h" t="Include" />
+          <e p="CommandScript.cpp" t="Include" />
+          <e p="CommandScript.h" t="Include" />
           <e p="ConsoleTextData.cpp" t="Include" />
           <e p="ConsoleTextData.h" t="Include" />
           <e p="ConsoleWidget.cpp" t="Include" />
@@ -34315,6 +34319,12 @@
           <e p="RedemptionState.h" t="Include" />
           <e p="SaveSlot.cpp" t="Include" />
           <e p="SaveSlot.h" t="Include" />
+          <e p="Shell.cpp" t="Include" />
+          <e p="Shell.h" t="Include" />
+          <e p="ShellCommandAsset.cpp" t="Include" />
+          <e p="ShellCommandAsset.h" t="Include" />
+          <e p="ShellManagementActor.cpp" t="Include" />
+          <e p="ShellManagementActor.h" t="Include" />
           <e p="SocialGuiState.cpp" t="Include" />
           <e p="SocialGuiState.h" t="Include" />
           <e p="UpgradeAsset.cpp" t="Include" />

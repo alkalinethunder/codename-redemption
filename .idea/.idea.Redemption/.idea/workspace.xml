@@ -6,16 +6,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="06c14ef7-907b-4990-b8f7-291c57d35a51" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Source/Redemption/PathUtils.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Redemption/CommandFlags.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Redemption/CommandScript.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Redemption/Shell.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Redemption/ShellCommandAsset.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Redemption/ShellManagementActor.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Fonts/SourceCodePro-Bold.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Fonts/SourceCodePro-Bold.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Fonts/SourceCodePro-BoldItalic.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Fonts/SourceCodePro-BoldItalic.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Fonts/SourceCodePro-Italic.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Fonts/SourceCodePro-Italic.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Fonts/SourceCodePro-Regular.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Fonts/SourceCodePro-Regular.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Anus.uasset" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Gui/OS/Desktop.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Gui/OS/Desktop.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Redemption/ConsoleWidget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/ConsoleWidget.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Redemption/ConsoleWidget.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/ConsoleWidget.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Redemption/DiskNode.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/DiskNode.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Redemption/PathUtils.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/PathUtils.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Redemption/PathUtils.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/PathUtils.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Redemption/RedemptionGameModeBase.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/RedemptionGameModeBase.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Redemption/RedemptionGameModeBase.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/RedemptionGameModeBase.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerController.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerController.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerController.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerController.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerState.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerState.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerState.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerState.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Redemption/VirtualFileSystem.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/VirtualFileSystem.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Redemption/VirtualFileSystem.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/VirtualFileSystem.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +45,8 @@
     <setting file="file://C:/Program Files/Epic Games/UE_4.26/Engine/Source/Runtime/SlateCore/Private/Rendering/ElementBatcher.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Epic Games/UE_4.26/Engine/Source/Runtime/Core/Public/HAL/Platform.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Epic Games/UE_4.26/Engine/Source/Runtime/UMG/Public/Blueprint/UserWidget.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://C:/Program Files/Epic Games/UE_4.26/Engine/Source/Runtime/CoreUObject/Private/UObject/UObjectGlobals.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://C:/Program Files/Epic Games/UE_4.26/Engine/Source/Runtime/Core/Public/Containers/UnrealString.h" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
@@ -40,28 +54,19 @@
       <option value="$PROJECT_DIR$/Source/Redemption/ProgressionLevel.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/ProgressionLevelsListAsset.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/ProgressionLevelsListAsset.cpp" />
-      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionGameModeBase.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/SaveSlot.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/Profile.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/RedemptionGameInstance.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/UpgradeCategory.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/UpgradeCategory.h" />
-      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionGameModeBase.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/UpgradeAsset.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/RedemptionGameState.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/AssetUtils.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/RedemptionGameState.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/AssetUtils.cpp" />
-      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerController.h" />
-      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerController.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/UpgradeAsset.h" />
-      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerState.h" />
-      <option value="$PROJECT_DIR$/Source/Redemption/VirtualFileSystem.h" />
-      <option value="$PROJECT_DIR$/Source/Redemption/DiskNode.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/MountPoint.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/DirectoryEntry.cpp" />
-      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerState.cpp" />
-      <option value="$PROJECT_DIR$/Source/Redemption/VirtualFileSystem.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/DirectoryEntry.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/DiskNode.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/DirectoryNode.h" />
@@ -74,6 +79,25 @@
       <option value="$PROJECT_DIR$/Source/Redemption/RedemptionGameInstance.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/ConsoleWidget.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/ConsoleWidget.cpp" />
+      <option value="$PROJECT_DIR$/Source/Redemption/ShellManagementActor.h" />
+      <option value="$PROJECT_DIR$/Source/Redemption/ShellManagementActor.cpp" />
+      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerState.h" />
+      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerState.cpp" />
+      <option value="$PROJECT_DIR$/Source/Redemption/PathUtils.h" />
+      <option value="$PROJECT_DIR$/Source/Redemption/PathUtils.cpp" />
+      <option value="$PROJECT_DIR$/Source/Redemption/CommandFlags.h" />
+      <option value="$PROJECT_DIR$/Source/Redemption/ShellCommandAsset.h" />
+      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionGameModeBase.h" />
+      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerController.h" />
+      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerController.cpp" />
+      <option value="$PROJECT_DIR$/Source/Redemption/Shell.h" />
+      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionGameModeBase.cpp" />
+      <option value="$PROJECT_DIR$/Source/Redemption/Shell.cpp" />
+      <option value="$PROJECT_DIR$/Source/Redemption/CommandScript.h" />
+      <option value="$PROJECT_DIR$/Source/Redemption/CommandScript.cpp" />
+      <option value="$PROJECT_DIR$/Source/Redemption/VirtualFileSystem.h" />
+      <option value="$PROJECT_DIR$/Source/Redemption/DiskNode.cpp" />
+      <option value="$PROJECT_DIR$/Source/Redemption/VirtualFileSystem.cpp" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1mSCTesrzm0AEkY2lywPjJ7v9sD" />
@@ -85,7 +109,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.5502816" />
+    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.5503792" />
     <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.0" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
@@ -333,7 +357,9 @@
       <workItem from="1609780836826" duration="880000" />
       <workItem from="1609882026635" duration="4016000" />
       <workItem from="1609895506667" duration="70000" />
-      <workItem from="1609896529138" duration="2497000" />
+      <workItem from="1609896529138" duration="5150000" />
+      <workItem from="1609962035455" duration="2196000" />
+      <workItem from="1609966628501" duration="15245000" />
     </task>
     <servers />
   </component>
@@ -379,6 +405,11 @@
           <url>file://$PROJECT_DIR$/Source/Redemption/DirectoryEntry.h</url>
           <line>4</line>
           <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/Source/Redemption/Shell.h</url>
+          <line>4</line>
+          <option name="timeStamp" value="28" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

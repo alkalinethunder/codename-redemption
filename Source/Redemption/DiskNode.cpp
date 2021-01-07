@@ -9,7 +9,7 @@ UDiskNode* UDiskNode::GetChild(FString InName)
 
 	for (UDiskNode* Child : this->GetChildNodes())
 	{
-		if (Child->GetName() == InName)
+		if (Child->GetDiskNodeName() == InName)
 		{
 			result = Child;
 			break;
