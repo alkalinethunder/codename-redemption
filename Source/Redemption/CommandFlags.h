@@ -35,6 +35,13 @@ public:
 	bool ManualCompletionTrigger = false;
 
 	/**
+	 * (Graphical Apps only) Whether the close button is visible on the app's
+	 * tab or title bar.
+	 */
+	UPROPERTY(BlueprintReadOnly, EditAnywhere)
+	bool IsUserCloseable = true;
+	
+	/**
 	 * (Graphical apps only) Command will not launch more than
 	 * one GUI if a GUI has already been created.
 	 */

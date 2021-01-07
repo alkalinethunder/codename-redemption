@@ -245,6 +245,21 @@ bool UShell::ProcessExtern(FString InName, TArray<FString> InArgs)
 	}
 }
 
+bool UShell::RequestExit()
+{
+	if (this->bExited)
+		return true;
+	
+	if (this->CurrentCommandScript != nullptr)
+		return false;
+
+	if (this->IsLoginShell)
+		return false;
+
+	this->Exit();
+	return true;
+}
+
 
 bool UShell::ProcessBuiltin(FString InName, TArray<FString> InArgs)
 {

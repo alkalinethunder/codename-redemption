@@ -89,3 +89,18 @@ UShellCommandAsset* ARedemptionGameModeBase::FindCommand(FString InName)
 	
 	return result;
 }
+
+TArray<UGraphicalAppAsset*> ARedemptionGameModeBase::GetStartupApps()
+{
+	TArray<UGraphicalAppAsset*> result;
+
+	for(UGraphicalAppAsset* app : this->Apps)
+	{
+		if (app->CommandFlags.IsStartup)
+		{
+			result.Add(app);
+		}
+	}
+	
+	return result;
+}

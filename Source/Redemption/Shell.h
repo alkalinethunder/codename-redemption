@@ -74,6 +74,9 @@ private:
 	
 public:
 	UFUNCTION()
+	bool RequestExit();
+	
+	UFUNCTION()
 	void LinkToConsole(AShellManagementActor* Owner, UConsoleWidget* InConsole);
 
 	UFUNCTION()

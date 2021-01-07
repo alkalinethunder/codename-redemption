@@ -34276,6 +34276,10 @@
       <e p="Redemption.uproject" t="Include" />
       <e p="Source" t="Include">
         <e p="Redemption" t="Include">
+          <e p="AppHostWidget.cpp" t="Include" />
+          <e p="AppHostWidget.h" t="Include" />
+          <e p="AppTabWidget.cpp" t="Include" />
+          <e p="AppTabWidget.h" t="Include" />
           <e p="AssetUtils.cpp" t="Include" />
           <e p="AssetUtils.h" t="Include" />
           <e p="CommandFlags.cpp" t="Include" />
@@ -34329,6 +34333,8 @@
           <e p="Shell.h" t="Include" />
           <e p="ShellCommandAsset.cpp" t="Include" />
           <e p="ShellCommandAsset.h" t="Include" />
+          <e p="ShellHostWidget.cpp" t="Include" />
+          <e p="ShellHostWidget.h" t="Include" />
           <e p="ShellManagementActor.cpp" t="Include" />
           <e p="ShellManagementActor.h" t="Include" />
           <e p="SocialGuiState.cpp" t="Include" />

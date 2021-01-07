@@ -7,8 +7,13 @@
 #include "Components/Button.h"
 #include "Components/HorizontalBox.h"
 #include "Components/WidgetSwitcher.h"
-
 #include "DesktopWidget.generated.h"
+
+class UAppTabWidget;
+class UShellHostWidget;
+class UAppHostWidget;
+class ARedemptionGameModeBase;
+class UGraphicalAppAsset;
 
 /**
  * Base widget for desktop UIs.
@@ -18,6 +23,20 @@ class REDEMPTION_API UDesktopWidget : public UUserWidget
 {
 	GENERATED_BODY()
 
+private:
+	UPROPERTY()
+	ARedemptionGameModeBase* GameMode;
+	
+protected:
+	UPROPERTY(BlueprintReadOnly, EditAnywhere)
+	TSubclassOf<UAppTabWidget> AppTabWidgetClass;
+
+	UPROPERTY(BlueprintReadOnly, EditAnywhere)
+	TSubclassOf<UShellHostWidget> ShellHostWidgetClass;
+
+	UPROPERTY(BlueprintReadOnly, EditAnywhere)
+	TSubclassOf<UAppHostWidget> AppHostWidgetClass;
+	
 protected:
 	UPROPERTY(BlueprintReadOnly, meta=(BindWidget))
 	UWidgetSwitcher* ConsoleSwitcher;
@@ -42,4 +61,26 @@ protected:
 
 	UPROPERTY(BlueprintReadOnly, meta=(BindWidget))
 	UButton* DoNotDisturbToggle;
+
+private:
+	UFUNCTION()
+	void HandleShellClose(UAppTabWidget* RequestingWidget);
+	
+	UFUNCTION()
+	void HandleAppClose(UAppTabWidget* RequestingWidget);
+	
+	UFUNCTION()
+	void CreateShell();
+	
+	UFUNCTION()
+	void LaunchShellInternal(bool InLoginShell);
+	
+	UFUNCTION()
+	void LaunchTabbedApp(UWidgetSwitcher* InWidgetSwitcher, UHorizontalBox* InTabsPanel, UGraphicalAppAsset* InApp);
+	
+	UFUNCTION()
+	void LaunchAppInternal(UGraphicalAppAsset* InApp);
+	
+protected:
+	virtual void NativeConstruct() override;
 };

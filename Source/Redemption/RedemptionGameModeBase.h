@@ -79,4 +79,7 @@ public:
 
 	UFUNCTION()
 	UShellCommandAsset* FindCommand(FString InName);
+
+	UFUNCTION()
+	TArray<UGraphicalAppAsset*> GetStartupApps();
 };
