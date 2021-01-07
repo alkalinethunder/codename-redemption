@@ -14,6 +14,7 @@
 #include "RedemptionGameState.h"
 #include "ShellManagementActor.h"
 #include "ShellCommandAsset.h"
+#include "GraphicalAppAsset.h"
 
 ARedemptionGameModeBase::ARedemptionGameModeBase()
 {
@@ -35,6 +36,15 @@ void ARedemptionGameModeBase::BeginPlay()
 		if (asset)
 		{
 			this->ShellCommands.Add(asset);
+		}
+	}
+
+	for (UObject* gappAsset : UAssetUtils::LoadAssetsOfClass(UGraphicalAppAsset::StaticClass()))
+	{
+		UGraphicalAppAsset* asset = Cast<UGraphicalAppAsset>(gappAsset);
+		if (asset)
+		{
+			this->Apps.Add(asset);
 		}
 	}
 	

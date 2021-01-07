@@ -15,6 +15,7 @@ class AShellManagementActor;
 class UConsoleWidget;
 class UShell;
 class UShellCommandAsset;
+class UGraphicalAppAsset;
 
 /**
  * 
@@ -25,6 +26,9 @@ class REDEMPTION_API ARedemptionGameModeBase : public AGameModeBase
 	GENERATED_BODY()
 
 private:
+	UPROPERTY()
+	TArray<UGraphicalAppAsset*> Apps;
+	
 	UPROPERTY()
 	TArray<UShellCommandAsset*> ShellCommands;
 	
