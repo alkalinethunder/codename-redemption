@@ -6,8 +6,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="06c14ef7-907b-4990-b8f7-291c57d35a51" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Source/Redemption/Shell.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/Shell.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Redemption/Shell.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/Shell.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Redemption/DisplayTarget.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Redemption/GraphicalAppAsset.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Redemption/CommandFlags.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/CommandFlags.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +21,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://C:/Program Files/Epic Games/UE_4.26/Engine/Source/Runtime/SlateCore/Public/Rendering/DrawElements.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://C:/Program Files/Epic Games/UE_4.26/Engine/Source/Runtime/Core/Private/Containers/String.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Epic Games/UE_4.26/Engine/Source/Runtime/Core/Public/Containers/EnumAsByte.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://C:/Program Files (x86)/Windows Kits/10/Include/10.0.18362.0/um/winnt.h" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Epic Games/UE_4.26/Engine/Source/Runtime/Core/Public/Containers/Array.h" root0="FORCE_HIGHLIGHTING" />
@@ -65,7 +68,6 @@
       <option value="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerState.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/PathUtils.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/PathUtils.cpp" />
-      <option value="$PROJECT_DIR$/Source/Redemption/CommandFlags.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/ShellCommandAsset.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/RedemptionGameModeBase.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerController.h" />
@@ -78,6 +80,10 @@
       <option value="$PROJECT_DIR$/Source/Redemption/VirtualFileSystem.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/Shell.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/Shell.cpp" />
+      <option value="$PROJECT_DIR$/Source/Redemption/DisplayTarget.h" />
+      <option value="$PROJECT_DIR$/Source/Redemption/DisplayTarget.cpp" />
+      <option value="$PROJECT_DIR$/Source/Redemption/CommandFlags.h" />
+      <option value="$PROJECT_DIR$/Source/Redemption/GraphicalAppAsset.h" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1mSCTesrzm0AEkY2lywPjJ7v9sD" />
@@ -339,7 +345,7 @@
       <workItem from="1609895506667" duration="70000" />
       <workItem from="1609896529138" duration="5150000" />
       <workItem from="1609962035455" duration="2196000" />
-      <workItem from="1609966628501" duration="15992000" />
+      <workItem from="1609966628501" duration="17786000" />
     </task>
     <servers />
   </component>

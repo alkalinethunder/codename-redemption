@@ -34292,6 +34292,10 @@
           <e p="DirectoryNode.h" t="Include" />
           <e p="DiskNode.cpp" t="Include" />
           <e p="DiskNode.h" t="Include" />
+          <e p="DisplayTarget.cpp" t="Include" />
+          <e p="DisplayTarget.h" t="Include" />
+          <e p="GraphicalAppAsset.cpp" t="Include" />
+          <e p="GraphicalAppAsset.h" t="Include" />
           <e p="PathUtils.cpp" t="Include" />
           <e p="PathUtils.h" t="Include" />
           <e p="Profile.cpp" t="Include" />

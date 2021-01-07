@@ -33,4 +33,17 @@ public:
 	 */
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)
 	bool ManualCompletionTrigger = false;
+
+	/**
+	 * (Graphical apps only) Command will not launch more than
+	 * one GUI if a GUI has already been created.
+	 */
+	UPROPERTY(BlueprintReadOnly, EditAnywhere)
+	bool IsSingleInstance = false;
+
+	/**
+	 * (Graphical Apps only) Command will run on game load.
+	 */
+	UPROPERTY(BlueprintReadOnly, EditAnywhere)
+	bool IsStartup = false;
 };
