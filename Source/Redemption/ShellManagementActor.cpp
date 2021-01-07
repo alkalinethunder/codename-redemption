@@ -26,11 +26,16 @@ void AShellManagementActor::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 }
 
-UShell* AShellManagementActor::CreateShell(UConsoleWidget* InConsole)
+UShell* AShellManagementActor::CreateShell(UConsoleWidget* InConsole, bool InLoginShell)
 {
 	UShell* NewShell = NewObject<UShell>();
 	this->Shells.Add(NewShell);
 	NewShell->LinkToConsole(this, InConsole);
+
+	if (InLoginShell)
+	{
+		NewShell->MakeLoginShell();	
+	}
+	
 	return NewShell;
 }
-

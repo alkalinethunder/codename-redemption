@@ -64,6 +64,9 @@ void UDesktopWidget::LaunchShellInternal(bool InLoginShell)
 
 	// bind to close requests.
 	AppTab->OnCloseRequested.AddUniqueDynamic(this, &UDesktopWidget::UDesktopWidget::HandleShellClose);
+
+	// handle the shell exit event
+	ShellHost->OnShellExit.AddUniqueDynamic(AppTab, &UAppTabWidget::RequestClose);
 	
 	// Add the app tab and the shell host.
 	this->ConsoleSwitcher->InsertChildAt(WidgetIndex, ShellHost);

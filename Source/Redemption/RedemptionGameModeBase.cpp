@@ -66,12 +66,12 @@ void ARedemptionGameModeBase::EndPlay(const EEndPlayReason::Type EndPlayReason)
 	this->GameInstance->EndSession();
 }
 
-UShell* ARedemptionGameModeBase::CreateShell(UConsoleWidget* InConsoleWidget)
+UShell* ARedemptionGameModeBase::CreateShell(UConsoleWidget* InConsoleWidget, bool InLoginShell)
 {
 	check(InConsoleWidget);
 	check(this->ShellManager);
 
-	return this->ShellManager->CreateShell(InConsoleWidget);
+	return this->ShellManager->CreateShell(InConsoleWidget, InLoginShell);
 }
 
 UShellCommandAsset* ARedemptionGameModeBase::FindCommand(FString InName)

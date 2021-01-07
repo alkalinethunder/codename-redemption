@@ -10,6 +10,8 @@
 
 class UShell;
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnShellHostExit);
+
 /**
  * 
  */
@@ -20,12 +22,23 @@ class REDEMPTION_API UShellHostWidget : public UUserWidget
 
 private:
 	UPROPERTY()
+	bool bIHaveAlreadyFuckingDoneThis = false;
+	
+	UPROPERTY()
 	UShell* Shell;
 	
 protected:
 	UPROPERTY(BlueprintReadOnly, meta=(BindWidget))
 	UConsoleWidget* Console;
 
+public:
+	UPROPERTY(BlueprintAssignable)
+	FOnShellHostExit OnShellExit;
+	
+private:
+	UFUNCTION()
+	void HandleShellExited();
+	
 public:
 	UFUNCTION()
 	bool RequestExit();

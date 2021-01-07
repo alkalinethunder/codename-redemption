@@ -32,13 +32,6 @@ protected:
 
 	UPROPERTY(BlueprintReadOnly, meta=(BindWidget))
 	UButton* CloseTrigger;
-
-private:
-	UFUNCTION()
-	void RequestClose();
-	
-	UFUNCTION()
-	void SwitchToApp();
 	
 protected:
 	virtual void NativeConstruct() override;
@@ -63,6 +56,12 @@ public:
 	FOnAppTabCloseRequested OnCloseRequested;
 	
 public:
+	UFUNCTION()
+    void RequestClose();
+	
+	UFUNCTION()
+    void SwitchToApp();
+	
 	UFUNCTION(BlueprintPure)
 	bool IsActiveApp();
 };

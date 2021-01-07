@@ -8,6 +8,16 @@
 #include "RedemptionPlayerController.h"
 #include "Shell.h"
 
+void UShellHostWidget::HandleShellExited()
+{
+	if (!this->bIHaveAlreadyFuckingDoneThis)
+	{
+		this->bIHaveAlreadyFuckingDoneThis = true;
+
+		this->OnShellExit.Broadcast();
+	}
+}
+
 bool UShellHostWidget::RequestExit()
 {
 	return this->Shell->RequestExit();
@@ -19,7 +29,8 @@ bool UShellHostWidget::InitShell(bool InLoginShell)
 	
 	if (GameMode)
 	{
-		this->Shell = GameMode->CreateShell(this->Console);
+		this->Shell = GameMode->CreateShell(this->Console, InLoginShell);
+		this->Shell->OnExited.AddUniqueDynamic(this, &UShellHostWidget::HandleShellExited);
 		return true;
 	}
 

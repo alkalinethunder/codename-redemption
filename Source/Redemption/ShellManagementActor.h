@@ -32,5 +32,5 @@ public:
 
 public:
 	UFUNCTION()
-	UShell* CreateShell(UConsoleWidget* InConsole);
+	UShell* CreateShell(UConsoleWidget* InConsole, bool InLoginShell);
 };
