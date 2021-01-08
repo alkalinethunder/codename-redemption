@@ -11,6 +11,8 @@
 class UUserWidget;
 class ARedemptionGameModeBase;
 class UVirtualFileSystem;
+class UChatContact;
+class URedemptionGameInstance;
 
 UCLASS()
 class REDEMPTION_API ARedemptionPlayerController : public APlayerController
@@ -20,6 +22,9 @@ class REDEMPTION_API ARedemptionPlayerController : public APlayerController
 private:
 	UPROPERTY()
 	ARedemptionGameModeBase* GameMode;
+
+	UPROPERTY()
+	URedemptionGameInstance* GameInstance;
 	
 public:
 	// Sets default values for this actor's properties
@@ -37,6 +42,9 @@ public:
 	UFUNCTION(BlueprintPure)
 	UVirtualFileSystem* GetFileSystem();
 
+	UFUNCTION(BlueprintPure)
+	TArray<UChatContact*> GetContacts();
+	
 	UFUNCTION()
 	bool TryGetCommandByName(FString InCommandName, UShellCommandAsset*& OutCommand);
 };

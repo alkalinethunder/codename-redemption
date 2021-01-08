@@ -12,6 +12,8 @@ class UConversation;
 class UChatContact;
 class URedemptionGameInstance;
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FContactAddedEvent);
+
 UCLASS(BlueprintType)
 class REDEMPTION_API ARedemptionGameState : public AGameStateBase
 {
@@ -32,6 +34,10 @@ private:
 
 	UPROPERTY()
 	URedemptionGameInstance* MyGameInstance;
+
+public:
+	UPROPERTY(BlueprintAssignable)
+	FContactAddedEvent OnContactAdded;
 	
 public:
 	// Sets default values for this actor's properties
@@ -49,6 +55,9 @@ public:
 	UFUNCTION()
 	TArray<UUpgradeAsset*> GetAllUpgrades();
 
+	UFUNCTION()
+	UChatContact* GetContactByName(FString InName);
+	
 public:
 	UFUNCTION(Exec)
 	void AddContact(FString InContactName);

@@ -12,7 +12,7 @@
  * Represents a single person or group of people that the player
  * has as a contact in their Social Panel.
  */
-UCLASS()
+UCLASS(BlueprintType)
 class REDEMPTION_API UChatContact : public UDataAsset
 {
 	GENERATED_BODY()
@@ -27,4 +27,7 @@ public:
 public:
 	UFUNCTION(BlueprintPure)
 	EPersonalPronoun GetPronoun();
+
+	UFUNCTION(BlueprintPure)
+	FString GetUsernameText();
 };

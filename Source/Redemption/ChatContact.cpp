@@ -9,3 +9,19 @@ EPersonalPronoun UChatContact::GetPronoun()
 		return EPersonalPronoun::NonBinary; // they/them
 	return this->ConversationMembers[0]->Pronouns;
 }
+
+FString UChatContact::GetUsernameText()
+{
+	if (this->ConversationMembers.Num() == 1)
+	{
+		return "@" + this->ConversationMembers[0]->Username;
+	}
+	else if (this->ConversationMembers.Num() > 1)
+	{
+		return FString::FromInt(this->ConversationMembers.Num() + 1) + " members";
+	}
+	else
+	{
+		return "<invalid>";
+	}
+}

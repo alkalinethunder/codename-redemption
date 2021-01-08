@@ -68,6 +68,22 @@ TArray<UUpgradeAsset*> ARedemptionGameState::GetAllUpgrades()
 	return this->Upgrades;
 }
 
+UChatContact* ARedemptionGameState::GetContactByName(FString InName)
+{
+	UChatContact* result = nullptr;
+	
+	for (UChatContact* contact : this->Contacts)
+	{
+		if (contact->GetName() == InName)
+		{
+			result = contact;
+			break;
+		}
+	}
+
+	return result;
+}
+
 void ARedemptionGameState::AddContact(FString InContactName)
 {
 	for (UChatContact* contact : this->Contacts)
@@ -75,6 +91,7 @@ void ARedemptionGameState::AddContact(FString InContactName)
 		if (contact->GetName() == InContactName)
 		{
 			this->MyGameInstance->GetSaveGame()->PlayerContacts.Add(InContactName);
+			this->OnContactAdded.Broadcast();
 		}
 	}
 }

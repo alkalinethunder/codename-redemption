@@ -7,6 +7,8 @@
 #include "Kismet/GameplayStatics.h"
 #include "VirtualFileSystem.h"
 #include "RedemptionPlayerState.h"
+#include "RedemptionGameInstance.h"
+#include "RedemptionGameState.h"
 
 // Sets default values
 ARedemptionPlayerController::ARedemptionPlayerController()
@@ -21,7 +23,7 @@ void ARedemptionPlayerController::BeginPlay()
 	Super::BeginPlay();
 	
 	this->GameMode = Cast<ARedemptionGameModeBase>(UGameplayStatics::GetGameMode(this));
-
+	this->GameInstance = Cast<URedemptionGameInstance>(this->GetGameInstance());
 	if (this->GameMode)
 	{
 		this->SetShowMouseCursor(true);
@@ -46,6 +48,22 @@ UVirtualFileSystem* ARedemptionPlayerController::GetFileSystem()
 	{
 		return nullptr;
 	}
+}
+
+TArray<UChatContact*> ARedemptionPlayerController::GetContacts()
+{
+	TArray<UChatContact*> result;
+	
+	for (FString name : this->GameInstance->GetSaveGame()->PlayerContacts)
+	{
+		UChatContact* contact = Cast<ARedemptionGameState>(this->GetWorld()->GetGameState())->GetContactByName(name);
+		if (contact)
+		{
+			result.Add(contact);
+		}
+	}
+
+	return result;
 }
 
 bool ARedemptionPlayerController::TryGetCommandByName(FString InCommandName, UShellCommandAsset*& OutCommand)

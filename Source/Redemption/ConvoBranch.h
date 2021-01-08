@@ -5,7 +5,6 @@
 #include "CoreMinimal.h"
 #include "BranchActionInfo.h"
 #include "ConvoChoice.h"
-
 #include "ConvoBranch.generated.h"
 
 /**
