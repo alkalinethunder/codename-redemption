@@ -7,6 +7,9 @@
 #include "RedemptionGameState.generated.h"
 
 class UUpgradeAsset;
+class AConversationManager;
+class UConversation;
+class UChatContact;
 
 UCLASS(BlueprintType)
 class REDEMPTION_API ARedemptionGameState : public AGameStateBase
@@ -14,6 +17,15 @@ class REDEMPTION_API ARedemptionGameState : public AGameStateBase
 	GENERATED_BODY()
 
 private:
+	UPROPERTY()
+	TArray<UChatContact*> Contacts;
+
+	UPROPERTY()
+	TArray<UConversation*> Conversations;
+	
+	UPROPERTY()
+	AConversationManager* ConversationManager;
+	
 	UPROPERTY()
 	TArray<UUpgradeAsset*> Upgrades;
 

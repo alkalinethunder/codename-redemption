@@ -34201,8 +34201,8 @@
       <e p="UE4Game.Target.cs" t="Include" />
     </e>
     <e p="C:\Users\thepl\AppData\Local\JetBrains\Rider2020.3\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\thepl\AppData\Local\JetBrains\Rider2020.3\resharper-host\Local\Transient\Rider\v203\SolutionCaches\_Redemption.-1817757991.00" t="ExcludeRecursive" />
-    <e p="D:\Projects\Games\Redemption" t="IncludeFlat">
+    <e p="C:\Users\thepl\AppData\Local\JetBrains\Rider2020.3\resharper-host\Local\Transient\Rider\v203\SolutionCaches\_Redemption.-884982305.00" t="ExcludeRecursive" />
+    <e p="Z:\Games\Redemption" t="IncludeFlat">
       <e p=".gitignore" t="Include" />
       <e p="CMakeLists.txt" t="Include" />
       <e p="Config" t="Include">
@@ -34282,6 +34282,12 @@
           <e p="AppTabWidget.h" t="Include" />
           <e p="AssetUtils.cpp" t="Include" />
           <e p="AssetUtils.h" t="Include" />
+          <e p="BranchActionInfo.cpp" t="Include" />
+          <e p="BranchActionInfo.h" t="Include" />
+          <e p="ChatAction.cpp" t="Include" />
+          <e p="ChatAction.h" t="Include" />
+          <e p="ChatContact.cpp" t="Include" />
+          <e p="ChatContact.h" t="Include" />
           <e p="CommandFlags.cpp" t="Include" />
           <e p="CommandFlags.h" t="Include" />
           <e p="CommandScript.cpp" t="Include" />
@@ -34290,6 +34296,14 @@
           <e p="ConsoleTextData.h" t="Include" />
           <e p="ConsoleWidget.cpp" t="Include" />
           <e p="ConsoleWidget.h" t="Include" />
+          <e p="Conversation.cpp" t="Include" />
+          <e p="Conversation.h" t="Include" />
+          <e p="ConversationManager.cpp" t="Include" />
+          <e p="ConversationManager.h" t="Include" />
+          <e p="ConvoBranch.cpp" t="Include" />
+          <e p="ConvoBranch.h" t="Include" />
+          <e p="ConvoChoice.cpp" t="Include" />
+          <e p="ConvoChoice.h" t="Include" />
           <e p="DesktopWidget.cpp" t="Include" />
           <e p="DesktopWidget.h" t="Include" />
           <e p="DirectoryEntry.cpp" t="Include" />
@@ -34304,6 +34318,10 @@
           <e p="GraphicalAppAsset.h" t="Include" />
           <e p="PathUtils.cpp" t="Include" />
           <e p="PathUtils.h" t="Include" />
+          <e p="Person.cpp" t="Include" />
+          <e p="Person.h" t="Include" />
+          <e p="PersonalPronoun.cpp" t="Include" />
+          <e p="PersonalPronoun.h" t="Include" />
           <e p="Profile.cpp" t="Include" />
           <e p="Profile.h" t="Include" />
           <e p="ProgressionLevel.cpp" t="Include" />

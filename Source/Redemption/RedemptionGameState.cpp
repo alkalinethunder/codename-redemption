@@ -5,6 +5,9 @@
 #include "UpgradeAsset.h"
 #include "Math/Axis.h"
 #include "AssetUtils.h"
+#include "Conversation.h"
+#include "ChatContact.h"
+#include "ConversationManager.h"
 
 // Sets default values
 ARedemptionGameState::ARedemptionGameState()
@@ -17,6 +20,24 @@ ARedemptionGameState::ARedemptionGameState()
 void ARedemptionGameState::BeginPlay()
 {
 	Super::BeginPlay();
+
+	for (UObject* asset : UAssetUtils::LoadAssetsOfClass(UConversation::StaticClass()))
+	{
+		UConversation* convo = Cast<UConversation>(asset);
+		if (convo)
+		{
+			this->Conversations.Add(convo);
+		}
+	}
+
+	for (UObject* asset : UAssetUtils::LoadAssetsOfClass(UChatContact::StaticClass()))
+	{
+		UChatContact* contact = Cast<UChatContact>(asset);
+		if (contact)
+		{
+			this->Contacts.Add(contact);
+		}
+	}
 	
 	for (UObject* asset : UAssetUtils::LoadAssetsOfClass(UUpgradeAsset::StaticClass()))
 	{
@@ -26,6 +47,9 @@ void ARedemptionGameState::BeginPlay()
 			this->Upgrades.Add(upgrade);
 		}
 	}
+
+	// Spawn in the conversation manager.
+	this->ConversationManager = this->GetWorld()->SpawnActor<AConversationManager>();
 }
 
 // Called every frame
