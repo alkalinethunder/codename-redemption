@@ -6,19 +6,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="06c14ef7-907b-4990-b8f7-291c57d35a51" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Source/Redemption/BranchActionInfo.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/Redemption/ChatAction.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/Redemption/ChatContact.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/Redemption/Conversation.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/Redemption/ConversationManager.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/Redemption/ConvoBranch.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/Redemption/ConvoChoice.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/Redemption/Person.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/Redemption/PersonalPronoun.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Redemption/RedemptionGameState.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/RedemptionGameState.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Redemption/RedemptionGameState.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/RedemptionGameState.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Redemption/RedemptionSaveGame.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/RedemptionSaveGame.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,13 +24,13 @@
     <setting file="file://C:/Program Files (x86)/Windows Kits/10/Include/10.0.18362.0/um/winnt.h" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Epic Games/UE_4.26/Engine/Source/Runtime/Core/Public/Containers/EnumAsByte.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Epic Games/UE_4.26/Engine/Source/Runtime/Core/Public/HAL/Platform.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://C:/Program Files/Epic Games/UE_4.26/Engine/Source/Runtime/Engine/Classes/GameFramework/PlayerController.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Epic Games/UE_4.26/Engine/Source/Runtime/Core/Public/Containers/Array.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Epic Games/UE_4.26/Engine/Source/Runtime/UMG/Public/Blueprint/UserWidget.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Epic Games/UE_4.26/Engine/Source/Runtime/Core/Public/Containers/UnrealString.h" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Source/Redemption/Redemption.Build.cs" />
       <option value="$PROJECT_DIR$/Source/Redemption/RedemptionGameInstance.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/ConsoleWidget.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/ConsoleWidget.cpp" />
@@ -47,7 +38,6 @@
       <option value="$PROJECT_DIR$/Source/Redemption/PathUtils.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/ShellCommandAsset.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerController.h" />
-      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerController.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/CommandScript.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/CommandScript.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/VirtualFileSystem.h" />
@@ -88,8 +78,10 @@
       <option value="$PROJECT_DIR$/Source/Redemption/ConvoBranch.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/ConversationManager.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/ConversationManager.cpp" />
-      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionGameState.h" />
+      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerController.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/RedemptionGameState.cpp" />
+      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionSaveGame.h" />
+      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionGameState.h" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1mSCTesrzm0AEkY2lywPjJ7v9sD" />
@@ -101,7 +93,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.55057406" />
+    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.5503792" />
     <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.0" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
@@ -354,7 +346,8 @@
       <workItem from="1609966628501" duration="19956000" />
       <workItem from="1610039578222" duration="10307000" />
       <workItem from="1610074119173" duration="1636000" />
-      <workItem from="1610128989378" duration="2532000" />
+      <workItem from="1610128989378" duration="3688000" />
+      <workItem from="1610135097850" duration="1797000" />
     </task>
     <servers />
   </component>

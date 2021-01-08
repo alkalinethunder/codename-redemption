@@ -10,6 +10,7 @@ class UUpgradeAsset;
 class AConversationManager;
 class UConversation;
 class UChatContact;
+class URedemptionGameInstance;
 
 UCLASS(BlueprintType)
 class REDEMPTION_API ARedemptionGameState : public AGameStateBase
@@ -29,6 +30,9 @@ private:
 	UPROPERTY()
 	TArray<UUpgradeAsset*> Upgrades;
 
+	UPROPERTY()
+	URedemptionGameInstance* MyGameInstance;
+	
 public:
 	// Sets default values for this actor's properties
 	ARedemptionGameState();
@@ -44,4 +48,11 @@ public:
 public:
 	UFUNCTION()
 	TArray<UUpgradeAsset*> GetAllUpgrades();
+
+public:
+	UFUNCTION(Exec)
+	void AddContact(FString InContactName);
+	
+	UFUNCTION(Exec)
+	void LoadedContacts();
 };

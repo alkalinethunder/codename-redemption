@@ -7,7 +7,10 @@
 #include "AssetUtils.h"
 #include "Conversation.h"
 #include "ChatContact.h"
+#include "RedemptionGameInstance.h"
 #include "ConversationManager.h"
+#include "Kismet/GameplayStatics.h"
+#include "RedemptionSaveGame.h"
 
 // Sets default values
 ARedemptionGameState::ARedemptionGameState()
@@ -21,6 +24,8 @@ void ARedemptionGameState::BeginPlay()
 {
 	Super::BeginPlay();
 
+	this->MyGameInstance = Cast<URedemptionGameInstance>(this->GetWorld()->GetGameInstance());
+	
 	for (UObject* asset : UAssetUtils::LoadAssetsOfClass(UConversation::StaticClass()))
 	{
 		UConversation* convo = Cast<UConversation>(asset);
@@ -61,5 +66,24 @@ void ARedemptionGameState::Tick(float DeltaTime)
 TArray<UUpgradeAsset*> ARedemptionGameState::GetAllUpgrades()
 {
 	return this->Upgrades;
+}
+
+void ARedemptionGameState::AddContact(FString InContactName)
+{
+	for (UChatContact* contact : this->Contacts)
+	{
+		if (contact->GetName() == InContactName)
+		{
+			this->MyGameInstance->GetSaveGame()->PlayerContacts.Add(InContactName);
+		}
+	}
+}
+
+void ARedemptionGameState::LoadedContacts()
+{
+	for (UChatContact* contact : this->Contacts)
+	{
+		UGameplayStatics::GetPlayerController(this->GetWorld(), 0)->ClientMessage(contact->GetName());	
+	}
 }
 

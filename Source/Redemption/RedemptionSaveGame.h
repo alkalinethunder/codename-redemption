@@ -19,6 +19,9 @@ class REDEMPTION_API URedemptionSaveGame : public USaveGame
 
 public:
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)
+	TArray<FString> PlayerContacts;
+	
+	UPROPERTY(BlueprintReadOnly, EditAnywhere)
 	TMap<int, int> DiskRoots;
 	
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)
