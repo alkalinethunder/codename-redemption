@@ -22,7 +22,13 @@ class REDEMPTION_API UConsoleWidget : public UUserWidget
 
 private:
 	TCHAR ColorDelimeter = '%';
+	TCHAR ForegroundChar = '%';
+	TCHAR BackgroundChar = '$';
+	TCHAR AttrChar = '&';
 
+	UPROPERTY()
+	float ZoomFactor = 1.f;
+	
 	UPROPERTY()
 	int ScrollBack = 0;
 
@@ -68,7 +74,7 @@ public:
 
 private:
 	UFUNCTION()
-	void MeasureText(FString InText, int& OutWidth, int& OutHeight);
+	void MeasureText(const FGeometry& MyGeometry, FString InText, float& OutWidth, float& OutHeight);
 	
 	UFUNCTION()
 	FString StripFormatting(FString InText);
@@ -81,6 +87,8 @@ private:
 	
 	UFUNCTION()
 	void RecalculateTextSizes();
+
+	bool GetColor(TCHAR InColorCode, FLinearColor& OutColor);
 	
 protected:
 	virtual void NativeConstruct() override;

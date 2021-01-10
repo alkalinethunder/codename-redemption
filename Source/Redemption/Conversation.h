@@ -26,4 +26,7 @@ public:
 
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Conversation")
 	TArray<FConvoBranch> Branches;
+
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Progression")
+	TArray<UConversation*> RequiredConversations;
 };

@@ -2,47 +2,20 @@
 
 
 #include "ConsoleWidget.h"
-
 #include "Engine/Font.h"
+#include "Fonts/FontMeasure.h"
+#include "Blueprint/SlateBlueprintLibrary.h"
+#include "Framework/Application/SlateApplication.h"
+#include "Windows/Accessibility/WindowsUIAControlProvider.h"
 
-void UConsoleWidget::MeasureText(FString InText, int& OutWidth, int& OutHeight)
+void UConsoleWidget::MeasureText(const FGeometry& MyGeometry, FString InText, float& OutWidth, float& OutHeight)
 {
-	const UFont* UnrealFont = Cast<UFont>(this->Font.FontObject);
-
-	OutWidth=0;
-	OutHeight=0;
-
-	float accumW = 0, accumH = 0;
+	TSharedRef<FSlateFontMeasure> measurer = FSlateApplication::Get().GetRenderer()->GetFontMeasureService();
 	
-	if (UnrealFont)
-	{
-		TArray<FString> Lines;
-		InText.ParseIntoArray(Lines, TEXT("\r\n"), false);
-
-		if (Lines.Num() == 0)
-		{
-			accumH += this->CharHeight;
-		}
-		else
-		{
-			for (FString Line : Lines)
-			{
-				float w = Line.Len() * this->CharWidth;
-				if (accumW < w)
-					accumW = w;
-				accumH += this->CharHeight;
-			}
-		}
-
-		OutWidth = accumW;
-		OutHeight = accumH;
-	}
-	else
-	{
-		OutWidth = 0;
-		OutHeight = 0;
-		return;
-	}
+	FVector2D result = measurer->Measure(InText, this->Font, this->ZoomFactor);
+	
+	OutWidth = result.X;
+	OutHeight = result.Y;
 }
 
 FString UConsoleWidget::StripFormatting(FString InText)
@@ -79,12 +52,16 @@ FString UConsoleWidget::StripFormatting(FString InText)
 
 void UConsoleWidget::RebuildTextItems(const FGeometry& MyGeometry)
 {
+	TSharedRef<FSlateFontMeasure> measurer = FSlateApplication::Get().GetRenderer()->GetFontMeasureService();
+
+	TCHAR lastChar;
+	
 	int heightAccum = 0;
 	FVector2D alottedSize = MyGeometry.GetLocalSize();
 	FVector2D loc = MyGeometry.GetLocalPositionAtCoordinates(FVector2D::ZeroVector);
 	FConsoleTextData item;
-	int prevW = 0;
-	int prevH = 0;
+	float prevW = 0;
+	float prevH = 0;
 	bool cursor = false;
 	
 	this->TextIsDirty = false;
@@ -97,25 +74,107 @@ void UConsoleWidget::RebuildTextItems(const FGeometry& MyGeometry)
 	for (int i = 0; i < this->OutputBuffer.Len(); i++)
 	{
 		TCHAR c = this->OutputBuffer[i];
+
+		if (c == '\r') continue;
+
+		if (c == BackgroundChar && i < this->OutputBuffer.Len() - 1)
+		{
+			TCHAR code = OutputBuffer[i + 1];
+			FLinearColor bg;
+			if (this->GetColor(code, bg))
+			{
+				this->DrawItems.Add(item);
+				item.Background = bg;
+				item.Location.X += item.Size.X;
+				item.Size.X = 0;
+				item.Text = "";
+				i++;
+				continue;
+			}
+		}
+		
+		
+		if (c == ForegroundChar && i < this->OutputBuffer.Len() - 1)
+		{
+			TCHAR code = OutputBuffer[i + 1];
+			FLinearColor fg;
+			if (this->GetColor(code, fg))
+			{
+				this->DrawItems.Add(item);
+				item.Foreground = fg;
+				item.Location.X += item.Size.X;
+				item.Size.X = 0;
+				item.Text = "";
+				i++;
+				continue;
+			}
+		}
+		
+		if (c == '\n')
+		{
+			lastChar = c;
+			this->DrawItems.Add(item);
+			item.Location.X = loc.X;
+			item.Location.Y += item.Size.Y;
+			item.Text = "";
+			item.Size = FVector2D::ZeroVector;
+			continue;
+		}
+
+		FString prev = item.Text;
+		prev += c;
+
+		int kern = measurer->GetKerning(this->Font, this->ZoomFactor, lastChar, c);
+		this->MeasureText(MyGeometry, prev, prevW, prevH);
+		prevW += kern;
+		if (item.Location.X + prevW >= loc.X + alottedSize.X)
+		{
+			this->DrawItems.Add(item);
+			item.Location.X = loc.X;
+			item.Location.Y += item.Size.Y;
+			item.Size = FVector2D::ZeroVector;
+			item.Text = "";
+		}
+
 		item.Text += c;
+		this->MeasureText(MyGeometry, item.Text, prevW, prevH);
+		item.Size.X = prevW + kern;
+		item.Size.Y = prevH;
+
+		lastChar = c;
 	}
 
 	for (int i = 0; i <= this->InputBuffer.Len(); i++)
 	{
 		TCHAR c = (i < this->InputBuffer.Len()) ? this->InputBuffer[i] : ' ';
-
+		int kern = measurer->GetKerning(this->Font, this->ZoomFactor / MyGeometry.Scale, lastChar,c);
 		if (i == this->InputPos)
 		{
 			if (item.Text.Len() > 0)
 			{
 				this->DrawItems.Add(item);
+				item.Location.X += item.Size.X + kern;
 			}
 			
 			cursor = true;
 			FLinearColor s = item.Background;
 			item.Background = item.Foreground;
 			item.Foreground = s;
-			item.Text = FString::Chr(c);			
+			item.Text = FString::Chr(c);
+
+			this->MeasureText(MyGeometry, item.Text, prevW, prevH);
+
+			if (item.Location.X + prevW >= loc.X + alottedSize.X)
+			{
+				item.Location.X = loc.X;
+				item.Location.Y += prevH;
+			}
+
+			item.Size.X = prevW + kern;
+			item.Size.Y = prevH;
+
+			lastChar = c;
+			
 			continue;
 		}
 
@@ -124,6 +183,7 @@ void UConsoleWidget::RebuildTextItems(const FGeometry& MyGeometry)
 			if (item.Text.Len() > 0)
 			{
 				this->DrawItems.Add(item);
+				item.Location.X += item.Size.X + kern;
 			}
 			
 			cursor = false;
@@ -132,10 +192,43 @@ void UConsoleWidget::RebuildTextItems(const FGeometry& MyGeometry)
 			item.Background = item.Foreground;
 			item.Foreground=s;
 			item.Text = FString::Chr(c);
+
+			this->MeasureText(MyGeometry, item.Text, prevW, prevH);
+
+			if (item.Location.X + prevW >= loc.X + alottedSize.X)
+			{
+				item.Location.X = loc.X;
+				item.Location.Y += prevH;
+			}
+
+			item.Size.X = prevW + kern;
+			item.Size.Y = prevH;
+
+			lastChar = c;
+			
 			continue;
 		}
 
+		FString prev = item.Text;
+		prev += c;
+
+		this->MeasureText(MyGeometry, prev, prevW, prevH);
+		prevW += kern;
+		if (item.Location.X + prevW >= loc.X + alottedSize.X)
+		{
+			this->DrawItems.Add(item);
+			item.Location.X = loc.X;
+			item.Location.Y += item.Size.Y;
+			item.Size = FVector2D::ZeroVector;
+			item.Text = "";
+		}
+
 		item.Text += c;
+		this->MeasureText(MyGeometry, item.Text, prevW, prevH);
+		item.Size.X = prevW + kern;
+		item.Size.Y = prevH;
+
+		lastChar = c;
 	}
 
 	this->DrawItems.Add(item);
@@ -182,10 +275,76 @@ void UConsoleWidget::RecalculateTextSizes()
 {
 	FString AllText = this->StripFormatting(this->OutputBuffer) + this->InputBuffer;
 
-	int width;
-	int height;
-	this->MeasureText(AllText, width, height);
+	float width;
+	float height;
+	this->MeasureText(this->GetCachedGeometry(), AllText, width, height);
 	this->SetMinimumDesiredSize(FVector2D(width, height));
+}
+
+bool UConsoleWidget::GetColor(TCHAR InColorCode, FLinearColor& OutColor)
+{
+	// I'm gonna be too feckin high to understand the ue4 docs to do this more
+	// efficiently so it's uh
+	// time for phil code
+	switch (InColorCode)
+	{
+		case '0':
+			OutColor = FLinearColor::Transparent;
+			break;
+		case '1':
+			OutColor = this->ColorAndOpacity;
+			break;
+		case '2':
+			OutColor = FLinearColor(1, 0, 1);
+			break;
+		case '3':
+			OutColor = FColor::Red;
+			break;
+		case '4':
+			OutColor = FColor::Green;
+			break;
+		case '5':
+			OutColor = FLinearColor::Blue;
+			break;
+		case '6':
+			OutColor = FColor::Orange;
+			break;
+		case '7':
+			OutColor = FColor::Yellow;
+			break;
+		case '8':
+			OutColor = FColor::Cyan;
+			break;
+		case '9':
+			OutColor = FColor::Purple;
+			break;
+		case 'A':
+		case 'a':
+			OutColor = FColor::Magenta;
+			break;
+		case 'B':
+		case 'b':
+			OutColor = FColor::Emerald;
+			break;
+		case 'C':
+		case 'c':
+			OutColor = FColor::Silver;
+			break;
+		case 'D':
+		case 'd':
+			OutColor = FColor::Turquoise;
+			break;
+		case 'E':
+		case 'e':
+			OutColor = FColor::Black;
+			break;
+		case 'F':
+		case 'f':
+		default:
+			return false;				
+	}
+
+	return true;
 }
 
 void UConsoleWidget::NativeConstruct()
@@ -224,17 +383,7 @@ int32 UConsoleWidget::NativePaint(const FPaintArgs& Args, const FGeometry& Allot
 	const FWidgetStyle& InWidgetStyle, bool bParentEnabled) const
 {
 	FLinearColor fg;
-	FLinearColor bg;
-	FVector2D loc = AllottedGeometry.GetLocalPositionAtCoordinates(FVector2D(0, 1));
-	loc.Y -= this->TextHeight;
-	loc.Y += (this->CharHeight * this->ScrollBack);
-	FVector2D textLoc = loc;
-	FVector2D csize = FVector2D(this->CharWidth, this->CharHeight);
-	FVector2D asize = AllottedGeometry.GetLocalSize();
-
-	FVector2D cullBottom = AllottedGeometry.GetLocalPositionAtCoordinates(FVector2D(0, 1));
-	FVector2D cullTop = AllottedGeometry.GetLocalPositionAtCoordinates(FVector2D::ZeroVector);
-	
+	FLinearColor bg;	
 	
 	for (const FConsoleTextData& TextData : this->DrawItems)
 	{
@@ -242,38 +391,12 @@ int32 UConsoleWidget::NativePaint(const FPaintArgs& Args, const FGeometry& Allot
 		fg = TextData.Foreground;
 		fg.A = 1;
 
-		for (int i = 0; i < TextData.Text.Len(); i++)
+		FSlateDrawElement::MakeBox(OutDrawElements, LayerId, AllottedGeometry.ToPaintGeometry(TextData.Location, TextData.Size), &Brush, ESlateDrawEffect::None, bg);
+
+		if (TextData.Text.TrimEnd().Len() > 0)
 		{
-			TCHAR c = TextData.Text[i];
-			
-			if (c == '\r') continue;
-			if (c == '\0') continue;
-			if (c == '\n')
-			{
-				textLoc.X = loc.X;
-				textLoc.Y += this->CharHeight;
-				continue;
-			}
-
-			if (textLoc.X + this->CharWidth > loc.X + asize.X)
-			{
-				textLoc.X = loc.X;
-				textLoc.Y += this->CharHeight;
-			}
-
-			if (textLoc.Y >= cullTop.Y && textLoc.Y <= cullBottom.Y)
-			{
-				FString str = FString::Chr(c);
-			
-				FSlateDrawElement::MakeBox(OutDrawElements, LayerId, AllottedGeometry.ToPaintGeometry(textLoc, csize), &Brush, ESlateDrawEffect::None, bg);
-
-				if (!FChar::IsWhitespace(c))
-				{
-					FSlateDrawElement::MakeText(OutDrawElements, LayerId, AllottedGeometry.ToPaintGeometry(textLoc, csize), str, this->Font, ESlateDrawEffect::None, fg);
-				}
-				
-				textLoc.X += this->CharWidth;
-			}
+			LayerId++;
+			FSlateDrawElement::MakeText(OutDrawElements, LayerId, AllottedGeometry.ToPaintGeometry(TextData.Location, TextData.Size), TextData.Text, this->Font, ESlateDrawEffect::None, fg);
 		}
 	}
 	
