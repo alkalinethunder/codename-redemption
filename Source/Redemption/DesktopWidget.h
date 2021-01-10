@@ -76,11 +76,18 @@ private:
 	void LaunchShellInternal(bool InLoginShell);
 	
 	UFUNCTION()
-	void LaunchTabbedApp(UWidgetSwitcher* InWidgetSwitcher, UHorizontalBox* InTabsPanel, UGraphicalAppAsset* InApp);
+	UUserWidget* LaunchTabbedApp(UWidgetSwitcher* InWidgetSwitcher, UHorizontalBox* InTabsPanel, UGraphicalAppAsset* InApp);
 	
 	UFUNCTION()
-	void LaunchAppInternal(UGraphicalAppAsset* InApp);
+	UUserWidget* LaunchAppInternal(UGraphicalAppAsset* InApp);
 	
 protected:
 	virtual void NativeConstruct() override;
+
+public:
+	UFUNCTION()
+	bool SwitchToApp(TSubclassOf<UUserWidget> InWidgetClass, UUserWidget*& OutWidget);
+
+	UFUNCTION()
+	bool LaunchApp(UGraphicalAppAsset* InApp, UUserWidget*& OutWidget);
 };

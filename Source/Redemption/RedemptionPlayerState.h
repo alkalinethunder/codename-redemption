@@ -102,6 +102,9 @@ public:
 	
 public:
 	UFUNCTION(BlueprintPure)
+	UDesktopWidget* GetDesktop();
+	
+	UFUNCTION(BlueprintPure)
 	TArray<UUpgradeAsset*> GetAvailableUpgrades();
 
 	UFUNCTION(BlueprintPure)

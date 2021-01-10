@@ -9,6 +9,7 @@
 #include "RedemptionPlayerState.h"
 #include "RedemptionGameInstance.h"
 #include "RedemptionGameState.h"
+#include "DesktopWidget.h"
 
 // Sets default values
 ARedemptionPlayerController::ARedemptionPlayerController()
@@ -63,6 +64,52 @@ TArray<UChatContact*> ARedemptionPlayerController::GetContacts()
 		}
 	}
 
+	return result;
+}
+
+bool ARedemptionPlayerController::LaunchGraphicalProgram(UGraphicalAppAsset* InApp, UUserWidget*& OutAppWidget)
+{
+	bool result = true;
+
+	if (InApp && InApp->WidgetClass)
+	{
+		ARedemptionPlayerState* playerState = Cast<ARedemptionPlayerState>(this->PlayerState);
+		if (playerState)
+		{
+			UDesktopWidget* desktop = playerState->GetDesktop();
+			if (desktop)
+			{
+				if (InApp->RequiredUpgrade && !InApp->RequiredUpgrade->IsUnlocked(playerState))
+				{
+					result = false;
+				}
+				else
+				{
+					if (InApp->CommandFlags.IsSingleInstance && desktop->SwitchToApp(InApp->WidgetClass, OutAppWidget))
+					{
+						result = true;
+					}
+					else
+					{
+						return desktop->LaunchApp(InApp, OutAppWidget);
+					}
+				}
+			}
+			else
+			{
+				result = false;
+			}
+		}
+		else
+		{
+			result = false;
+		}
+	}
+	else
+	{
+		result = false;
+	}
+	
 	return result;
 }
 

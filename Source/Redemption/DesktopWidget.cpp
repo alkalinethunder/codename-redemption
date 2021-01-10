@@ -30,6 +30,23 @@ void UDesktopWidget::HandleAppClose(UAppTabWidget* RequestingWidget)
 
 	RequestingWidget->WidgetSwitcher->RemoveChildAt(RequestingWidget->TrackedIndex);
 
+	UHorizontalBox* parentBox = Cast<UHorizontalBox>(RequestingWidget->GetParent());
+
+	if (parentBox)
+	{
+		for (int i = 0; i < parentBox->GetChildrenCount(); i++)
+		{
+			UAppTabWidget* tab = Cast<UAppTabWidget>(parentBox->GetChildAt(i));
+			if (tab)
+			{
+				if (tab->TrackedIndex > RequestingWidget->TrackedIndex)
+				{
+					tab->TrackedIndex--;
+				}
+			}
+		}
+	}
+	
 	RequestingWidget->RemoveFromParent();
 }
 
@@ -79,7 +96,7 @@ void UDesktopWidget::LaunchShellInternal(bool InLoginShell)
 	ShellHost->InitShell(InLoginShell);
 }
 
-void UDesktopWidget::LaunchTabbedApp(UWidgetSwitcher* InWidgetSwitcher, UHorizontalBox* InTabsPanel,
+UUserWidget* UDesktopWidget::LaunchTabbedApp(UWidgetSwitcher* InWidgetSwitcher, UHorizontalBox* InTabsPanel,
                                      UGraphicalAppAsset* InApp)
 {
 	// assert any null arguments
@@ -119,10 +136,13 @@ void UDesktopWidget::LaunchTabbedApp(UWidgetSwitcher* InWidgetSwitcher, UHorizon
 	// At this point, the app's UI is visible.
 	InWidgetSwitcher->InsertChildAt(WidgetIndex, AppWidget);
 	InWidgetSwitcher->SetActiveWidgetIndex(WidgetIndex);
+
+	return AppWidget;
 }
 
-void UDesktopWidget::LaunchAppInternal(UGraphicalAppAsset* InApp)
+UUserWidget* UDesktopWidget::LaunchAppInternal(UGraphicalAppAsset* InApp)
 {
+	UUserWidget* result = nullptr;
 	check (InApp);
 	check (InApp->WidgetClass);
 	check (this->AppHostWidgetClass);
@@ -131,15 +151,17 @@ void UDesktopWidget::LaunchAppInternal(UGraphicalAppAsset* InApp)
 	switch (InApp->DisplayTarget)
 	{
 		case EDisplayTarget::Default:
-			this->LaunchTabbedApp(this->ProgramSwitcher, this->ProgramTabs, InApp);
+			result = this->LaunchTabbedApp(this->ProgramSwitcher, this->ProgramTabs, InApp);
 			break;
 		case EDisplayTarget::Social:
-			this->LaunchTabbedApp(this->SocialSwitcher, this->SocialTabs, InApp);
+			result = this->LaunchTabbedApp(this->SocialSwitcher, this->SocialTabs, InApp);
 			break;
 		default:
-			check(false);
+			result = nullptr;
 			break;
 	}
+
+	return result;
 }
 
 void UDesktopWidget::NativeConstruct()
@@ -158,4 +180,48 @@ void UDesktopWidget::NativeConstruct()
 	}
 
 	this->CreateShellTrigger->OnClicked.AddUniqueDynamic(this, &UDesktopWidget::CreateShell);
+}
+
+bool UDesktopWidget::SwitchToApp(TSubclassOf<UUserWidget> InWidgetClass, UUserWidget*& OutWidget)
+{
+	for (int i = 0; i < this->ProgramSwitcher->GetChildrenCount(); i++)
+	{
+		UUserWidget* child = Cast<UUserWidget>(this->ProgramSwitcher->GetChildAt(i));
+
+		if (child && child->GetClass() == InWidgetClass)
+		{
+			this->ProgramSwitcher->SetActiveWidgetIndex(i);
+			OutWidget = child;
+			return true;
+		}
+	}
+
+	for (int i = 0; i < this->SocialSwitcher->GetChildrenCount(); i++)
+	{
+		UUserWidget* child = Cast<UUserWidget>(this->ProgramSwitcher->GetChildAt(i));
+
+		if (child && child->GetClass() == InWidgetClass)
+		{
+			this->SocialSwitcher->SetActiveWidgetIndex(i);
+			OutWidget = child;
+			return true;
+		}
+	}
+
+	return false;
+}
+
+bool UDesktopWidget::LaunchApp(UGraphicalAppAsset* InApp, UUserWidget*& OutWidget)
+{
+	UUserWidget* result = this->LaunchAppInternal(InApp);
+
+	if (result)
+	{
+		OutWidget = result;
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }

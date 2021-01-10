@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 
+
+#include "GraphicalAppAsset.h"
 #include "ShellCommandAsset.h"
 #include "GameFramework/PlayerController.h"
 #include "RedemptionPlayerController.generated.h"
@@ -44,6 +46,9 @@ public:
 
 	UFUNCTION(BlueprintPure)
 	TArray<UChatContact*> GetContacts();
+
+	UFUNCTION(BlueprintCallable)
+	bool LaunchGraphicalProgram(UGraphicalAppAsset* InApp, UUserWidget*& OutAppWidget);
 	
 	UFUNCTION()
 	bool TryGetCommandByName(FString InCommandName, UShellCommandAsset*& OutCommand);

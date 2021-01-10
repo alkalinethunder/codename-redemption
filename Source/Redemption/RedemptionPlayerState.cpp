@@ -35,6 +35,11 @@ void ARedemptionPlayerState::NotifyUpgradeUnlocked()
 	this->OnUpgradeUnlocked.Broadcast();
 }
 
+UDesktopWidget* ARedemptionPlayerState::GetDesktop()
+{
+	return this->Desktop;
+}
+
 TArray<UUpgradeAsset*> ARedemptionPlayerState::GetAvailableUpgrades()
 {
 	return this->AvailableUpgrades;
