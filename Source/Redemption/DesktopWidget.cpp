@@ -2,6 +2,7 @@
 
 
 #include "DesktopWidget.h"
+#include "OperatingSystemApp.h"
 #include "AppTabWidget.h"
 #include "AppHostWidget.h"
 #include "GraphicalAppAsset.h"
@@ -96,7 +97,7 @@ void UDesktopWidget::LaunchShellInternal(bool InLoginShell)
 	ShellHost->InitShell(InLoginShell);
 }
 
-UUserWidget* UDesktopWidget::LaunchTabbedApp(UWidgetSwitcher* InWidgetSwitcher, UHorizontalBox* InTabsPanel,
+UOperatingSystemApp* UDesktopWidget::LaunchTabbedApp(UWidgetSwitcher* InWidgetSwitcher, UHorizontalBox* InTabsPanel,
                                      UGraphicalAppAsset* InApp)
 {
 	// assert any null arguments
@@ -137,12 +138,17 @@ UUserWidget* UDesktopWidget::LaunchTabbedApp(UWidgetSwitcher* InWidgetSwitcher, 
 	InWidgetSwitcher->InsertChildAt(WidgetIndex, AppWidget);
 	InWidgetSwitcher->SetActiveWidgetIndex(WidgetIndex);
 
-	return AppWidget;
+	UOperatingSystemApp* NewApp = NewObject<UOperatingSystemApp>();
+	NewApp->AppWidget = AppWidget;
+	NewApp->TabWidget = AppTab;
+	NewApp->AppAsset = InApp;
+	
+	return NewApp;
 }
 
-UUserWidget* UDesktopWidget::LaunchAppInternal(UGraphicalAppAsset* InApp)
+UOperatingSystemApp* UDesktopWidget::LaunchAppInternal(UGraphicalAppAsset* InApp)
 {
-	UUserWidget* result = nullptr;
+	UOperatingSystemApp* result = nullptr;
 	check (InApp);
 	check (InApp->WidgetClass);
 	check (this->AppHostWidgetClass);
@@ -182,38 +188,52 @@ void UDesktopWidget::NativeConstruct()
 	this->CreateShellTrigger->OnClicked.AddUniqueDynamic(this, &UDesktopWidget::CreateShell);
 }
 
-bool UDesktopWidget::SwitchToApp(TSubclassOf<UUserWidget> InWidgetClass, UUserWidget*& OutWidget)
+bool UDesktopWidget::SwitchToApp(TSubclassOf<UUserWidget> InWidgetClass, UOperatingSystemApp*& OutWidget)
 {
-	for (int i = 0; i < this->ProgramSwitcher->GetChildrenCount(); i++)
+	for (int i = 0; i < this->ProgramTabs->GetChildrenCount(); i++)
 	{
-		UUserWidget* child = Cast<UUserWidget>(this->ProgramSwitcher->GetChildAt(i));
-
-		if (child && child->GetClass() == InWidgetClass)
+		UAppTabWidget* tab = Cast<UAppTabWidget>(this->ProgramTabs->GetChildAt(i));
+		if (tab)
 		{
-			this->ProgramSwitcher->SetActiveWidgetIndex(i);
-			OutWidget = child;
-			return true;
+			UUserWidget* child = Cast<UUserWidget>(this->ProgramSwitcher->GetChildAt(tab->TrackedIndex));
+
+			if (child && child->GetClass() == InWidgetClass)
+			{
+				OutWidget = NewObject<UOperatingSystemApp>();
+				OutWidget->AppWidget = child;
+				OutWidget->TabWidget = tab;
+				
+				this->ProgramSwitcher->SetActiveWidgetIndex(i);
+				return true;
+			}
 		}
 	}
 
-	for (int i = 0; i < this->SocialSwitcher->GetChildrenCount(); i++)
+	for (int i = 0; i < this->SocialTabs->GetChildrenCount(); i++)
 	{
-		UUserWidget* child = Cast<UUserWidget>(this->ProgramSwitcher->GetChildAt(i));
-
-		if (child && child->GetClass() == InWidgetClass)
+		UAppTabWidget* tab = Cast<UAppTabWidget>(this->SocialTabs->GetChildAt(i));
+		if (tab)
 		{
-			this->SocialSwitcher->SetActiveWidgetIndex(i);
-			OutWidget = child;
-			return true;
+			UUserWidget* child = Cast<UUserWidget>(this->SocialSwitcher->GetChildAt(tab->TrackedIndex));
+
+			if (child && child->GetClass() == InWidgetClass)
+			{
+				OutWidget = NewObject<UOperatingSystemApp>();
+				OutWidget->AppWidget = child;
+				OutWidget->TabWidget = tab;
+				
+				this->ProgramSwitcher->SetActiveWidgetIndex(i);
+				return true;
+			}
 		}
 	}
 
 	return false;
 }
 
-bool UDesktopWidget::LaunchApp(UGraphicalAppAsset* InApp, UUserWidget*& OutWidget)
+bool UDesktopWidget::LaunchApp(UGraphicalAppAsset* InApp, UOperatingSystemApp*& OutWidget)
 {
-	UUserWidget* result = this->LaunchAppInternal(InApp);
+	UOperatingSystemApp* result = this->LaunchAppInternal(InApp);
 
 	if (result)
 	{

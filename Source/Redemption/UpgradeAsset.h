@@ -35,12 +35,12 @@ public:
 	int RequiredSkillLevel = 1;
 
 public:
-	UFUNCTION(BlueprintPure)
+	UFUNCTION(BlueprintPure, Category = "Upgrade")
 	bool IsUnlocked(class ARedemptionPlayerState* InPlayerState);
 
-	UFUNCTION(BlueprintPure)
+	UFUNCTION(BlueprintPure, Category = "Upgrade")
 	bool IsAvailable(class ARedemptionPlayerState* InPlayerState);
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintCallable, Category = "Upgrade")
 	bool TryUnlock(class ARedemptionPlayerState* InPlayerState);
 };

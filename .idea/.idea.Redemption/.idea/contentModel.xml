@@ -34316,6 +34316,8 @@
           <e p="DisplayTarget.h" t="Include" />
           <e p="GraphicalAppAsset.cpp" t="Include" />
           <e p="GraphicalAppAsset.h" t="Include" />
+          <e p="OperatingSystemApp.cpp" t="Include" />
+          <e p="OperatingSystemApp.h" t="Include" />
           <e p="PathUtils.cpp" t="Include" />
           <e p="PathUtils.h" t="Include" />
           <e p="Person.cpp" t="Include" />

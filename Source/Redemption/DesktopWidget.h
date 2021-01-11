@@ -11,6 +11,7 @@
 
 class UAppTabWidget;
 class UShellHostWidget;
+class UOperatingSystemApp;
 class UAppHostWidget;
 class ARedemptionGameModeBase;
 class UGraphicalAppAsset;
@@ -76,18 +77,18 @@ private:
 	void LaunchShellInternal(bool InLoginShell);
 	
 	UFUNCTION()
-	UUserWidget* LaunchTabbedApp(UWidgetSwitcher* InWidgetSwitcher, UHorizontalBox* InTabsPanel, UGraphicalAppAsset* InApp);
+	UOperatingSystemApp* LaunchTabbedApp(UWidgetSwitcher* InWidgetSwitcher, UHorizontalBox* InTabsPanel, UGraphicalAppAsset* InApp);
 	
 	UFUNCTION()
-	UUserWidget* LaunchAppInternal(UGraphicalAppAsset* InApp);
+	UOperatingSystemApp* LaunchAppInternal(UGraphicalAppAsset* InApp);
 	
 protected:
 	virtual void NativeConstruct() override;
 
 public:
 	UFUNCTION()
-	bool SwitchToApp(TSubclassOf<UUserWidget> InWidgetClass, UUserWidget*& OutWidget);
+	bool SwitchToApp(TSubclassOf<UUserWidget> InWidgetClass, UOperatingSystemApp*& OutWidget);
 
 	UFUNCTION()
-	bool LaunchApp(UGraphicalAppAsset* InApp, UUserWidget*& OutWidget);
+	bool LaunchApp(UGraphicalAppAsset* InApp, UOperatingSystemApp*& OutWidget);
 };

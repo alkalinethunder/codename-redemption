@@ -2,6 +2,7 @@
 
 
 #include "RedemptionPlayerController.h"
+#include "OperatingSystemApp.h"
 #include "Blueprint/UserWidget.h"
 #include "RedemptionGameModeBase.h"
 #include "Kismet/GameplayStatics.h"
@@ -67,7 +68,7 @@ TArray<UChatContact*> ARedemptionPlayerController::GetContacts()
 	return result;
 }
 
-bool ARedemptionPlayerController::LaunchGraphicalProgram(UGraphicalAppAsset* InApp, UUserWidget*& OutAppWidget)
+bool ARedemptionPlayerController::LaunchGraphicalProgram(UGraphicalAppAsset* InApp, UOperatingSystemApp*& OutAppWidget)
 {
 	bool result = true;
 
@@ -87,6 +88,7 @@ bool ARedemptionPlayerController::LaunchGraphicalProgram(UGraphicalAppAsset* InA
 				{
 					if (InApp->CommandFlags.IsSingleInstance && desktop->SwitchToApp(InApp->WidgetClass, OutAppWidget))
 					{
+						OutAppWidget->AppAsset = InApp;
 						result = true;
 					}
 					else

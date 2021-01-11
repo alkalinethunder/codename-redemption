@@ -14,6 +14,7 @@ class UUserWidget;
 class ARedemptionGameModeBase;
 class UVirtualFileSystem;
 class UChatContact;
+class UOperatingSystemApp;
 class URedemptionGameInstance;
 
 UCLASS()
@@ -48,7 +49,7 @@ public:
 	TArray<UChatContact*> GetContacts();
 
 	UFUNCTION(BlueprintCallable)
-	bool LaunchGraphicalProgram(UGraphicalAppAsset* InApp, UUserWidget*& OutAppWidget);
+	bool LaunchGraphicalProgram(UGraphicalAppAsset* InApp, UOperatingSystemApp*& OutAppWidget);
 	
 	UFUNCTION()
 	bool TryGetCommandByName(FString InCommandName, UShellCommandAsset*& OutCommand);
