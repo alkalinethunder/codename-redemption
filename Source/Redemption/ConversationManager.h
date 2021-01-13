@@ -7,7 +7,10 @@
 #include "ConvoBranch.h"
 #include "ConversationManager.generated.h"
 
+class UConversationInstance;
 class UConversation;
+class ARedemptionGameState;
+class UConversationAppWidget;
 
 UCLASS(BlueprintType)
 class REDEMPTION_API AConversationManager : public AActor
@@ -16,12 +19,22 @@ class REDEMPTION_API AConversationManager : public AActor
 
 private:
 	UPROPERTY()
+	ARedemptionGameState* MyGameState;
+	
+	UPROPERTY()
+	TArray<UConversationInstance*> Instances;
+	
+	UPROPERTY()
 	UConversation* CurrentConvo;
 	
 public:
 	// Sets default values for this actor's properties
 	AConversationManager();
 
+private:
+	UFUNCTION()
+	void HandleDoNotDisturb(bool InDoNotDisturb);
+	
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -36,8 +49,17 @@ private:
 	
 	UFUNCTION()
 	void AssertConvoData(UConversation* InConvo);
+
+	UFUNCTION()
+	UConversationInstance* FindChat(UConversation* InConversation);
 	
 public:
 	UFUNCTION()
-	void StartConversation(UConversation* InConversation);
+	bool GetDoNotDisturb();
+	
+	UFUNCTION()
+	UConversation* FindFirstActiveConversation(TArray<UConversation*> InAssets);
+	
+	UFUNCTION()
+	void StartConversation(UConversation* InConversation, UConversationAppWidget* InAppWidget);
 };

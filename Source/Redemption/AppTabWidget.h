@@ -59,7 +59,7 @@ public:
 	UFUNCTION()
     void RequestClose();
 	
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
     void SwitchToApp();
 	
 	UFUNCTION(BlueprintPure, Category = "App Tab")

@@ -11,8 +11,11 @@ class AConversationManager;
 class UConversation;
 class UChatContact;
 class URedemptionGameInstance;
+class UConversationAppWidget;
+class ARedemptionGameModeBase;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FContactAddedEvent);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FDoNotDisturbChanged, bool, InIsDoNotDisturb);
 
 UCLASS(BlueprintType)
 class REDEMPTION_API ARedemptionGameState : public AGameStateBase
@@ -20,6 +23,12 @@ class REDEMPTION_API ARedemptionGameState : public AGameStateBase
 	GENERATED_BODY()
 
 private:
+	UPROPERTY()
+	ARedemptionGameModeBase* MyGameMode;
+	
+	UPROPERTY()
+	bool bDoNotDisturb = false;
+	
 	UPROPERTY()
 	TArray<UChatContact*> Contacts;
 
@@ -36,6 +45,9 @@ private:
 	URedemptionGameInstance* MyGameInstance;
 
 public:
+	UPROPERTY(BlueprintAssignable)
+	FDoNotDisturbChanged DoNotDisturbChanged;
+	
 	UPROPERTY(BlueprintAssignable)
 	FContactAddedEvent OnContactAdded;
 	
@@ -57,6 +69,19 @@ public:
 
 	UFUNCTION()
 	UChatContact* GetContactByName(FString InName);
+
+public:
+	UFUNCTION(BlueprintPure)
+	bool IsDoNotDisturbActive();
+
+	UFUNCTION(BlueprintCallable)
+	void ToggleDoNotDisturb();
+	
+	UFUNCTION(BlueprintPure)
+	AConversationManager* GetConversationManager();
+
+	UFUNCTION(BlueprintCallable)
+	void ActivateConversation(UChatContact* InContact, UConversationAppWidget* InWidget);
 	
 public:
 	UFUNCTION(Exec)

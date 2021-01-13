@@ -9,6 +9,8 @@
 #include "ConvoBranch.h"
 #include "Conversation.generated.h"
 
+class URedemptionSaveGame;
+
 /**
  * Represents the script of a player conversation.
  */
@@ -29,4 +31,11 @@ public:
 
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Progression")
 	TArray<UConversation*> RequiredConversations;
+
+public:
+	UFUNCTION()
+	bool IsAvailable(URedemptionSaveGame* InSaveGame);
+
+	UFUNCTION()
+	bool IsFinished(URedemptionSaveGame* InSaveGame);
 };

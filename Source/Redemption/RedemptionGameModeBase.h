@@ -76,7 +76,7 @@ protected:
 public:
 	UFUNCTION(BlueprintCallable)
 	UShell* CreateShell(UConsoleWidget* InConsoleWidget, bool InLoginShell = false);
-
+	
 	UFUNCTION()
 	UShellCommandAsset* FindCommand(FString InName);
 

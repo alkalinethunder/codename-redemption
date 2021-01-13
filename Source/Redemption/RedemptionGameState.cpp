@@ -9,6 +9,7 @@
 #include "ChatContact.h"
 #include "RedemptionGameInstance.h"
 #include "ConversationManager.h"
+#include "RedemptionGameModeBase.h"
 #include "Kismet/GameplayStatics.h"
 #include "RedemptionSaveGame.h"
 
@@ -53,6 +54,13 @@ void ARedemptionGameState::BeginPlay()
 		}
 	}
 
+	this->MyGameMode = Cast<ARedemptionGameModeBase>(this->GetWorld()->GetAuthGameMode());
+
+	if (this->MyGameMode)
+	{
+		this->bDoNotDisturb = this->MyGameMode->bDoNotDisturbEnabled;
+	}
+	
 	// Spawn in the conversation manager.
 	this->ConversationManager = this->GetWorld()->SpawnActor<AConversationManager>();
 }
@@ -82,6 +90,54 @@ UChatContact* ARedemptionGameState::GetContactByName(FString InName)
 	}
 
 	return result;
+}
+
+bool ARedemptionGameState::IsDoNotDisturbActive()
+{
+	return this->bDoNotDisturb;
+}
+
+void ARedemptionGameState::ToggleDoNotDisturb()
+{
+	this->bDoNotDisturb = !this->bDoNotDisturb;
+	this->DoNotDisturbChanged.Broadcast(this->bDoNotDisturb);
+}
+
+AConversationManager* ARedemptionGameState::GetConversationManager()
+{
+	return this->ConversationManager;
+}
+
+void ARedemptionGameState::ActivateConversation(UChatContact* InContact, UConversationAppWidget* InWidget)
+{
+	// assertions
+	check (InContact);
+	check (InWidget);
+
+	// first let's ge a list of conversations available to the player.
+	TArray<UConversation*> available;
+	for (UConversation* convo : this->Conversations)
+	{
+		if (convo->Contact == InContact && convo->IsAvailable(this->MyGameInstance->GetSaveGame()))
+		{
+			available.Add(convo);
+		}
+	}
+
+	// next we need to figure out if there's a conversation in this list that's active.
+	UConversation* active = this->ConversationManager->FindFirstActiveConversation(available);
+
+	// if we've found one then let's reactivate it.
+	if (active)
+	{
+		this->ConversationManager->StartConversation(active, InWidget);
+		return;
+	}
+
+	// at this point there are no active conversations for this contact.
+	//
+	// so we'll start the first.
+	this->ConversationManager->StartConversation(available[0], InWidget);
 }
 
 void ARedemptionGameState::AddContact(FString InContactName)

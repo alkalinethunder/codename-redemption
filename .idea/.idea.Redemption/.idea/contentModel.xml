@@ -34298,6 +34298,10 @@
           <e p="ConsoleWidget.h" t="Include" />
           <e p="Conversation.cpp" t="Include" />
           <e p="Conversation.h" t="Include" />
+          <e p="ConversationAppWidget.cpp" t="Include" />
+          <e p="ConversationAppWidget.h" t="Include" />
+          <e p="ConversationInstance.cpp" t="Include" />
+          <e p="ConversationInstance.h" t="Include" />
           <e p="ConversationManager.cpp" t="Include" />
           <e p="ConversationManager.h" t="Include" />
           <e p="ConvoBranch.cpp" t="Include" />
