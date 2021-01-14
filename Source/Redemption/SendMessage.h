@@ -24,6 +24,9 @@ private:
 
 	UPROPERTY()
 	float SecondsLeftInSendDelay = 0;
+
+	UPROPERTY()
+	float TotalTypeDelayTime = 0;
 	
 public:
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)
@@ -32,6 +35,10 @@ public:
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)
 	FText MessageText;
 
+private:
+	UFUNCTION()
+	void UpdatePlayerMessageBox();
+	
 protected:
 	virtual void NativeTick(float DeltaTime) override;
 	virtual void NativeEnd() override;

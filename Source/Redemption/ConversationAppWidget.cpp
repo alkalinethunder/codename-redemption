@@ -58,6 +58,23 @@ void UConversationAppWidget::UpdateTypingIndicator()
 	}
 }
 
+void UConversationAppWidget::LockPlayerMessageBox()
+{
+	this->PlayerMessageEntry->SetText(FText::GetEmpty());
+	this->PlayerMessageEntry->SetIsReadOnly(true);
+}
+
+void UConversationAppWidget::UnlockPlayerMessageBox()
+{
+	this->PlayerMessageEntry->SetText(FText::GetEmpty());
+	this->PlayerMessageEntry->SetIsReadOnly(false);
+}
+
+void UConversationAppWidget::SetPlayerMessageText(const FText& InText)
+{
+	this->PlayerMessageEntry->SetText(InText);
+}
+
 void UConversationAppWidget::HideChoices()
 {
 	this->ChatChoicesBox->ClearChildren();

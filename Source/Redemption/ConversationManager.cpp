@@ -37,9 +37,14 @@ void AConversationManager::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	for (UConversationInstance* instance : this->Instances)
+	for (int i = 0; i < this->Instances.Num(); i++)
 	{
+		UConversationInstance* instance = this->Instances[i];
 		instance->Tick(DeltaTime);
+		if (instance->IsCompleted())
+		{
+			this->Instances.RemoveAt(i);
+		}
 	}
 }
 

@@ -7,7 +7,10 @@
 #include "ConvoChoice.h"
 #include "Blueprint/UserWidget.h"
 #include "Components/Border.h"
+#include "Components/Button.h"
+#include "Components/EditableText.h"
 #include "Components/Image.h"
+#include "Components/MultiLineEditableText.h"
 #include "Components/ScrollBox.h"
 #include "Components/TextBlock.h"
 #include "Components/VerticalBox.h"
@@ -63,6 +66,12 @@ protected:
 	UPROPERTY(BlueprintReadOnly, meta=(BindWidget))
 	UVerticalBox* ChatChoicesBox;
 
+	UPROPERTY(BlueprintReadOnly, meta=(BindWidget))
+	UMultiLineEditableText* PlayerMessageEntry;
+
+	UPROPERTY(BlueprintReadOnly, meta=(BindWidget))
+	UButton* PlayerSend;
+	
 public:
 	UFUNCTION(BlueprintImplementableEvent)
 	void SendPlayerMessage(const FText& InMessageText, FDateTime InDateTime);
@@ -74,6 +83,15 @@ public:
 	UUserWidget* CreateChoiceWidget(FConvoChoice InChoice, UConversationInstance* InConversationInstance);
 	
 public:
+	UFUNCTION()
+	void LockPlayerMessageBox();
+
+	UFUNCTION()
+    void UnlockPlayerMessageBox();
+
+	UFUNCTION()
+    void SetPlayerMessageText(const FText& InText);
+
 	UFUNCTION()
 	void HideChoices();
 	

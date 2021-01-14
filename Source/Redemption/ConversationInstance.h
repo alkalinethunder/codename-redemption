@@ -17,12 +17,15 @@ class UConversation;
 /**
  * 
  */
-UCLASS()
+UCLASS(BlueprintType)
 class REDEMPTION_API UConversationInstance : public UObject
 {
 	GENERATED_BODY()
 
 private:
+	UPROPERTY()
+	bool bIsCompleted = false;
+	
 	UPROPERTY()
 	FConvoChoice Choice;
 	
@@ -70,6 +73,9 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void ChooseAction(FConvoChoice InChoice);
+
+	UFUNCTION()
+	bool IsCompleted();
 	
 	UFUNCTION()
 	UConversationAppWidget* GetUserInterface();

@@ -49,6 +49,8 @@ void UConversationInstance::Tick(float DeltaTime)
 		this->Choice.ActionToPerform->Run(DeltaTime, this);
 		if (this->Choice.ActionToPerform->IsFinished())
 		{
+			this->Choice.ActionToPerform->ResetState();
+			
 			if (!this->bActionSwitchedBranchState)
 			{
 				this->PopBranchInternal();
@@ -79,6 +81,11 @@ void UConversationInstance::ChooseAction(FConvoChoice InChoice)
 		this->State = EChatState::ExecutingChoice;
 		this->AppWidget->HideChoices();
 	}
+}
+
+bool UConversationInstance::IsCompleted()
+{
+	return this->bIsCompleted;
 }
 
 UConversationAppWidget* UConversationInstance::GetUserInterface()
@@ -146,4 +153,5 @@ void UConversationInstance::PopBranchInternal()
 
 void UConversationInstance::Complete()
 {
+	this->bIsCompleted = true;
 }
