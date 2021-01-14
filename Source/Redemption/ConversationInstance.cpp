@@ -4,6 +4,8 @@
 #include "ConversationInstance.h"
 #include "ConversationManager.h"
 #include "ConversationAppWidget.h"
+#include "ConvoChoice.h"
+#include "ConvoBranch.h"
 #include "Conversation.h"
 
 void UConversationInstance::LinkToManager(AConversationManager* InManager, UConversationAppWidget* InWidget, UConversation* InAsset)
@@ -17,6 +19,42 @@ void UConversationInstance::LinkToManager(AConversationManager* InManager, UConv
 	this->AppWidget = InWidget;
 
 	this->AppWidget->SetConversation(this);
+
+	this->RestoreConversationOrder();
+}
+
+void UConversationInstance::Tick(float DeltaTime)
+{
+	if (this->State == EChatState::Playing)
+	{
+		FBranchActionInfo info = this->Branch.Actions[this->BranchCounter];
+		info.ActionToPerform->Run(DeltaTime, this);
+		if (info.ActionToPerform->IsFinished())
+		{
+			info.ActionToPerform->ResetState();
+
+			if (!this->bActionSwitchedBranchState)
+			{
+				this->BranchCounter++;
+				if (this->Branch.Actions.Num() >= this->BranchCounter)
+				{
+					this->State = EChatState::AwaitingChoices;
+					this->AppWidget->PresentChoices(this->Branch.Choices);
+				}
+			}
+		}
+	}
+	else if (this->State == EChatState::ExecutingChoice)
+	{
+		this->Choice.ActionToPerform->Run(DeltaTime, this);
+		if (this->Choice.ActionToPerform->IsFinished())
+		{
+			if (!this->bActionSwitchedBranchState)
+			{
+				this->PopBranchInternal();
+			}
+		}
+	}
 }
 
 void UConversationInstance::SwitchUserInterface(UConversationAppWidget* InApp)
@@ -31,6 +69,16 @@ void UConversationInstance::SwitchUserInterface(UConversationAppWidget* InApp)
 	
 	this->AppWidget = InApp;
 	this->AppWidget->SetConversation(this);
+}
+
+void UConversationInstance::ChooseAction(FConvoChoice InChoice)
+{
+	if (this->State == EChatState::AwaitingChoices)
+	{
+		this->Choice = InChoice;
+		this->State = EChatState::ExecutingChoice;
+		this->AppWidget->HideChoices();
+	}
 }
 
 UConversationAppWidget* UConversationInstance::GetUserInterface()
@@ -51,4 +99,51 @@ AConversationManager* UConversationInstance::GetConversationManager()
 UConversation* UConversationInstance::GetConversationAsset()
 {
 	return this->MyAsset;
+}
+
+void UConversationInstance::RestoreConversationOrder()
+{
+	this->State = EChatState::Playing;
+	this->Branch = this->MyAsset->RootBranch;
+	this->BranchCounter = 0;
+	this->BranchStack.Empty();
+}
+
+void UConversationInstance::PopBranchInternal()
+{
+	if (this->BranchStack.Num())
+	{
+		FBranchStackEntry entry = this->BranchStack.Pop();
+
+		if (entry.BranchId == NAME_None)
+		{
+			this->Branch = this->MyAsset->RootBranch;
+		}
+		else
+		{
+			bool found = false;
+		
+			for (FConvoBranch b : this->MyAsset->Branches)
+			{
+				if (b.Id == entry.BranchId)
+				{
+					this->Branch = b;
+					found = true;
+					break;
+				}
+			}
+
+			check (found);
+		}
+
+		this->BranchCounter = entry.BranchPosition;
+	}
+	else
+	{
+		this->Complete();
+	}
+}
+
+void UConversationInstance::Complete()
+{
 }

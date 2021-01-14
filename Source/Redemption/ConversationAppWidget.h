@@ -3,6 +3,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
+
+#include "ConvoChoice.h"
 #include "Blueprint/UserWidget.h"
 #include "Components/Border.h"
 #include "Components/Image.h"
@@ -62,6 +64,22 @@ protected:
 	UVerticalBox* ChatChoicesBox;
 
 public:
+	UFUNCTION(BlueprintImplementableEvent)
+	void SendPlayerMessage(const FText& InMessageText, FDateTime InDateTime);
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void SendMessage(const FText& InMessageText, FDateTime InDateTime, UPerson* InPerson);
+
+	UFUNCTION(BlueprintImplementableEvent)
+	UUserWidget* CreateChoiceWidget(FConvoChoice InChoice, UConversationInstance* InConversationInstance);
+	
+public:
+	UFUNCTION()
+	void HideChoices();
+	
+	UFUNCTION()
+	void PresentChoices(TArray<FConvoChoice> InChoices);
+	
 	UFUNCTION()
 	void AddTyper(UPerson* InPerson);
 

@@ -3,7 +3,11 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "ChatState.h"
 #include "UObject/Object.h"
+#include "ConvoChoice.h"
+#include "BranchStackEntry.h"
+#include "ConvoBranch.h"
 #include "ConversationInstance.generated.h"
 
 class AConversationManager;
@@ -20,6 +24,24 @@ class REDEMPTION_API UConversationInstance : public UObject
 
 private:
 	UPROPERTY()
+	FConvoChoice Choice;
+	
+	UPROPERTY()
+	EChatState State = EChatState::Playing;
+	
+	UPROPERTY()
+	bool bActionSwitchedBranchState = false;
+	
+	UPROPERTY()
+	int BranchCounter = 0;
+
+	UPROPERTY()
+	FConvoBranch Branch;
+	
+	UPROPERTY()
+	TArray<FBranchStackEntry> BranchStack;
+	
+	UPROPERTY()
 	UConversation* MyAsset;
 	
 	UPROPERTY()
@@ -28,9 +50,26 @@ private:
 	UPROPERTY()
 	UConversationAppWidget* AppWidget;
 
+private:
+	UFUNCTION()
+	void RestoreConversationOrder();
+
+	UFUNCTION()
+	void PopBranchInternal();
+
+	UFUNCTION()
+	void Complete();
+	
+public:
+	UFUNCTION()
+	void Tick(float DeltaTime);
+	
 public:
 	UFUNCTION()
 	void SwitchUserInterface(UConversationAppWidget* InApp);
+
+	UFUNCTION(BlueprintCallable)
+	void ChooseAction(FConvoChoice InChoice);
 	
 	UFUNCTION()
 	UConversationAppWidget* GetUserInterface();

@@ -36,13 +36,17 @@ void AConversationManager::BeginPlay()
 void AConversationManager::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	for (UConversationInstance* instance : this->Instances)
+	{
+		instance->Tick(DeltaTime);
+	}
 }
 
 void AConversationManager::AssertBranch(FConvoBranch InBranch)
 {
 	for (FBranchActionInfo info : InBranch.Actions)
 	{
-		check (info.Person);
 		check (info.ActionToPerform);
 	}
 

@@ -3,9 +3,9 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "ChatAction.h"
-#include "ChatContact.h"
 #include "BranchActionInfo.generated.h"
+
+class UChatAction;
 
 /**
  * Represents a single Chat Action.
@@ -16,9 +16,6 @@ struct FBranchActionInfo
     GENERATED_BODY()
 
 public:
-	UPROPERTY(BlueprintReadOnly, EditAnywhere)
-	UPerson* Person = nullptr;
-
 	UPROPERTY(BlueprintReadOnly, Instanced, EditAnywhere)
 	UChatAction* ActionToPerform = nullptr;
 };

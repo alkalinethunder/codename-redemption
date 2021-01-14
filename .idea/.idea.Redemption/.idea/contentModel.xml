@@ -34284,10 +34284,14 @@
           <e p="AssetUtils.h" t="Include" />
           <e p="BranchActionInfo.cpp" t="Include" />
           <e p="BranchActionInfo.h" t="Include" />
+          <e p="BranchStackEntry.cpp" t="Include" />
+          <e p="BranchStackEntry.h" t="Include" />
           <e p="ChatAction.cpp" t="Include" />
           <e p="ChatAction.h" t="Include" />
           <e p="ChatContact.cpp" t="Include" />
           <e p="ChatContact.h" t="Include" />
+          <e p="ChatState.cpp" t="Include" />
+          <e p="ChatState.h" t="Include" />
           <e p="CommandFlags.cpp" t="Include" />
           <e p="CommandFlags.h" t="Include" />
           <e p="CommandScript.cpp" t="Include" />
@@ -34320,6 +34324,8 @@
           <e p="DisplayTarget.h" t="Include" />
           <e p="GraphicalAppAsset.cpp" t="Include" />
           <e p="GraphicalAppAsset.h" t="Include" />
+          <e p="GuiHelpers.cpp" t="Include" />
+          <e p="GuiHelpers.h" t="Include" />
           <e p="OperatingSystemApp.cpp" t="Include" />
           <e p="OperatingSystemApp.h" t="Include" />
           <e p="PathUtils.cpp" t="Include" />
@@ -34353,6 +34359,8 @@
           <e p="RedemptionState.h" t="Include" />
           <e p="SaveSlot.cpp" t="Include" />
           <e p="SaveSlot.h" t="Include" />
+          <e p="SendMessage.cpp" t="Include" />
+          <e p="SendMessage.h" t="Include" />
           <e p="Shell.cpp" t="Include" />
           <e p="Shell.h" t="Include" />
           <e p="ShellCommandAsset.cpp" t="Include" />

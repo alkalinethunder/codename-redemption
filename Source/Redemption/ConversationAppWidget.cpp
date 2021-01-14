@@ -5,6 +5,7 @@
 #include "Person.h"
 #include "ConversationInstance.h"
 #include "ConversationManager.h"
+#include "Components/VerticalBoxSlot.h"
 
 void UConversationAppWidget::UpdateTypingIndicator()
 {
@@ -57,6 +58,30 @@ void UConversationAppWidget::UpdateTypingIndicator()
 	}
 }
 
+void UConversationAppWidget::HideChoices()
+{
+	this->ChatChoicesBox->ClearChildren();
+	this->ChatChoicesBox->SetVisibility(ESlateVisibility::Collapsed);
+	this->ChatScroller->ScrollToEnd();
+}
+
+void UConversationAppWidget::PresentChoices(TArray<FConvoChoice> InChoices)
+{
+	this->ChatChoicesBox->ClearChildren();
+	for (FConvoChoice Choice : InChoices)
+	{
+		UUserWidget* widget = this->CreateChoiceWidget(Choice, this->MyConversation);
+		if (widget)
+		{
+			UVerticalBoxSlot* slot = this->ChatChoicesBox->AddChildToVerticalBox(widget);
+			slot->HorizontalAlignment = EHorizontalAlignment::HAlign_Right;
+		}
+	}
+
+	this->ChatChoicesBox->SetVisibility(ESlateVisibility::Visible);
+	this->ChatScroller->ScrollToEnd();
+}
+
 void UConversationAppWidget::AddTyper(UPerson* InPerson)
 {
 	if (!this->Typers.Contains(InPerson))
@@ -77,6 +102,7 @@ void UConversationAppWidget::SetConversation(UConversationInstance* InConversati
 
 	this->Typers.Empty();
 
+	this->HideChoices();
 	this->SetDoNotDisturb(this->MyConversation->GetConversationManager()->GetDoNotDisturb());
 	this->UpdateTypingIndicator();
 }
