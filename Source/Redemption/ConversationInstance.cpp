@@ -7,6 +7,7 @@
 #include "ConvoChoice.h"
 #include "ConvoBranch.h"
 #include "Conversation.h"
+#include "RedemptionGameInstance.h"
 
 void UConversationInstance::LinkToManager(AConversationManager* InManager, UConversationAppWidget* InWidget, UConversation* InAsset)
 {
@@ -153,5 +154,7 @@ void UConversationInstance::PopBranchInternal()
 
 void UConversationInstance::Complete()
 {
+	URedemptionGameInstance* gInstance = Cast<URedemptionGameInstance>(this->ConversationManager->GetGameInstance());
+	gInstance->GetSaveGame()->CompletedChats.AddUnique(this->MyAsset->GetName());
 	this->bIsCompleted = true;
 }

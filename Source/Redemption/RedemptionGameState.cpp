@@ -114,6 +114,8 @@ void ARedemptionGameState::ActivateConversation(UChatContact* InContact, UConver
 	check (InContact);
 	check (InWidget);
 
+	this->MyGameInstance->GetSaveGame()->PostChatLogs(InWidget, InContact);
+	
 	// first let's ge a list of conversations available to the player.
 	TArray<UConversation*> available;
 	for (UConversation* convo : this->Conversations)
@@ -134,10 +136,13 @@ void ARedemptionGameState::ActivateConversation(UChatContact* InContact, UConver
 		return;
 	}
 
-	// at this point there are no active conversations for this contact.
-	//
-	// so we'll start the first.
-	this->ConversationManager->StartConversation(available[0], InWidget);
+	if (available.Num())
+	{
+		// at this point there are no active conversations for this contact.
+		//
+		// so we'll start the first.
+		this->ConversationManager->StartConversation(available[0], InWidget);
+	}
 }
 
 void ARedemptionGameState::AddContact(FString InContactName)

@@ -3,7 +3,11 @@
 
 #include "SendMessage.h"
 
+
+#include "Conversation.h"
 #include "ConversationAppWidget.h"
+#include "ConversationInstance.h"
+#include "RedemptionGameInstance.h"
 
 void USendMessage::UpdatePlayerMessageBox()
 {
@@ -55,15 +59,25 @@ void USendMessage::NativeTick(float DeltaTime)
 
 void USendMessage::NativeEnd()
 {
+	URedemptionGameInstance* gInstance = Cast<URedemptionGameInstance>(this->GetChatUserInterface()->GetGameInstance());
+
+	FChatLog log;
+	log.UtcSent = FDateTime::UtcNow();
+	log.MessageText = this->MessageText;
+	log.Contact = this->GetConversation()->GetConversationAsset()->Contact->GetName();
+	
 	if (this->Person)
 	{
 		this->GetChatUserInterface()->SendMessage(this->MessageText, FDateTime::UtcNow(), this->Person);
+		log.Sender = this->Person->GetName();
 	}
 	else
 	{
 		this->GetChatUserInterface()->SendPlayerMessage(this->MessageText, FDateTime::UtcNow());
 		this->GetChatUserInterface()->UnlockPlayerMessageBox();
 	}
+
+	gInstance->GetSaveGame()->PlayerChatLogs.Add(log);
 }
 
 void USendMessage::NativeBegin()

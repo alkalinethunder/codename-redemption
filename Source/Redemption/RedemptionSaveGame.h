@@ -7,6 +7,7 @@
 #include "Wallpaper.h"
 #include "SocialGuiState.h"
 #include "DirectoryEntry.h"
+#include "ChatLog.h"
 #include "RedemptionSaveGame.generated.h"
 
 /**
@@ -18,6 +19,9 @@ class REDEMPTION_API URedemptionSaveGame : public USaveGame
 	GENERATED_BODY()
 
 public:
+	UPROPERTY(BlueprintReadOnly, EditAnywhere)
+	TArray<FChatLog> PlayerChatLogs;
+	
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)
 	TArray<FString> CompletedChats;
 	
@@ -57,4 +61,7 @@ public:
 
 	UFUNCTION()
 	int GetAvailableDirectoryId();
+
+	UFUNCTION()
+	void PostChatLogs(class UConversationAppWidget* InWidget, class UChatContact* InContact);
 };

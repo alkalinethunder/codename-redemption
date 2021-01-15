@@ -3,6 +3,10 @@
 
 #include "RedemptionSaveGame.h"
 
+#include "AssetUtils.h"
+#include "ChatContact.h"
+#include "ConversationAppWidget.h"
+
 bool URedemptionSaveGame::FindDirectoryIndex(int DirectoryId, int& OutDirectoryIndex)
 {
 	bool result = false;
@@ -34,4 +38,32 @@ int URedemptionSaveGame::GetAvailableDirectoryId()
 		result++;
 	
 	return result;
+}
+
+void URedemptionSaveGame::PostChatLogs(UConversationAppWidget* InWidget, UChatContact* InContact)
+{
+	TMap<FString, UPerson*> contactMap;
+	for (UObject* obj : UAssetUtils::LoadAssetsOfClass(UPerson::StaticClass()))
+	{
+		UPerson* contact = Cast<UPerson>(obj);
+		if (contact)
+		{
+			contactMap.Add(contact->GetName(), contact);
+		}
+	}
+	
+	for (FChatLog& log : this->PlayerChatLogs)
+	{
+		if (log.Contact == InContact->GetName())
+		{
+			if (contactMap.Contains(log.Sender))
+			{
+				InWidget->SendMessage(log.MessageText, log.UtcSent, contactMap[log.Sender]);
+			}
+			else
+			{
+				InWidget->SendPlayerMessage(log.MessageText, log.UtcSent);
+			}
+		}
+	}
 }

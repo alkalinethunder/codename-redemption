@@ -35,6 +35,11 @@ UConversationAppWidget* UChatAction::GetChatUserInterface()
 	return this->Conversation->GetUserInterface();
 }
 
+UConversationInstance* UChatAction::GetConversation()
+{
+	return this->Conversation;
+}
+
 bool UChatAction::IsFinished()
 {
 	return this->bFinished;

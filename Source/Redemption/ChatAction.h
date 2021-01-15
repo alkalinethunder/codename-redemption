@@ -49,6 +49,9 @@ protected:
 
 	UFUNCTION(BlueprintPure)
 	UConversationAppWidget* GetChatUserInterface();
+
+	UFUNCTION(BlueprintPure)
+	UConversationInstance* GetConversation();
 	
 public:
 	UFUNCTION()
