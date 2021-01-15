@@ -20,6 +20,9 @@ class REDEMPTION_API UConversation : public UDataAsset
 	GENERATED_BODY()
 
 public:
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Display")
+	FText ChoiceBubbleText;
+	
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Conversation")
 	UChatContact* Contact = nullptr;
 

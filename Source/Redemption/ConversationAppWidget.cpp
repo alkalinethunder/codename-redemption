@@ -58,6 +58,14 @@ void UConversationAppWidget::UpdateTypingIndicator()
 	}
 }
 
+void UConversationAppWidget::StartConversation(AConversationManager* InManager, UConversation* InAsset)
+{
+	if (InManager && InAsset && !this->MyConversation)
+	{
+		InManager->StartConversation(InAsset, this);
+	}
+}
+
 void UConversationAppWidget::LockPlayerMessageBox()
 {
 	this->PlayerMessageEntry->SetText(FText::GetEmpty());
@@ -130,5 +138,28 @@ void UConversationAppWidget::RemoveTyper(UPerson* InPerson)
 	{
 		this->Typers.Remove(InPerson);
 		this->UpdateTypingIndicator();
+	}
+}
+
+void UConversationAppWidget::SetContactInfo(UChatContact* InContact)
+{
+	this->ChatTitle->SetText(InContact->Name);
+	this->ChatMemberCount->SetText(FText::FromString(InContact->GetUsernameText()));
+}
+
+void UConversationAppWidget::PresentConversationChoices(AConversationManager* InConvoManager,
+	TArray<UConversation*> InAssets)
+{
+	this->ChatChoicesBox->ClearChildren();
+	this->ChatChoicesBox->SetVisibility(ESlateVisibility::Visible);
+
+	for (UConversation* convo : InAssets)
+	{
+		UUserWidget* choice = this->CreateCpnvoStartWidget(convo, InConvoManager);
+		if (choice)
+		{
+			UVerticalBoxSlot* slot = this->ChatChoicesBox->AddChildToVerticalBox(choice);
+			slot->SetHorizontalAlignment(EHorizontalAlignment::HAlign_Right);
+		}
 	}
 }

@@ -7,6 +7,7 @@
 #include "AssetUtils.h"
 #include "Conversation.h"
 #include "ChatContact.h"
+#include "ConversationAppWidget.h"
 #include "RedemptionGameInstance.h"
 #include "ConversationManager.h"
 #include "RedemptionGameModeBase.h"
@@ -114,6 +115,10 @@ void ARedemptionGameState::ActivateConversation(UChatContact* InContact, UConver
 	check (InContact);
 	check (InWidget);
 
+	// set do not disturb state as well as contact information at the top.
+	InWidget->SetDoNotDisturb(this->bDoNotDisturb);
+	InWidget->SetContactInfo(InContact);
+	
 	this->MyGameInstance->GetSaveGame()->PostChatLogs(InWidget, InContact);
 	
 	// first let's ge a list of conversations available to the player.
@@ -136,12 +141,18 @@ void ARedemptionGameState::ActivateConversation(UChatContact* InContact, UConver
 		return;
 	}
 
-	if (available.Num())
+	// if there's only one available convo, just start it.
+	if (available.Num() == 1)
 	{
 		// at this point there are no active conversations for this contact.
 		//
 		// so we'll start the first.
 		this->ConversationManager->StartConversation(available[0], InWidget);
+	}
+	else
+	{
+		// present choices to the user
+		InWidget->PresentConversationChoices(this->ConversationManager, available);
 	}
 }
 

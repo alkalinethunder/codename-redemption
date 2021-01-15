@@ -6,17 +6,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="06c14ef7-907b-4990-b8f7-291c57d35a51" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Source/Redemption/ChatLog.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Data/Chats/mallow_test.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Data/Chats/mallow_test.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Redemption/ChatAction.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/ChatAction.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Redemption/ChatAction.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/ChatAction.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Redemption/ConversationInstance.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/ConversationInstance.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Redemption/Conversation.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/Conversation.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Redemption/ConversationAppWidget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/ConversationAppWidget.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Redemption/ConversationAppWidget.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/ConversationAppWidget.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Redemption/RedemptionGameState.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/RedemptionGameState.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Redemption/RedemptionSaveGame.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/RedemptionSaveGame.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Redemption/RedemptionSaveGame.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/RedemptionSaveGame.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Redemption/SendMessage.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/SendMessage.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,13 +23,13 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://C:/Program Files/Epic Games/UE_4.26/Engine/Source/Runtime/SlateCore/Public/Rendering/DrawElements.h" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://C:/Program Files/Epic Games/UE_4.26/Engine/Source/Runtime/Engine/Classes/GameFramework/PlayerController.h" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://C:/Program Files/Epic Games/UE_4.26/Engine/Source/Runtime/Core/Public/Containers/EnumAsByte.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://C:/Program Files (x86)/Windows Kits/10/Include/10.0.18362.0/um/winnt.h" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://C:/Program Files/Epic Games/UE_4.26/Engine/Source/Runtime/Core/Public/Containers/EnumAsByte.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://C:/Program Files/Epic Games/UE_4.26/Engine/Source/Runtime/Engine/Classes/GameFramework/PlayerController.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Epic Games/UE_4.26/Engine/Source/Runtime/Slate/Public/Framework/Application/SlateApplication.h" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://C:/Program Files/Epic Games/UE_4.26/Engine/Source/Runtime/SlateCore/Public/Fonts/FontMeasure.h" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://C:/Program Files/Epic Games/UE_4.26/Engine/Source/Runtime/Core/Public/Containers/Array.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Epic Games/UE_4.26/Engine/Source/Runtime/Core/Public/HAL/Platform.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://C:/Program Files/Epic Games/UE_4.26/Engine/Source/Runtime/Core/Public/Containers/Array.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://C:/Program Files/Epic Games/UE_4.26/Engine/Source/Runtime/SlateCore/Public/Fonts/FontMeasure.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Epic Games/UE_4.26/Engine/Source/Runtime/UMG/Public/Blueprint/UserWidget.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Epic Games/UE_4.26/Engine/Source/Runtime/Core/Public/Containers/UnrealString.h" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -65,7 +60,6 @@
       <option value="$PROJECT_DIR$/Source/Redemption/DesktopWidget.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/RedemptionGameModeBase.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/AppTabWidget.h" />
-      <option value="$PROJECT_DIR$/Source/Redemption/Conversation.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/Conversation.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/RedemptionGameState.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/ConversationManager.h" />
@@ -78,8 +72,6 @@
       <option value="$PROJECT_DIR$/Source/Redemption/GuiHelpers.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/GuiHelpers.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/SendMessage.h" />
-      <option value="$PROJECT_DIR$/Source/Redemption/ConversationAppWidget.h" />
-      <option value="$PROJECT_DIR$/Source/Redemption/ConversationAppWidget.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/ConversationInstance.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/ConversationManager.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/ConversationInstance.cpp" />
@@ -87,10 +79,13 @@
       <option value="$PROJECT_DIR$/Source/Redemption/RedemptionSaveGame.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/RedemptionSaveGame.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/ChatLog.h" />
-      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionGameState.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/ChatAction.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/ChatAction.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/SendMessage.cpp" />
+      <option value="$PROJECT_DIR$/Source/Redemption/Conversation.h" />
+      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionGameState.cpp" />
+      <option value="$PROJECT_DIR$/Source/Redemption/ConversationAppWidget.h" />
+      <option value="$PROJECT_DIR$/Source/Redemption/ConversationAppWidget.cpp" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1mSCTesrzm0AEkY2lywPjJ7v9sD" />
@@ -102,7 +97,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.5504514" />
+    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.5503792" />
     <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.0" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
@@ -367,7 +362,8 @@
       <workItem from="1610582178854" duration="3298000" />
       <workItem from="1610598297036" duration="949000" />
       <workItem from="1610655600094" duration="6535000" />
-      <workItem from="1610683463327" duration="2578000" />
+      <workItem from="1610683463327" duration="3022000" />
+      <workItem from="1610736744614" duration="2765000" />
     </task>
     <servers />
   </component>

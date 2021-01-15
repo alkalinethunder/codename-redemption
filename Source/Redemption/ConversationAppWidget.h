@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 
+
+#include "ChatContact.h"
 #include "ConvoChoice.h"
 #include "Blueprint/UserWidget.h"
 #include "Components/Border.h"
@@ -18,6 +20,8 @@
 
 class UPerson;
 class UConversationInstance;
+class UConversation;
+class AConversationManager;
 
 /**
  * 
@@ -81,8 +85,14 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent)
 	UUserWidget* CreateChoiceWidget(FConvoChoice InChoice, UConversationInstance* InConversationInstance);
+
+	UFUNCTION(BlueprintImplementableEvent)
+    UUserWidget* CreateCpnvoStartWidget(UConversation* InConversation, AConversationManager* InActor);
 	
 public:
+	UFUNCTION(BlueprintCallable)
+	void StartConversation(AConversationManager* InManager, UConversation* InAsset);
+	
 	UFUNCTION()
 	void LockPlayerMessageBox();
 
@@ -109,4 +119,10 @@ public:
 	
 	UFUNCTION()
     void RemoveTyper(UPerson* InPerson);
+
+	UFUNCTION()
+	void SetContactInfo(UChatContact* InContact);
+
+	UFUNCTION()
+	void PresentConversationChoices(AConversationManager* InConvoManager, TArray<UConversation*> InAssets);
 };
