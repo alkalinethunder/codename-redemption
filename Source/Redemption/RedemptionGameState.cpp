@@ -141,19 +141,8 @@ void ARedemptionGameState::ActivateConversation(UChatContact* InContact, UConver
 		return;
 	}
 
-	// if there's only one available convo, just start it.
-	if (available.Num() == 1)
-	{
-		// at this point there are no active conversations for this contact.
-		//
-		// so we'll start the first.
-		this->ConversationManager->StartConversation(available[0], InWidget);
-	}
-	else
-	{
-		// present choices to the user
-		InWidget->PresentConversationChoices(this->ConversationManager, available);
-	}
+	// present choices to the user
+	InWidget->PresentConversationChoices(this->ConversationManager, available);
 }
 
 void ARedemptionGameState::AddContact(FString InContactName)

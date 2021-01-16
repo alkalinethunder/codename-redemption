@@ -90,6 +90,9 @@ public:
     UUserWidget* CreateCpnvoStartWidget(UConversation* InConversation, AConversationManager* InActor);
 	
 public:
+	UFUNCTION()
+	void UnlinkConversation();
+	
 	UFUNCTION(BlueprintCallable)
 	void StartConversation(AConversationManager* InManager, UConversation* InAsset);
 	

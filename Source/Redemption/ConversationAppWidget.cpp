@@ -58,6 +58,11 @@ void UConversationAppWidget::UpdateTypingIndicator()
 	}
 }
 
+void UConversationAppWidget::UnlinkConversation()
+{
+	this->MyConversation = nullptr;
+}
+
 void UConversationAppWidget::StartConversation(AConversationManager* InManager, UConversation* InAsset)
 {
 	if (InManager && InAsset && !this->MyConversation)

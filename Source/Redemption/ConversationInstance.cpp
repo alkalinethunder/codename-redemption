@@ -8,6 +8,7 @@
 #include "ConvoBranch.h"
 #include "Conversation.h"
 #include "RedemptionGameInstance.h"
+#include "RedemptionGameState.h"
 
 void UConversationInstance::LinkToManager(AConversationManager* InManager, UConversationAppWidget* InWidget, UConversation* InAsset)
 {
@@ -28,21 +29,28 @@ void UConversationInstance::Tick(float DeltaTime)
 {
 	if (this->State == EChatState::Playing)
 	{
-		FBranchActionInfo info = this->Branch.Actions[this->BranchCounter];
-		info.ActionToPerform->Run(DeltaTime, this);
-		if (info.ActionToPerform->IsFinished())
+		if (this->Branch.Actions.Num())
 		{
-			info.ActionToPerform->ResetState();
-
-			if (!this->bActionSwitchedBranchState)
+			FBranchActionInfo info = this->Branch.Actions[this->BranchCounter];
+			info.ActionToPerform->Run(DeltaTime, this);
+			if (info.ActionToPerform->IsFinished())
 			{
-				this->BranchCounter++;
-				if (this->Branch.Actions.Num() >= this->BranchCounter)
+				info.ActionToPerform->ResetState();
+
+				if (!this->bActionSwitchedBranchState)
 				{
-					this->State = EChatState::AwaitingChoices;
-					this->AppWidget->PresentChoices(this->Branch.Choices);
+					this->BranchCounter++;
+					if (this->Branch.Actions.Num() >= this->BranchCounter)
+					{
+						this->State = EChatState::AwaitingChoices;
+						this->AppWidget->PresentChoices(this->Branch.Choices);
+					}
 				}
 			}
+		}
+		else
+		{
+			this->PopBranchInternal();
 		}
 	}
 	else if (this->State == EChatState::ExecutingChoice)
@@ -157,4 +165,16 @@ void UConversationInstance::Complete()
 	URedemptionGameInstance* gInstance = Cast<URedemptionGameInstance>(this->ConversationManager->GetGameInstance());
 	gInstance->GetSaveGame()->CompletedChats.AddUnique(this->MyAsset->GetName());
 	this->bIsCompleted = true;
+
+	this->AppWidget->UnlinkConversation();
+
+	ARedemptionGameState* gState = Cast<ARedemptionGameState>(this->AppWidget->GetWorld()->GetGameState());
+
+	if (gState)
+	{
+		gState->ActivateConversation(this->MyAsset->Contact, this->AppWidget);
+	}
+
+	this->AppWidget = nullptr;
+	this->MyAsset = nullptr;
 }

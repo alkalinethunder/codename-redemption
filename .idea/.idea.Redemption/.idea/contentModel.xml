@@ -34201,8 +34201,8 @@
       <e p="UE4Game.Target.cs" t="Include" />
     </e>
     <e p="C:\Users\thepl\AppData\Local\JetBrains\Rider2020.3\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\thepl\AppData\Local\JetBrains\Rider2020.3\resharper-host\Local\Transient\Rider\v203\SolutionCaches\_Redemption.-884982305.00" t="ExcludeRecursive" />
-    <e p="Z:\Games\Redemption" t="IncludeFlat">
+    <e p="C:\Users\thepl\AppData\Local\JetBrains\Rider2020.3\resharper-host\Local\Transient\Rider\v203\SolutionCaches\_Redemption.-1817757991.00" t="ExcludeRecursive" />
+    <e p="D:\Projects\Games\Redemption" t="IncludeFlat">
       <e p=".gitignore" t="Include" />
       <e p="CMakeLists.txt" t="Include" />
       <e p="Config" t="Include">
