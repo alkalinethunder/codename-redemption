@@ -34290,6 +34290,8 @@
           <e p="ChatAction.h" t="Include" />
           <e p="ChatContact.cpp" t="Include" />
           <e p="ChatContact.h" t="Include" />
+          <e p="ChatFlags.cpp" t="Include" />
+          <e p="ChatFlags.h" t="Include" />
           <e p="ChatLog.cpp" t="Include" />
           <e p="ChatLog.h" t="Include" />
           <e p="ChatState.cpp" t="Include" />

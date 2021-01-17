@@ -170,11 +170,14 @@ void UConversationInstance::Complete()
 
 	ARedemptionGameState* gState = Cast<ARedemptionGameState>(this->AppWidget->GetWorld()->GetGameState());
 
-	if (gState)
-	{
-		gState->ActivateConversation(this->MyAsset->Contact, this->AppWidget);
-	}
-
+	UConversationAppWidget* app = this->AppWidget;
+	UConversation* asset = this->MyAsset;
+	
 	this->AppWidget = nullptr;
 	this->MyAsset = nullptr;
+	
+	if (gState)
+	{
+		gState->ActivateConversation(asset->Contact, app);
+	}
 }

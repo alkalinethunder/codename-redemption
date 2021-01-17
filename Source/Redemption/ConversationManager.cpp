@@ -156,7 +156,7 @@ void AConversationManager::StartConversation(UConversation* InConversation, UCon
 	if (existingChat)
 	{
 		// Step 2.1, check if it has UI.
-		if (existingChat->GetUserInterface())
+		if (existingChat->GetUserInterface() && existingChat->GetUserInterface() != InAppWidget)
 		{
 			// Buggymcbuggerfucker.
 			check(false);

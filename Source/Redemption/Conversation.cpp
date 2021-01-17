@@ -16,7 +16,7 @@ bool UConversation::IsAvailable(URedemptionSaveGame* InSaveGame)
 			result = false;
 		}
 		else if (!InSaveGame->PlayerContacts.Contains(this->Contact->GetName()));
-		else if (this->IsFinished(InSaveGame))
+		else if (this->IsFinished(InSaveGame) && this->ChatFlags.bMakeUnavailableOnCompletion)
 		{
 			result = false;
 		}

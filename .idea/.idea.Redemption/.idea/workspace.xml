@@ -6,12 +6,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="06c14ef7-907b-4990-b8f7-291c57d35a51" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Source/Redemption/ChatFlags.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Redemption/ConversationAppWidget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/ConversationAppWidget.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Redemption/ConversationAppWidget.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/ConversationAppWidget.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Data/Chats/mallow_multiconvo_test.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Data/Chats/mallow_multiconvo_test.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Redemption/Conversation.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/Conversation.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Redemption/Conversation.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/Conversation.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Redemption/ConversationInstance.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/ConversationInstance.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Redemption/RedemptionGameState.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/RedemptionGameState.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Redemption/ConversationManager.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/ConversationManager.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,8 +37,6 @@
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Source/Redemption/ShellHostWidget.h" />
-      <option value="$PROJECT_DIR$/Source/Redemption/Contact.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/PersonalPronoun.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/Person.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/PersonalPronoun.cpp" />
@@ -60,7 +60,6 @@
       <option value="$PROJECT_DIR$/Source/Redemption/DesktopWidget.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/RedemptionGameModeBase.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/AppTabWidget.h" />
-      <option value="$PROJECT_DIR$/Source/Redemption/Conversation.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/RedemptionGameState.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/ConversationManager.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/ChatState.cpp" />
@@ -73,7 +72,6 @@
       <option value="$PROJECT_DIR$/Source/Redemption/GuiHelpers.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/SendMessage.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/ConversationInstance.h" />
-      <option value="$PROJECT_DIR$/Source/Redemption/ConversationManager.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/ChatLog.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/RedemptionSaveGame.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/RedemptionSaveGame.cpp" />
@@ -81,10 +79,14 @@
       <option value="$PROJECT_DIR$/Source/Redemption/ChatAction.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/ChatAction.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/SendMessage.cpp" />
-      <option value="$PROJECT_DIR$/Source/Redemption/Conversation.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/ConversationAppWidget.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/ConversationAppWidget.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/RedemptionGameState.cpp" />
+      <option value="$PROJECT_DIR$/Source/Redemption/ChatFlags.h" />
+      <option value="$PROJECT_DIR$/Source/Redemption/ChatFlags.cpp" />
+      <option value="$PROJECT_DIR$/Source/Redemption/Conversation.h" />
+      <option value="$PROJECT_DIR$/Source/Redemption/Conversation.cpp" />
+      <option value="$PROJECT_DIR$/Source/Redemption/ConversationManager.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/ConversationInstance.cpp" />
     </changedPaths>
   </component>
@@ -365,7 +367,8 @@
       <workItem from="1610683463327" duration="3022000" />
       <workItem from="1610736744614" duration="3269000" />
       <workItem from="1610743291325" duration="357000" />
-      <workItem from="1610764575453" duration="328000" />
+      <workItem from="1610764575453" duration="1741000" />
+      <workItem from="1610854565343" duration="3876000" />
     </task>
     <servers />
   </component>
@@ -431,6 +434,11 @@
           <url>file://$PROJECT_DIR$/Source/Redemption/AppTabWidget.h</url>
           <line>30</line>
           <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/Source/Redemption/ConversationInstance.cpp</url>
+          <line>164</line>
+          <option name="timeStamp" value="35" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

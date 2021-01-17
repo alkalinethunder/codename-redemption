@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Engine/DataAsset.h"
 #include "ChatContact.h"
+#include "ChatFlags.h"
 #include "BranchActionInfo.h"
 #include "ConvoBranch.h"
 #include "Conversation.generated.h"
@@ -35,6 +36,9 @@ public:
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Progression")
 	TArray<UConversation*> RequiredConversations;
 
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Flags")
+	FChatFlags ChatFlags;
+	
 public:
 	UFUNCTION()
 	bool IsAvailable(URedemptionSaveGame* InSaveGame);
