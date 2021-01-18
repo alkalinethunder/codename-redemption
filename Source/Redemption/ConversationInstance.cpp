@@ -40,7 +40,7 @@ void UConversationInstance::Tick(float DeltaTime)
 				if (!this->bActionSwitchedBranchState)
 				{
 					this->BranchCounter++;
-					if (this->Branch.Actions.Num() >= this->BranchCounter)
+					if (this->Branch.Actions.Num() <= this->BranchCounter)
 					{
 						this->State = EChatState::AwaitingChoices;
 						this->AppWidget->PresentChoices(this->Branch.Choices);
