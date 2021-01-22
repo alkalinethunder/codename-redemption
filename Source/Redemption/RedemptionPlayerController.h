@@ -50,6 +50,12 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	bool LaunchGraphicalProgram(UGraphicalAppAsset* InApp, UOperatingSystemApp*& OutAppWidget);
+
+	UFUNCTION()
+	TArray<UShellCommandAsset*> GetAvailableCommands();
+
+	UFUNCTION()
+	TArray<UGraphicalAppAsset*> GetAvailablePrograms();
 	
 	UFUNCTION()
 	bool TryGetCommandByName(FString InCommandName, UShellCommandAsset*& OutCommand);

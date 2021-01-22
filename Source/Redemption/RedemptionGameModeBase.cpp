@@ -90,6 +90,16 @@ UShellCommandAsset* ARedemptionGameModeBase::FindCommand(FString InName)
 	return result;
 }
 
+TArray<UGraphicalAppAsset*> ARedemptionGameModeBase::GetPrograms()
+{
+	return this->Apps;
+}
+
+TArray<UShellCommandAsset*> ARedemptionGameModeBase::GetCommands()
+{
+	return this->ShellCommands;
+}
+
 TArray<UGraphicalAppAsset*> ARedemptionGameModeBase::GetStartupApps()
 {
 	TArray<UGraphicalAppAsset*> result;

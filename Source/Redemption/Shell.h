@@ -10,6 +10,7 @@
 class UConsoleWidget;
 class UCommandScript;
 class AShellManagementActor;
+class UUsefulTip;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FShellExitedEvent);
 
@@ -22,6 +23,9 @@ class REDEMPTION_API UShell : public UObject
 	GENERATED_BODY()
 
 private:
+	UPROPERTY()
+	TArray<UUsefulTip*> UsefulTips;
+	
 	UPROPERTY()
 	bool bExited = false;
 	
@@ -51,6 +55,15 @@ public:
 	FShellExitedEvent OnExited;
 	
 private:
+	UFUNCTION()
+	void PrintUsefulTips();
+
+	UFUNCTION()
+	void PrintCommands();
+
+	UFUNCTION()
+	void PrintPrograms();
+	
 	UFUNCTION()
 	void Exit();
 	

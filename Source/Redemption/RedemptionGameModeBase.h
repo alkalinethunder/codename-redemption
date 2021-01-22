@@ -81,5 +81,11 @@ public:
 	UShellCommandAsset* FindCommand(FString InName);
 
 	UFUNCTION()
+	TArray<UGraphicalAppAsset*> GetPrograms();
+	
+	UFUNCTION()
+	TArray<UShellCommandAsset*> GetCommands();
+	
+	UFUNCTION()
 	TArray<UGraphicalAppAsset*> GetStartupApps();
 };

@@ -2,10 +2,67 @@
 
 
 #include "Shell.h"
+
+#include "AssetUtils.h"
 #include "ConsoleWidget.h"
 #include "PathUtils.h"
 #include "ShellManagementActor.h"
 #include "VirtualFileSystem.h"
+#include "UsefulTip.h"
+
+void UShell::PrintUsefulTips()
+{
+	this->Console->WriteLine(FText::FromString("Useful tips"));
+	this->Console->WriteLine(FText::FromString("-----------"));
+	this->Console->WriteLine(FText::GetEmpty());
+	
+	for (UUsefulTip* tip : this->UsefulTips)
+	{
+		FText tipText = tip->GetTipText(this->PlayerController);
+		if (!FText::TrimPrecedingAndTrailing(tipText).IsEmpty())
+		{
+			this->Console->Write(FText::FromString(" - "));
+			this->Console->WriteLine(tipText);
+		}
+	}
+}
+
+void UShell::PrintCommands()
+{
+	this->Console->WriteLine(FText::FromString("Commands"));
+	this->Console->WriteLine(FText::FromString("--------"));
+	this->Console->WriteLine(FText::GetEmpty());
+
+	for (UShellCommandAsset* command : this->PlayerController->GetAvailableCommands())
+	{
+		if (!command->CommandFlags.IsRunnableByPlayer)
+			continue;
+		
+		this->Console->Write(FText::FromString(" - %4"));
+		this->Console->Write(FText::FromString(command->Name));
+		this->Console->Write(FText::FromString("%1: "));
+		this->Console->WriteLine(command->HelpText);
+	}
+}
+
+void UShell::PrintPrograms()
+{
+	this->Console->WriteLine(FText::FromString("Programs"));
+	this->Console->WriteLine(FText::FromString("--------"));
+	this->Console->WriteLine(FText::GetEmpty());
+
+	for (UGraphicalAppAsset* command : this->PlayerController->GetAvailablePrograms())
+	{
+		if (!command->CommandFlags.IsRunnableByPlayer)
+			continue;
+		
+		this->Console->Write(FText::FromString(" - %4"));
+		this->Console->Write(FText::FromString(command->CommandName));
+		this->Console->Write(FText::FromString("%1: "));
+		this->Console->WriteLine(command->Description);
+	}
+
+}
 
 void UShell::Exit()
 {
@@ -84,6 +141,17 @@ void UShell::LinkToConsole(AShellManagementActor* Owner, UConsoleWidget* InConso
 	this->ShellManager = Owner;
 	this->Console = InConsole;
 	this->PlayerController = Cast<ARedemptionPlayerController>(InConsole->GetOwningPlayer());
+
+	// Load in the Useful Tips.
+	this->UsefulTips.Empty();
+	for (UObject* asset : UAssetUtils::LoadAssetsOfClass(UUsefulTip::StaticClass()))
+	{
+		UUsefulTip* usefulTip = Cast<UUsefulTip>(asset);
+		if (usefulTip)
+		{
+			this->UsefulTips.Add(usefulTip);
+		}
+	}
 	
 	this->Console->OnTextSubmitted.AddUniqueDynamic(this, &UShell::HandleConsoleTextSubmitted);
 	this->WritePrompt();
@@ -266,6 +334,48 @@ bool UShell::ProcessBuiltin(FString InName, TArray<FString> InArgs)
 	if (InName == "clear")
 	{
 		this->Console->ClearScreen();
+		return true;
+	}
+	else if (InName == "help")
+	{
+		// Header
+		this->Console->WriteLine(FText::FromString("Shell Help"));
+		this->Console->WriteLine(FText::FromString("=========="));
+		this->Console->WriteLine(FText::GetEmpty());
+		
+		// Useful Tips
+		this->PrintUsefulTips();
+		this->Console->WriteLine(FText::GetEmpty());
+		this->Console->WriteLine(FText::FromString("%2Type %4tips%2 to see these tips.%1"));
+		this->Console->WriteLine(FText::GetEmpty());
+		
+		// Commands
+		this->PrintCommands();
+		this->Console->WriteLine(FText::GetEmpty());
+		this->Console->WriteLine(FText::FromString("%2Type %4commands%2 to see these commands.%1"));
+		this->Console->WriteLine(FText::GetEmpty());
+
+		// Programs
+		this->PrintPrograms();
+		this->Console->WriteLine(FText::GetEmpty());
+		this->Console->WriteLine(FText::FromString("%2Type %4programs%2 to see these programs.%1"));
+		this->Console->WriteLine(FText::GetEmpty());
+		
+		return true;
+	}
+	else if (InName == "tips")
+	{
+		this->PrintUsefulTips();
+		return true;
+	}
+	else if (InName == "commands")
+	{
+		this->PrintCommands();
+		return true;
+	}
+	else if (InName == "programs")
+	{
+		this->PrintPrograms();
 		return true;
 	}
 	else if (InName == "exit")

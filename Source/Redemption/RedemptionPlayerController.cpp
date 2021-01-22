@@ -115,6 +115,50 @@ bool ARedemptionPlayerController::LaunchGraphicalProgram(UGraphicalAppAsset* InA
 	return result;
 }
 
+TArray<UShellCommandAsset*> ARedemptionPlayerController::GetAvailableCommands()
+{
+	TArray<UShellCommandAsset*> result;
+
+	for (UShellCommandAsset* command : this->GameMode->GetCommands())
+	{
+		if (command->RequiredUpgrade != nullptr)
+		{
+			ARedemptionPlayerState* playerState = Cast<ARedemptionPlayerState>(this->PlayerState);
+
+			if (!playerState || !command->RequiredUpgrade->IsUnlocked(playerState))
+			{
+				continue;
+			}
+		}
+
+		result.Add(command);
+	}
+	
+	return result;
+}
+
+TArray<UGraphicalAppAsset*> ARedemptionPlayerController::GetAvailablePrograms()
+{
+	TArray<UGraphicalAppAsset*> result;
+
+	for (UGraphicalAppAsset* command : this->GameMode->GetPrograms())
+	{
+		if (command->RequiredUpgrade != nullptr)
+		{
+			ARedemptionPlayerState* playerState = Cast<ARedemptionPlayerState>(this->PlayerState);
+
+			if (!playerState || !command->RequiredUpgrade->IsUnlocked(playerState))
+			{
+				continue;
+			}
+		}
+
+		result.Add(command);
+	}
+	
+	return result;
+}
+
 bool ARedemptionPlayerController::TryGetCommandByName(FString InCommandName, UShellCommandAsset*& OutCommand)
 {
 	UShellCommandAsset* command = this->GameMode->FindCommand(InCommandName);

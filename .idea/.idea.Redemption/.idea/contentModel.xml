@@ -34379,6 +34379,8 @@
           <e p="UpgradeAsset.h" t="Include" />
           <e p="UpgradeCategory.cpp" t="Include" />
           <e p="UpgradeCategory.h" t="Include" />
+          <e p="UsefulTip.cpp" t="Include" />
+          <e p="UsefulTip.h" t="Include" />
           <e p="VirtualFileSystem.cpp" t="Include" />
           <e p="VirtualFileSystem.h" t="Include" />
           <e p="Wallpaper.cpp" t="Include" />

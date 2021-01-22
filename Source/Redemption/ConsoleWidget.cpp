@@ -124,9 +124,7 @@ void UConsoleWidget::RebuildTextItems(const FGeometry& MyGeometry)
 		FString prev = item.Text;
 		prev += c;
 
-		int kern = measurer->GetKerning(this->Font, this->ZoomFactor, lastChar, c);
 		this->MeasureText(MyGeometry, prev, prevW, prevH);
-		prevW += kern;
 		if (item.Location.X + prevW >= loc.X + alottedSize.X)
 		{
 			this->DrawItems.Add(item);
@@ -138,7 +136,7 @@ void UConsoleWidget::RebuildTextItems(const FGeometry& MyGeometry)
 
 		item.Text += c;
 		this->MeasureText(MyGeometry, item.Text, prevW, prevH);
-		item.Size.X = prevW + kern;
+		item.Size.X = prevW;
 		item.Size.Y = prevH;
 
 		lastChar = c;
@@ -147,13 +145,12 @@ void UConsoleWidget::RebuildTextItems(const FGeometry& MyGeometry)
 	for (int i = 0; i <= this->InputBuffer.Len(); i++)
 	{
 		TCHAR c = (i < this->InputBuffer.Len()) ? this->InputBuffer[i] : ' ';
-		int kern = measurer->GetKerning(this->Font, this->ZoomFactor / MyGeometry.Scale, lastChar,c);
 		if (i == this->InputPos)
 		{
 			if (item.Text.Len() > 0)
 			{
 				this->DrawItems.Add(item);
-				item.Location.X += item.Size.X + kern;
+				item.Location.X += item.Size.X;
 			}
 			
 			cursor = true;
@@ -170,7 +167,7 @@ void UConsoleWidget::RebuildTextItems(const FGeometry& MyGeometry)
 				item.Location.Y += prevH;
 			}
 
-			item.Size.X = prevW + kern;
+			item.Size.X = prevW;
 			item.Size.Y = prevH;
 
 			lastChar = c;
@@ -183,7 +180,7 @@ void UConsoleWidget::RebuildTextItems(const FGeometry& MyGeometry)
 			if (item.Text.Len() > 0)
 			{
 				this->DrawItems.Add(item);
-				item.Location.X += item.Size.X + kern;
+				item.Location.X += item.Size.X;
 			}
 			
 			cursor = false;
@@ -201,7 +198,7 @@ void UConsoleWidget::RebuildTextItems(const FGeometry& MyGeometry)
 				item.Location.Y += prevH;
 			}
 
-			item.Size.X = prevW + kern;
+			item.Size.X = prevW;
 			item.Size.Y = prevH;
 
 			lastChar = c;
@@ -213,7 +210,6 @@ void UConsoleWidget::RebuildTextItems(const FGeometry& MyGeometry)
 		prev += c;
 
 		this->MeasureText(MyGeometry, prev, prevW, prevH);
-		prevW += kern;
 		if (item.Location.X + prevW >= loc.X + alottedSize.X)
 		{
 			this->DrawItems.Add(item);
@@ -225,7 +221,7 @@ void UConsoleWidget::RebuildTextItems(const FGeometry& MyGeometry)
 
 		item.Text += c;
 		this->MeasureText(MyGeometry, item.Text, prevW, prevH);
-		item.Size.X = prevW + kern;
+		item.Size.X = prevW;
 		item.Size.Y = prevH;
 
 		lastChar = c;
