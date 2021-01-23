@@ -59,6 +59,12 @@ public:
 
 	UFUNCTION(BlueprintPure)
     bool FileExists(FString InPath);
+
+	UFUNCTION(BlueprintPure)
+	bool GetFileTextIfFileExists(FString InPath, FString& OutText);
+
+	UFUNCTION()
+	FString GetFileText(FString InPath);
 	
 	UFUNCTION()
 	FFileData& GetFileData(FString InPath);

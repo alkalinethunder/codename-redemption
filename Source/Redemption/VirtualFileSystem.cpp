@@ -207,6 +207,31 @@ bool UVirtualFileSystem::FileExists(FString InPath)
 	}
 }
 
+bool UVirtualFileSystem::GetFileTextIfFileExists(FString InPath, FString& OutText)
+{
+	UFileNode* node;
+	if (this->ResolveFile(InPath, node))
+	{
+		OutText = node->GetTextContent();
+		return true;
+	}
+
+	return false;
+}
+
+FString UVirtualFileSystem::GetFileText(FString InPath)
+{
+	FString result;
+	if (this->GetFileTextIfFileExists(InPath, result))
+	{
+		return result;
+	}
+	else
+	{
+		return "";
+	}
+}
+
 FFileData& UVirtualFileSystem::GetFileData(FString InPath)
 {
 	UDiskNode* node = this->MapToNode(InPath);
