@@ -5,12 +5,7 @@
     <projectFile>Intermediate/ProjectFiles/UE4.vcxproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="06c14ef7-907b-4990-b8f7-291c57d35a51" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Source/Redemption/FileNode.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/FileNode.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Redemption/FileNode.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/FileNode.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Redemption/VirtualFileSystem.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/VirtualFileSystem.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Redemption/VirtualFileSystem.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/VirtualFileSystem.h" afterDir="false" />
-    </list>
+    <list default="true" id="06c14ef7-907b-4990-b8f7-291c57d35a51" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -371,7 +366,7 @@
       <workItem from="1611104034567" duration="1534000" />
       <workItem from="1611264922232" duration="757000" />
       <workItem from="1611354694808" duration="6936000" />
-      <workItem from="1611423868634" duration="3298000" />
+      <workItem from="1611423868634" duration="3976000" />
     </task>
     <servers />
   </component>
