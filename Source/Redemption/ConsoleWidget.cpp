@@ -70,7 +70,8 @@ void UConsoleWidget::RebuildTextItems(const FGeometry& MyGeometry)
 	item.Background = FLinearColor::Transparent;
 	item.Foreground = this->ColorAndOpacity;
 	item.Location = loc;
-
+	item.Line = 0;
+	
 	for (int i = 0; i < this->OutputBuffer.Len(); i++)
 	{
 		TCHAR c = this->OutputBuffer[i];
@@ -114,10 +115,11 @@ void UConsoleWidget::RebuildTextItems(const FGeometry& MyGeometry)
 		{
 			lastChar = c;
 			this->DrawItems.Add(item);
+			item.Line++;
 			item.Location.X = loc.X;
 			item.Location.Y += item.Size.Y;
 			item.Text = "";
-			item.Size = FVector2D::ZeroVector;
+			item.Size.X = 0;
 			continue;
 		}
 
@@ -129,8 +131,9 @@ void UConsoleWidget::RebuildTextItems(const FGeometry& MyGeometry)
 		{
 			this->DrawItems.Add(item);
 			item.Location.X = loc.X;
+			item.Line++;
 			item.Location.Y += item.Size.Y;
-			item.Size = FVector2D::ZeroVector;
+			item.Size.X = 0;
 			item.Text = "";
 		}
 
@@ -165,6 +168,7 @@ void UConsoleWidget::RebuildTextItems(const FGeometry& MyGeometry)
 			{
 				item.Location.X = loc.X;
 				item.Location.Y += prevH;
+				item.Line++;
 			}
 
 			item.Size.X = prevW;
@@ -196,6 +200,7 @@ void UConsoleWidget::RebuildTextItems(const FGeometry& MyGeometry)
 			{
 				item.Location.X = loc.X;
 				item.Location.Y += prevH;
+				item.Line++;
 			}
 
 			item.Size.X = prevW;
@@ -215,7 +220,8 @@ void UConsoleWidget::RebuildTextItems(const FGeometry& MyGeometry)
 			this->DrawItems.Add(item);
 			item.Location.X = loc.X;
 			item.Location.Y += item.Size.Y;
-			item.Size = FVector2D::ZeroVector;
+			item.Size.X = 0;
+			item.Line++;
 			item.Text = "";
 		}
 

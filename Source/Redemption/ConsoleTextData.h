@@ -18,6 +18,9 @@ public:
 	FString Text;
 
 	UPROPERTY()
+	int Line;
+	
+	UPROPERTY()
 	FLinearColor Background;
 
 	UPROPERTY()
