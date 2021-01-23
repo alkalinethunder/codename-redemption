@@ -5,7 +5,24 @@
     <projectFile>Intermediate/ProjectFiles/UE4.vcxproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="06c14ef7-907b-4990-b8f7-291c57d35a51" name="Default Changelist" comment="" />
+    <list default="true" id="06c14ef7-907b-4990-b8f7-291c57d35a51" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Source/Redemption/AppWidget.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Redemption/ShellAppExecutionCommand.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Redemption/ConversationAppWidget.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/ConversationAppWidget.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Redemption/DesktopWidget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/DesktopWidget.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Redemption/DesktopWidget.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/DesktopWidget.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Redemption/GraphicalAppAsset.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/GraphicalAppAsset.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Redemption/GraphicalAppAsset.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/GraphicalAppAsset.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Redemption/OperatingSystemApp.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/OperatingSystemApp.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Redemption/OperatingSystemApp.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/OperatingSystemApp.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Redemption/RedemptionGameModeBase.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/RedemptionGameModeBase.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Redemption/RedemptionGameModeBase.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/RedemptionGameModeBase.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerController.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerController.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerController.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerController.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Redemption/Shell.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/Shell.cpp" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -25,18 +42,10 @@
     <setting file="file://C:/Program Files/Epic Games/UE_4.26/Engine/Source/Runtime/Slate/Public/Framework/Application/SlateApplication.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Epic Games/UE_4.26/Engine/Source/Runtime/UMG/Public/Blueprint/UserWidget.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Epic Games/UE_4.26/Engine/Source/Runtime/Core/Public/Containers/UnrealString.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://C:/Program Files/Epic Games/UE_4.26/Engine/Source/Runtime/CoreUObject/Public/Templates/SubclassOf.h" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Source/Redemption/DesktopWidget.cpp" />
-      <option value="$PROJECT_DIR$/Source/Redemption/AppTabWidget.h" />
-      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionGameState.h" />
-      <option value="$PROJECT_DIR$/Source/Redemption/ConversationManager.h" />
-      <option value="$PROJECT_DIR$/Source/Redemption/ChatState.cpp" />
-      <option value="$PROJECT_DIR$/Source/Redemption/ChatState.h" />
-      <option value="$PROJECT_DIR$/Source/Redemption/BranchStackEntry.h" />
-      <option value="$PROJECT_DIR$/Source/Redemption/BranchStackEntry.cpp" />
-      <option value="$PROJECT_DIR$/Source/Redemption/BranchActionInfo.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/BranchActionInfo.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/GuiHelpers.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/GuiHelpers.cpp" />
@@ -47,7 +56,6 @@
       <option value="$PROJECT_DIR$/Source/Redemption/ChatAction.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/ChatAction.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/SendMessage.cpp" />
-      <option value="$PROJECT_DIR$/Source/Redemption/ConversationAppWidget.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/ConversationAppWidget.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/RedemptionGameState.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/ChatFlags.h" />
@@ -59,11 +67,6 @@
       <option value="$PROJECT_DIR$/Source/Redemption/UsefulTip.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/UsefulTip.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/Shell.h" />
-      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerController.h" />
-      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionGameModeBase.h" />
-      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionGameModeBase.cpp" />
-      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerController.cpp" />
-      <option value="$PROJECT_DIR$/Source/Redemption/Shell.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/ConsoleTextData.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/ConsoleWidget.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/ConsoleWidget.cpp" />
@@ -79,6 +82,21 @@
       <option value="$PROJECT_DIR$/Source/Redemption/FileNode.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/VirtualFileSystem.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/VirtualFileSystem.cpp" />
+      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerController.h" />
+      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionGameModeBase.h" />
+      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionGameModeBase.cpp" />
+      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerController.cpp" />
+      <option value="$PROJECT_DIR$/Source/Redemption/ShellAppExecutionCommand.h" />
+      <option value="$PROJECT_DIR$/Source/Redemption/ShellAppExecutionCommand.cpp" />
+      <option value="$PROJECT_DIR$/Source/Redemption/Shell.cpp" />
+      <option value="$PROJECT_DIR$/Source/Redemption/AppWidget.h" />
+      <option value="$PROJECT_DIR$/Source/Redemption/GraphicalAppAsset.h" />
+      <option value="$PROJECT_DIR$/Source/Redemption/GraphicalAppAsset.cpp" />
+      <option value="$PROJECT_DIR$/Source/Redemption/DesktopWidget.cpp" />
+      <option value="$PROJECT_DIR$/Source/Redemption/DesktopWidget.h" />
+      <option value="$PROJECT_DIR$/Source/Redemption/ConversationAppWidget.h" />
+      <option value="$PROJECT_DIR$/Source/Redemption/OperatingSystemApp.h" />
+      <option value="$PROJECT_DIR$/Source/Redemption/OperatingSystemApp.cpp" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1mSCTesrzm0AEkY2lywPjJ7v9sD" />
@@ -366,7 +384,7 @@
       <workItem from="1611104034567" duration="1534000" />
       <workItem from="1611264922232" duration="757000" />
       <workItem from="1611354694808" duration="6936000" />
-      <workItem from="1611423868634" duration="3976000" />
+      <workItem from="1611423868634" duration="7214000" />
     </task>
     <servers />
   </component>

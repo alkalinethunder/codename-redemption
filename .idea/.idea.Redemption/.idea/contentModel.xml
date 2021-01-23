@@ -34280,6 +34280,8 @@
           <e p="AppHostWidget.h" t="Include" />
           <e p="AppTabWidget.cpp" t="Include" />
           <e p="AppTabWidget.h" t="Include" />
+          <e p="AppWidget.cpp" t="Include" />
+          <e p="AppWidget.h" t="Include" />
           <e p="AssetUtils.cpp" t="Include" />
           <e p="AssetUtils.h" t="Include" />
           <e p="BranchActionInfo.cpp" t="Include" />
@@ -34373,6 +34375,8 @@
           <e p="SendMessage.h" t="Include" />
           <e p="Shell.cpp" t="Include" />
           <e p="Shell.h" t="Include" />
+          <e p="ShellAppExecutionCommand.cpp" t="Include" />
+          <e p="ShellAppExecutionCommand.h" t="Include" />
           <e p="ShellCommandAsset.cpp" t="Include" />
           <e p="ShellCommandAsset.h" t="Include" />
           <e p="ShellHostWidget.cpp" t="Include" />

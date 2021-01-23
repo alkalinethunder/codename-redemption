@@ -184,3 +184,29 @@ bool ARedemptionPlayerController::TryGetCommandByName(FString InCommandName, USh
 	}
 }
 
+bool ARedemptionPlayerController::TryGetAppByName(FString InCommandName, UGraphicalAppAsset*& OutApp)
+{
+	UGraphicalAppAsset* app = this->GameMode->FindApp(InCommandName);
+
+	if (app)
+	{
+		if (app->RequiredUpgrade != nullptr)
+		{
+			ARedemptionPlayerState* playerState = Cast<ARedemptionPlayerState>(this->PlayerState);
+
+			if (!playerState || !app->RequiredUpgrade->IsUnlocked(playerState))
+			{
+				return false;
+			}
+		}
+
+		OutApp = app;
+		return true;
+
+	}
+	else
+	{
+		return false;
+	}
+}
+

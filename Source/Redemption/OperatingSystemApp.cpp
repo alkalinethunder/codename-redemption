@@ -2,3 +2,4 @@
 
 
 #include "OperatingSystemApp.h"
+#include "AppWidget.h"

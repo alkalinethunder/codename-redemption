@@ -10,6 +10,8 @@
 #include "UpgradeAsset.h"
 #include "GraphicalAppAsset.generated.h"
 
+class UAppWidget;
+
 /**
  * Information about a graphical Operating System app.
  */
@@ -35,7 +37,7 @@ public:
 	EDisplayTarget DisplayTarget;
 
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Display")
-	TSubclassOf<UUserWidget> WidgetClass;
+	TSubclassOf<UAppWidget> WidgetClass;
 
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Flags")
 	FCommandFlags CommandFlags;

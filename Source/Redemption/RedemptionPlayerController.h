@@ -59,4 +59,7 @@ public:
 	
 	UFUNCTION()
 	bool TryGetCommandByName(FString InCommandName, UShellCommandAsset*& OutCommand);
+
+	UFUNCTION()
+    bool TryGetAppByName(FString InCommandName, UGraphicalAppAsset*& OutApp);
 };

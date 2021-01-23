@@ -7,6 +7,7 @@
 #include "Components/Button.h"
 #include "Components/HorizontalBox.h"
 #include "Components/WidgetSwitcher.h"
+#include "AppWidget.h"
 #include "DesktopWidget.generated.h"
 
 class UAppTabWidget;
@@ -87,7 +88,7 @@ protected:
 
 public:
 	UFUNCTION()
-	bool SwitchToApp(TSubclassOf<UUserWidget> InWidgetClass, UOperatingSystemApp*& OutWidget);
+	bool SwitchToApp(TSubclassOf<UAppWidget> InWidgetClass, UOperatingSystemApp*& OutWidget);
 
 	UFUNCTION()
 	bool LaunchApp(UGraphicalAppAsset* InApp, UOperatingSystemApp*& OutWidget);

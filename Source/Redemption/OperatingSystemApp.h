@@ -8,6 +8,8 @@
 #include "GraphicalAppAsset.h"
 #include "OperatingSystemApp.generated.h"
 
+class UAppWidget;
+
 /**
  * Contains the GUI data of a graphical app.
  */
@@ -21,7 +23,7 @@ public:
 	UGraphicalAppAsset* AppAsset;
 	
 	UPROPERTY(BlueprintReadOnly, Category = "App")
-	UUserWidget* AppWidget;
+	UAppWidget* AppWidget;
 
 	UPROPERTY(BlueprintReadOnly, Category = "App")
 	UAppTabWidget* TabWidget;

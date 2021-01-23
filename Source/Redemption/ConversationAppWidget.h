@@ -3,8 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-
-
+#include "AppWidget.h"
 #include "ChatContact.h"
 #include "ConvoChoice.h"
 #include "Blueprint/UserWidget.h"
@@ -27,7 +26,7 @@ class AConversationManager;
  * 
  */
 UCLASS(BlueprintType, Blueprintable, Abstract)
-class REDEMPTION_API UConversationAppWidget : public UUserWidget
+class REDEMPTION_API UConversationAppWidget : public UAppWidget
 {
 	GENERATED_BODY()
 

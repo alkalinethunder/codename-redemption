@@ -6,6 +6,7 @@
 #include "AssetUtils.h"
 #include "ConsoleWidget.h"
 #include "PathUtils.h"
+#include "ShellAppExecutionCommand.h"
 #include "ShellManagementActor.h"
 #include "VirtualFileSystem.h"
 #include "UsefulTip.h"
@@ -296,8 +297,9 @@ bool UShell::BreakCommandLine(FString InText, TArray<FString>& OutParts, FString
 
 bool UShell::ProcessExtern(FString InName, TArray<FString> InArgs)
 {
-	UShellCommandAsset* asset;
-	if (this->PlayerController->TryGetCommandByName(InName, asset))
+	UShellCommandAsset* asset = nullptr;
+	UGraphicalAppAsset* gAsset = nullptr;
+	if (this->PlayerController->TryGetCommandByName(InName, asset) && asset->CommandFlags.IsRunnableByPlayer)
 	{
 		UCommandScript* script = NewObject<UCommandScript>(this, asset->CommandScriptClass);
 
@@ -307,9 +309,19 @@ bool UShell::ProcessExtern(FString InName, TArray<FString> InArgs)
 		
 		return true;
 	}
+	else if (this->PlayerController->TryGetAppByName(InName, gAsset) && gAsset->CommandFlags.IsRunnableByPlayer)
+	{
+		this->CurrentCommandFlags = gAsset->CommandFlags;
+		UShellAppExecutionCommand* script = NewObject<UShellAppExecutionCommand>();
+		script->SetApp(gAsset, this->PlayerController);
+		this->CurrentCommandScript = script;
+		this->CurrentCommandScript->Completed.AddUniqueDynamic(this, &UShell::HandleCompletedScript);
+		
+		return true;
+	}
 	else
 	{
-		return false;
+		return false;		
 	}
 }
 

@@ -8,6 +8,7 @@
 #include "GraphicalAppAsset.h"
 #include "ShellHostWidget.h"
 #include "RedemptionGameModeBase.h"
+#include "AppWidget.h"
 
 void UDesktopWidget::HandleShellClose(UAppTabWidget* RequestingWidget)
 {
@@ -106,7 +107,7 @@ UOperatingSystemApp* UDesktopWidget::LaunchTabbedApp(UWidgetSwitcher* InWidgetSw
 	check (InApp);
 
 	// spawn the app's UI.
-	UUserWidget* AppWidget = CreateWidget<UUserWidget, APlayerController>(this->GetOwningPlayer(), InApp->WidgetClass);
+	UAppWidget* AppWidget = CreateWidget<UAppWidget, APlayerController>(this->GetOwningPlayer(), InApp->WidgetClass);
 
 	// and assert if it failed.
 	check (AppWidget);
@@ -188,14 +189,14 @@ void UDesktopWidget::NativeConstruct()
 	this->CreateShellTrigger->OnClicked.AddUniqueDynamic(this, &UDesktopWidget::CreateShell);
 }
 
-bool UDesktopWidget::SwitchToApp(TSubclassOf<UUserWidget> InWidgetClass, UOperatingSystemApp*& OutWidget)
+bool UDesktopWidget::SwitchToApp(TSubclassOf<UAppWidget> InWidgetClass, UOperatingSystemApp*& OutWidget)
 {
 	for (int i = 0; i < this->ProgramTabs->GetChildrenCount(); i++)
 	{
 		UAppTabWidget* tab = Cast<UAppTabWidget>(this->ProgramTabs->GetChildAt(i));
 		if (tab)
 		{
-			UUserWidget* child = Cast<UUserWidget>(this->ProgramSwitcher->GetChildAt(tab->TrackedIndex));
+			UAppWidget* child = Cast<UAppWidget>(this->ProgramSwitcher->GetChildAt(tab->TrackedIndex));
 
 			if (child && child->GetClass() == InWidgetClass)
 			{
@@ -214,7 +215,7 @@ bool UDesktopWidget::SwitchToApp(TSubclassOf<UUserWidget> InWidgetClass, UOperat
 		UAppTabWidget* tab = Cast<UAppTabWidget>(this->SocialTabs->GetChildAt(i));
 		if (tab)
 		{
-			UUserWidget* child = Cast<UUserWidget>(this->SocialSwitcher->GetChildAt(tab->TrackedIndex));
+			UAppWidget* child = Cast<UAppWidget>(this->SocialSwitcher->GetChildAt(tab->TrackedIndex));
 
 			if (child && child->GetClass() == InWidgetClass)
 			{

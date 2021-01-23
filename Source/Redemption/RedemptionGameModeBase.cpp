@@ -74,6 +74,22 @@ UShell* ARedemptionGameModeBase::CreateShell(UConsoleWidget* InConsoleWidget, bo
 	return this->ShellManager->CreateShell(InConsoleWidget, InLoginShell);
 }
 
+UGraphicalAppAsset* ARedemptionGameModeBase::FindApp(FString InName)
+{
+	UGraphicalAppAsset* result = nullptr;
+
+	for (UGraphicalAppAsset* app : this->Apps)
+	{
+		if (app->CommandName == InName)
+		{
+			result = app;
+			break;
+		}
+	}
+	
+	return result;
+}
+
 UShellCommandAsset* ARedemptionGameModeBase::FindCommand(FString InName)
 {
 	UShellCommandAsset* result = nullptr;
