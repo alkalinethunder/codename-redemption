@@ -6,15 +6,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="06c14ef7-907b-4990-b8f7-291c57d35a51" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Source/Redemption/FileData.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/Redemption/FileNode.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/Redemption/FileType.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Redemption/DirectoryNode.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/DirectoryNode.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Redemption/DirectoryNode.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/DirectoryNode.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Redemption/RedemptionSaveGame.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/RedemptionSaveGame.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Redemption/RedemptionSaveGame.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/RedemptionSaveGame.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Redemption/FileNode.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/FileNode.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Redemption/FileNode.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/FileNode.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Redemption/VirtualFileSystem.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/VirtualFileSystem.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Redemption/VirtualFileSystem.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/VirtualFileSystem.h" afterDir="false" />
     </list>
@@ -84,13 +77,13 @@
       <option value="$PROJECT_DIR$/Source/Redemption/FileType.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/RedemptionSaveGame.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/RedemptionSaveGame.cpp" />
-      <option value="$PROJECT_DIR$/Source/Redemption/FileNode.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/DirectoryNode.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/DirectoryNode.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/FileData.h" />
+      <option value="$PROJECT_DIR$/Source/Redemption/FileNode.h" />
+      <option value="$PROJECT_DIR$/Source/Redemption/FileNode.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/VirtualFileSystem.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/VirtualFileSystem.cpp" />
-      <option value="$PROJECT_DIR$/Source/Redemption/FileNode.h" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1mSCTesrzm0AEkY2lywPjJ7v9sD" />
@@ -378,7 +371,7 @@
       <workItem from="1611104034567" duration="1534000" />
       <workItem from="1611264922232" duration="757000" />
       <workItem from="1611354694808" duration="6936000" />
-      <workItem from="1611423868634" duration="2585000" />
+      <workItem from="1611423868634" duration="3298000" />
     </task>
     <servers />
   </component>

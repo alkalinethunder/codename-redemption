@@ -53,6 +53,48 @@ bool UVirtualFileSystem::ResolveDirectory(FString InPath, UDirectoryNode*& OutNo
 	return result;
 }
 
+bool UVirtualFileSystem::ResolveFile(FString InPath, UFileNode*& OutNode)
+{
+	bool result = true;
+	TArray<FString> parts;
+	UDirectoryNode* node = Cast<UDirectoryNode>(this->RootDiskNode);
+
+	check(node);
+	
+	UPathUtils::GetPathParts(InPath, parts);
+
+	for(int i = 0; i < parts.Num() - 1; i++)
+	{
+		FString part = parts[i];
+		UDirectoryNode* child = Cast<UDirectoryNode>(node->GetChild(part));
+		if (child)
+		{
+			node = child;
+		}
+		else
+		{
+			result = false;
+			break;
+		}
+	}
+
+	if (node)
+	{
+		FString filename = parts[parts.Num() - 1];
+		UFileNode* fnode = Cast<UFileNode>(node->GetChild(filename));
+		if (fnode)
+		{
+			OutNode = fnode;
+		}
+		else
+		{
+			result = false;
+		}
+	}
+	return result;
+
+}
+
 void UVirtualFileSystem::MountRootNode(URedemptionSaveGame* InSaveGame, int InMountId)
 {
 	check(!this->SaveGame);
@@ -150,6 +192,19 @@ bool UVirtualFileSystem::DirectoryExists(FString InPath)
 	UDirectoryNode* dirNode = Cast<UDirectoryNode>(node);
 
 	return dirNode != nullptr;
+}
+
+bool UVirtualFileSystem::FileExists(FString InPath)
+{
+	UFileNode* node;
+	if (this->ResolveFile(InPath, node))
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 FFileData& UVirtualFileSystem::GetFileData(FString InPath)

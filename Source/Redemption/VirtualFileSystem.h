@@ -10,6 +10,7 @@
 
 class URedemptionSaveGame;
 class UDirectoryNode;
+class UFileNode;
 
 /**
  * 
@@ -35,6 +36,9 @@ private:
 
 	UFUNCTION()
 	bool ResolveDirectory(FString InPath, UDirectoryNode*& OutNode);
+
+	UFUNCTION()
+    bool ResolveFile(FString InPath, UFileNode*& OutNode);
 	
 public:
 	UFUNCTION()
@@ -53,6 +57,9 @@ public:
 	UFUNCTION(BlueprintPure)
 	bool DirectoryExists(FString InPath);
 
+	UFUNCTION(BlueprintPure)
+    bool FileExists(FString InPath);
+	
 	UFUNCTION()
 	FFileData& GetFileData(FString InPath);
 };

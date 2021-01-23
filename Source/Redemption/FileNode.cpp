@@ -13,6 +13,20 @@ FFileData& UFileNode::GetFileData()
 	return this->SaveGame->Files[index];
 }
 
+FString UFileNode::GetTextContent()
+{
+	FFileData& data = this->GetFileData();
+
+	if (data.FileType == EFileType::UserData)
+	{
+		return data.DataContent;
+	}
+	else
+	{
+		return ""; // TODO: peacenet-style random bitstream generation for asset files.
+	}
+}
+
 FString UFileNode::GetDiskNodeName()
 {
 	return this->GetFileData().FileName;

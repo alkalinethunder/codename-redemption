@@ -39,4 +39,7 @@ public:
 
 	UFUNCTION()
 	FFileData& GetFileData();
+
+	UFUNCTION()
+	FString GetTextContent();
 };
