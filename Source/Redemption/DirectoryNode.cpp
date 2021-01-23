@@ -110,3 +110,24 @@ TArray<UFileNode*> UDirectoryNode::GetChildFiles()
 	return files;
 
 }
+
+UFileNode* UDirectoryNode::CreateFile(FString InFileName, EFileType InFileType)
+{
+	FFileData data;
+	data.Id = this->SaveGame->GetAvailableFileId();
+	data.FileName = InFileName;
+	data.FileType = InFileType;
+
+	this->SaveGame->Files.Add(data);
+
+	int index;
+	this->SaveGame->FindDirectoryIndex(this->DirectoryId, index);
+
+	this->SaveGame->Directories[index].Files.Add(data.Id);
+
+	UFileNode* fnode = NewObject<UFileNode>();
+	fnode->LinkToFile(this, this->SaveGame, data.Id);
+	this->Children.Add(fnode);
+
+	return fnode;
+}

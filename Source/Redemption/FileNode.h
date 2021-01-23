@@ -42,4 +42,7 @@ public:
 
 	UFUNCTION()
 	FString GetTextContent();
+
+	UFUNCTION()
+	void SetTextContent(FString InText);
 };

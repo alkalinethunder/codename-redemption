@@ -24,6 +24,12 @@ class REDEMPTION_API UShell : public UObject
 
 private:
 	UPROPERTY()
+	FString Hostname;
+
+	UPROPERTY()
+	FString Username;
+	
+	UPROPERTY()
 	TArray<UUsefulTip*> UsefulTips;
 	
 	UPROPERTY()
@@ -55,6 +61,9 @@ public:
 	FShellExitedEvent OnExited;
 	
 private:
+	UFUNCTION()
+	void PrepareFileSystem();
+	
 	UFUNCTION()
 	void PrintUsefulTips();
 

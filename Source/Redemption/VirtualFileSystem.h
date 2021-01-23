@@ -63,6 +63,9 @@ public:
 	UFUNCTION(BlueprintPure)
 	bool GetFileTextIfFileExists(FString InPath, FString& OutText);
 
+	UFUNCTION(BlueprintCallable)
+	bool TryWritingTextToFile(FString InFilePath, FString InText);
+	
 	UFUNCTION()
 	FString GetFileText(FString InPath);
 	

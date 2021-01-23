@@ -62,4 +62,7 @@ public:
 
 	UFUNCTION()
     bool TryGetAppByName(FString InCommandName, UGraphicalAppAsset*& OutApp);
+
+	UFUNCTION(BlueprintPure)
+	FString GetUserName();
 };

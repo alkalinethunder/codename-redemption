@@ -11,6 +11,25 @@
 #include "VirtualFileSystem.h"
 #include "UsefulTip.h"
 
+void UShell::PrepareFileSystem()
+{
+	UVirtualFileSystem* fs = this->PlayerController->GetFileSystem();
+
+	// create the system config folder if it doesn't exist already, this is where we
+	// hold the OS's hostname text
+	if (!fs->DirectoryExists("/etc"))
+		fs->MakeDirectory("/etc");
+
+	// Try to load the hostname text from /etc/hostname. If it's not found, we'll generate
+	// a default /etc/hostname and use that
+	if (!fs->GetFileTextIfFileExists("/etc/hostname", this->Hostname))
+	{
+		this->Hostname = this->PlayerController->GetUserName() + "-pc";
+		fs->TryWritingTextToFile("/etc/hostname", this->Hostname);
+	}
+	
+}
+
 void UShell::PrintUsefulTips()
 {
 	this->Console->WriteLine(FText::FromString("Useful tips"));
@@ -142,7 +161,7 @@ void UShell::LinkToConsole(AShellManagementActor* Owner, UConsoleWidget* InConso
 	this->ShellManager = Owner;
 	this->Console = InConsole;
 	this->PlayerController = Cast<ARedemptionPlayerController>(InConsole->GetOwningPlayer());
-
+	
 	// Load in the Useful Tips.
 	this->UsefulTips.Empty();
 	for (UObject* asset : UAssetUtils::LoadAssetsOfClass(UUsefulTip::StaticClass()))
@@ -153,6 +172,9 @@ void UShell::LinkToConsole(AShellManagementActor* Owner, UConsoleWidget* InConso
 			this->UsefulTips.Add(usefulTip);
 		}
 	}
+
+	// Prepare the file system.
+	this->PrepareFileSystem();
 	
 	this->Console->OnTextSubmitted.AddUniqueDynamic(this, &UShell::HandleConsoleTextSubmitted);
 	this->WritePrompt();
@@ -167,6 +189,8 @@ void UShell::WritePrompt()
 {
 	if (!this->bExited)
 	{
+		this->Console->Write(FText::FromString(this->Hostname));
+		this->Console->Write(FText::FromString(":"));
 		this->Console->Write(FText::FromString(this->WorkingDirectory));
 		this->Console->Write(FText::FromString("$ "));
 	}

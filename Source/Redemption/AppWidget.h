@@ -6,6 +6,8 @@
 #include "Blueprint/UserWidget.h"
 #include "AppWidget.generated.h"
 
+class UVirtualFileSystem;
+
 /**
  * 
  */
@@ -13,4 +15,15 @@ UCLASS(Blueprintable, BlueprintType, Abstract)
 class REDEMPTION_API UAppWidget : public UUserWidget
 {
 	GENERATED_BODY()
+
+protected:
+	UFUNCTION(BlueprintPure)
+	UVirtualFileSystem* GetFileSystem();
+
+public:
+	UFUNCTION(BlueprintImplementableEvent)
+	void FileOpened(const FString& InFilePath);
+
+	UFUNCTION(BlueprintImplementableEvent)
+    void FolderOpened(const FString& InFilePath);
 };

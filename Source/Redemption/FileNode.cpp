@@ -27,6 +27,11 @@ FString UFileNode::GetTextContent()
 	}
 }
 
+void UFileNode::SetTextContent(FString InText)
+{
+	this->GetFileData().DataContent = InText;
+}
+
 FString UFileNode::GetDiskNodeName()
 {
 	return this->GetFileData().FileName;

@@ -75,6 +75,9 @@ public:
 	UFUNCTION()
 	URedemptionSaveGame* GetSaveGame();
 
+	UFUNCTION()
+	FString GetPlayerName();
+	
 public: // cheats/internal functions
 	UFUNCTION(Exec)
 	void AddXP(int Amount);

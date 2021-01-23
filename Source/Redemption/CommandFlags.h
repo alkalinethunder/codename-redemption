@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 #include "CoreMinimal.h"
+#include "ExpectedFileType.h"
 #include "CommandFlags.generated.h"
 
 USTRUCT(BlueprintType)
@@ -53,4 +54,17 @@ public:
 	 */
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Command Flags")
 	bool IsStartup = false;
+
+	/**
+	 * Graphical apps only - determines whether the player must specify a path to an existing file
+	 * on disk when launching the app from the Shell.
+	 */
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Command Flags")
+	bool bExpectsFileArgument = false;
+
+	/**
+	 * Defines what type of file argument should be given by the player if Expects File Argument is true.
+	 */
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Command Flags", meta = (EditCondition = "bExpectsFileArgument"))
+	EExpectedFileType ExpectedFileType = EExpectedFileType::Any;
 };

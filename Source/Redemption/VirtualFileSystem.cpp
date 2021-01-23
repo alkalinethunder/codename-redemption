@@ -58,11 +58,14 @@ bool UVirtualFileSystem::ResolveFile(FString InPath, UFileNode*& OutNode)
 	bool result = true;
 	TArray<FString> parts;
 	UDirectoryNode* node = Cast<UDirectoryNode>(this->RootDiskNode);
-
+	
 	check(node);
 	
 	UPathUtils::GetPathParts(InPath, parts);
 
+	if (parts.Num() < 1)
+		return false;
+	
 	for(int i = 0; i < parts.Num() - 1; i++)
 	{
 		FString part = parts[i];
@@ -217,6 +220,51 @@ bool UVirtualFileSystem::GetFileTextIfFileExists(FString InPath, FString& OutTex
 	}
 
 	return false;
+}
+
+bool UVirtualFileSystem::TryWritingTextToFile(FString InFilePath, FString InText)
+{
+	UDirectoryNode* dnode = nullptr;
+	if (this->ResolveDirectory(InFilePath, dnode))
+	{
+		return false;
+	}
+
+	UFileNode* fnode = nullptr;
+	if (this->ResolveFile(InFilePath, fnode))
+	{
+		if (fnode->GetFileData().FileType != EFileType::UserData)
+			return false;
+
+		fnode->SetTextContent(InText);
+		return true;
+	}
+
+	TArray<FString> parts;
+	UPathUtils::GetPathParts(InFilePath, parts);
+
+	if (parts.Num() < 1)
+		return false;
+
+	dnode = Cast<UDirectoryNode>(this->RootDiskNode);
+
+	for (int i = 0; i < parts.Num() - 1; i++)
+	{
+		UDiskNode* n = dnode->GetChild(parts[i]);
+		UDirectoryNode* dir = Cast<UDirectoryNode>(n);
+		if (dir)
+		{
+			dnode = dir;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	fnode = dnode->CreateFile(parts[parts.Num() - 1], EFileType::UserData);
+	fnode->SetTextContent(InText);
+	return true;
 }
 
 FString UVirtualFileSystem::GetFileText(FString InPath)

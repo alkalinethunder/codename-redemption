@@ -181,6 +181,11 @@ URedemptionSaveGame* URedemptionGameInstance::GetSaveGame()
 	return this->CurrentGameSave;
 }
 
+FString URedemptionGameInstance::GetPlayerName()
+{
+	return this->Profile->SaveGameSlots[this->CurrentGameSlot].SlotName;
+}
+
 void URedemptionGameInstance::AddXP(int Amount)
 {
 	this->GetSaveGame()->Experience += FMath::Abs(Amount);

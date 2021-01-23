@@ -34328,6 +34328,8 @@
           <e p="DiskNode.h" t="Include" />
           <e p="DisplayTarget.cpp" t="Include" />
           <e p="DisplayTarget.h" t="Include" />
+          <e p="ExpectedFileType.cpp" t="Include" />
+          <e p="ExpectedFileType.h" t="Include" />
           <e p="FileData.cpp" t="Include" />
           <e p="FileData.h" t="Include" />
           <e p="FileNode.cpp" t="Include" />

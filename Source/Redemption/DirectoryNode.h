@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "DiskNode.h"
+#include "FileType.h"
 #include "DirectoryNode.generated.h"
 
 class URedemptionSaveGame;
@@ -50,4 +51,7 @@ public:
 
 	UFUNCTION()
 	TArray<UFileNode*> GetChildFiles();
+
+	UFUNCTION()
+	UFileNode* CreateFile(FString InFileName, EFileType InFileType);
 };
