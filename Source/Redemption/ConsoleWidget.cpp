@@ -242,34 +242,22 @@ void UConsoleWidget::RecalculateTextSizes_Pass2(const FGeometry& MyGeometry)
 	FVector2D textLoc = loc;
 	FVector2D csize = FVector2D(this->CharWidth, this->CharHeight);
 	FVector2D asize = MyGeometry.GetLocalSize();
-
-	float accum = this->CharHeight;
+	int line = -1;
+	float accum = 0.f;
+	float lHeight = 0.f;
 	
 	for (FConsoleTextData data : this->DrawItems)
 	{
-		for(int i = 0; i < data.Text.Len(); i++)
+		if (line != data.Line)
 		{
-			TCHAR c = data.Text[i];
-
-			if (c == '\0') continue;
-			if (c == '\r') continue;
-			if (c == '\n')
-			{
-				accum += this->CharHeight;
-				textLoc.X = loc.X;
-				continue;
-			}
-
-			if (textLoc.X + this->CharWidth > loc.X + asize.X)
-			{
-				accum += this->CharHeight;
-				textLoc.X = loc.X;
-			}
-
-			textLoc.X += this->CharWidth;
+			line = data.Line;
+			accum += data.Size.Y;
+			if (lHeight < data.Size.Y)
+				lHeight = data.Size.Y;
 		}
 	}
-	
+
+	this->LineHeight = lHeight;
 	this->TextHeight = accum;
 }
 
@@ -386,19 +374,31 @@ int32 UConsoleWidget::NativePaint(const FPaintArgs& Args, const FGeometry& Allot
 {
 	FLinearColor fg;
 	FLinearColor bg;	
+
+	float y = AllottedGeometry.GetLocalPositionAtCoordinates(FVector2D::UnitVector).Y - this->TextHeight + (this->ScrollBack * this->LineHeight);
+	int line = 0;
 	
 	for (const FConsoleTextData& TextData : this->DrawItems)
 	{
+		if (line != TextData.Line)
+		{
+			y += this->LineHeight;
+			line = TextData.Line;
+		}
+		
 		bg = TextData.Background;
 		fg = TextData.Foreground;
 		fg.A = 1;
 
-		FSlateDrawElement::MakeBox(OutDrawElements, LayerId, AllottedGeometry.ToPaintGeometry(TextData.Location, TextData.Size), &Brush, ESlateDrawEffect::None, bg);
-
-		if (TextData.Text.TrimEnd().Len() > 0)
+		if (y >= 0 && y <= AllottedGeometry.GetLocalSize().Y)
 		{
-			LayerId++;
-			FSlateDrawElement::MakeText(OutDrawElements, LayerId, AllottedGeometry.ToPaintGeometry(TextData.Location, TextData.Size), TextData.Text, this->Font, ESlateDrawEffect::None, fg);
+			FSlateDrawElement::MakeBox(OutDrawElements, LayerId, AllottedGeometry.ToPaintGeometry(FVector2D(TextData.Location.X, y), TextData.Size), &Brush, ESlateDrawEffect::None, bg);
+
+			if (TextData.Text.TrimEnd().Len() > 0)
+			{
+				LayerId++;
+				FSlateDrawElement::MakeText(OutDrawElements, LayerId, AllottedGeometry.ToPaintGeometry(FVector2D(TextData.Location.X, y), TextData.Size), TextData.Text, this->Font, ESlateDrawEffect::None, fg);
+			}
 		}
 	}
 	
@@ -478,6 +478,25 @@ FReply UConsoleWidget::NativeOnKeyDown(const FGeometry& InGeometry, const FKeyEv
 	}
 
 	return FReply::Unhandled();
+}
+
+FReply UConsoleWidget::NativeOnMouseWheel(const FGeometry& InGeometry, const FPointerEvent& InMouseEvent)
+{
+	int delta = InMouseEvent.GetWheelDelta();
+	
+	if (delta < 0)
+	{
+		if (this->ScrollBack > 0)
+		{
+			this->ScrollBack--;
+		}
+	}
+	else if (delta > 0)
+	{
+		this->ScrollBack++;
+	}
+	
+	return FReply::Handled();
 }
 
 void UConsoleWidget::Write(FText InText)

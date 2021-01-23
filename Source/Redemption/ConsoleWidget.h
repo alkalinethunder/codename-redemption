@@ -27,6 +27,9 @@ private:
 	TCHAR AttrChar = '&';
 
 	UPROPERTY()
+	float LineHeight = 0.f;
+	
+	UPROPERTY()
 	float ZoomFactor = 1.f;
 	
 	UPROPERTY()
@@ -99,7 +102,8 @@ protected:
 	virtual bool NativeSupportsKeyboardFocus() const override;
 	virtual FReply NativeOnMouseButtonDown(const FGeometry& InGeometry, const FPointerEvent& InMouseEvent) override;
 	virtual FReply NativeOnKeyDown(const FGeometry& InGeometry, const FKeyEvent& InKeyEvent) override;
-
+	virtual FReply NativeOnMouseWheel(const FGeometry& InGeometry, const FPointerEvent& InMouseEvent) override;
+	
 public:
 	UPROPERTY(BlueprintAssignable)
 	FOnConsoleTextWritten OnTextWritten;
