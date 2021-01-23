@@ -94,13 +94,13 @@
       <option value="$PROJECT_DIR$/Source/Redemption/FileNode.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/DirectoryNode.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/DirectoryNode.cpp" />
-      <option value="$PROJECT_DIR$/Source/Redemption/VirtualFileSystem.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/Shell.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerController.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerController.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/RedemptionGameInstance.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/RedemptionGameInstance.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/Shell.cpp" />
+      <option value="$PROJECT_DIR$/Source/Redemption/VirtualFileSystem.cpp" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1mSCTesrzm0AEkY2lywPjJ7v9sD" />
@@ -388,7 +388,7 @@
       <workItem from="1611104034567" duration="1534000" />
       <workItem from="1611264922232" duration="757000" />
       <workItem from="1611354694808" duration="6936000" />
-      <workItem from="1611423868634" duration="12549000" />
+      <workItem from="1611423868634" duration="12864000" />
     </task>
     <servers />
   </component>
@@ -469,11 +469,6 @@
           <url>file://$PROJECT_DIR$/Source/Redemption/CommandFlags.h</url>
           <line>2</line>
           <option name="timeStamp" value="39" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/Source/Redemption/VirtualFileSystem.cpp</url>
-          <line>57</line>
-          <option name="timeStamp" value="40" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
