@@ -7,6 +7,7 @@
 #include "DirectoryNode.generated.h"
 
 class URedemptionSaveGame;
+class UFileNode;
 
 /**
  * Disk node that maps to a directory. 
@@ -43,4 +44,10 @@ public:
 
 	UFUNCTION()
 	UDirectoryNode* MakeChildDirectory(FString InName);
+
+	UFUNCTION()
+	TArray<UDirectoryNode*> GetChildDirectories();
+
+	UFUNCTION()
+	TArray<UFileNode*> GetChildFiles();
 };

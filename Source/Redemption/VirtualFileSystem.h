@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "UObject/Object.h"
 #include "DiskNode.h"
+#include "FileData.h"
 #include "VirtualFileSystem.generated.h"
 
 class URedemptionSaveGame;
@@ -19,6 +20,9 @@ class REDEMPTION_API UVirtualFileSystem : public UObject
 	GENERATED_BODY()
 
 private:
+	UPROPERTY()
+	FFileData Invalid;
+	
 	UPROPERTY()
 	URedemptionSaveGame* SaveGame;
 	
@@ -42,7 +46,13 @@ public:
 
 	UFUNCTION(BlueprintPure)
 	bool GetChildDirectoryPaths(FString InPath, TArray<FString>& OutChildren);
+
+	UFUNCTION(BlueprintPure)
+	bool GetChildFilePaths(FString InPath, TArray<FString>& OutChildren);
 	
 	UFUNCTION(BlueprintPure)
 	bool DirectoryExists(FString InPath);
+
+	UFUNCTION()
+	FFileData& GetFileData(FString InPath);
 };

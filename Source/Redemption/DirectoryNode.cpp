@@ -3,6 +3,7 @@
 
 #include "DirectoryNode.h"
 #include "RedemptionSaveGame.h"
+#include "FileNode.h"
 
 UDiskNode* UDirectoryNode::GetParent()
 {
@@ -31,6 +32,13 @@ TArray<UDiskNode*> UDirectoryNode::GetChildNodes()
 			UDirectoryNode* ChildNode = NewObject<UDirectoryNode>();
 			ChildNode->LinkToDirectory(this, this->SaveGame, ChildDirectoryId);
 			this->Children.Add(ChildNode);
+		}
+
+		for (int ChildFile : this->SaveGame->Directories[DirectoryIndex].Files)
+		{
+			UFileNode* fnode = NewObject<UFileNode>();
+			fnode->LinkToFile(this, this->SaveGame, ChildFile);
+			this->Children.Add(fnode);
 		}
 	}
 
@@ -72,4 +80,33 @@ UDirectoryNode* UDirectoryNode::MakeChildDirectory(FString InName)
 	// and link it to us.
 	this->Children.Add(NewNode);
 	return NewNode;
+}
+
+TArray<UDirectoryNode*> UDirectoryNode::GetChildDirectories()
+{
+	TArray<UDirectoryNode*> dirs;
+
+	for (UDiskNode* node : this->Children)
+	{
+		UDirectoryNode* dir = Cast<UDirectoryNode>(node);
+		if (dir)
+			dirs.Add(dir);
+	}
+	
+	return dirs;
+}
+
+TArray<UFileNode*> UDirectoryNode::GetChildFiles()
+{
+	TArray<UFileNode*> files;
+
+	for (UDiskNode* node : this->Children)
+	{
+		UFileNode* file = Cast<UFileNode>(node);
+		if (file)
+			files.Add(file);
+	}
+	
+	return files;
+
 }

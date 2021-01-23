@@ -5,6 +5,7 @@
 #include "RedemptionSaveGame.h"
 #include "DirectoryNode.h"
 #include "PathUtils.h"
+#include "FileNode.h"
 
 UDiskNode* UVirtualFileSystem::MapToNode(FString InPath)
 {
@@ -107,12 +108,9 @@ bool UVirtualFileSystem::GetChildDirectoryPaths(FString InPath, TArray<FString>&
 	UDirectoryNode* node = nullptr;
 	if (this->ResolveDirectory(InPath, node))
 	{
-		for(UDiskNode* child : node->GetChildNodes())
+		for(UDirectoryNode* child : node->GetChildDirectories())
 		{
-			if (child->IsA<UDirectoryNode>())
-			{
-				OutChildren.Add(UPathUtils::GetAbsolutePath(InPath, child->GetDiskNodeName()));
-			}
+			OutChildren.Add(UPathUtils::GetAbsolutePath(InPath, child->GetDiskNodeName()));
 		}
 
 		OutChildren.Sort();
@@ -125,10 +123,45 @@ bool UVirtualFileSystem::GetChildDirectoryPaths(FString InPath, TArray<FString>&
 	}
 }
 
+bool UVirtualFileSystem::GetChildFilePaths(FString InPath, TArray<FString>& OutChildren)
+{
+	UDirectoryNode* node = nullptr;
+	if (this->ResolveDirectory(InPath, node))
+	{
+		for(UFileNode* child : node->GetChildFiles())
+		{
+			OutChildren.Add(UPathUtils::GetAbsolutePath(InPath, child->GetDiskNodeName()));
+		}
+
+		OutChildren.Sort();
+		
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+
+}
+
 bool UVirtualFileSystem::DirectoryExists(FString InPath)
 {
 	UDiskNode* node = this->MapToNode(InPath);
 	UDirectoryNode* dirNode = Cast<UDirectoryNode>(node);
 
 	return dirNode != nullptr;
+}
+
+FFileData& UVirtualFileSystem::GetFileData(FString InPath)
+{
+	UDiskNode* node = this->MapToNode(InPath);
+	UFileNode* fnode = Cast<UFileNode>(node);
+	if (fnode)
+	{
+		return fnode->GetFileData();
+	}
+	else
+	{
+		return this->Invalid;
+	}
 }

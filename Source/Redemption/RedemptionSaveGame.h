@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/SAveGame.h"
 #include "Wallpaper.h"
+#include "FileData.h"
 #include "SocialGuiState.h"
 #include "DirectoryEntry.h"
 #include "ChatLog.h"
@@ -19,6 +20,9 @@ class REDEMPTION_API URedemptionSaveGame : public USaveGame
 	GENERATED_BODY()
 
 public:
+	UPROPERTY(BlueprintReadOnly, EditAnywhere)
+	TArray<FFileData> Files;
+	
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)
 	TArray<FChatLog> PlayerChatLogs;
 	
@@ -57,8 +61,14 @@ public:
 
 public:
 	UFUNCTION()
+	bool FindFileIndex(int InFileId, int& OutIndex);
+	
+	UFUNCTION()
 	bool FindDirectoryIndex(int DirectoryId, int& OutDirectoryIndex);
 
+	UFUNCTION()
+	int GetAvailableFileId();
+	
 	UFUNCTION()
 	int GetAvailableDirectoryId();
 

@@ -7,6 +7,24 @@
 #include "ChatContact.h"
 #include "ConversationAppWidget.h"
 
+bool URedemptionSaveGame::FindFileIndex(int InFileId, int& OutIndex)
+{
+	bool result = false;
+	OutIndex = false;
+
+	for (int i = 0; i < this->Files.Num(); i++)
+	{
+		if (this->Files[i].Id == InFileId)
+		{
+			result = true;
+			OutIndex = i;
+			break;
+		}
+	}
+	
+	return result;
+}
+
 bool URedemptionSaveGame::FindDirectoryIndex(int DirectoryId, int& OutDirectoryIndex)
 {
 	bool result = false;
@@ -20,6 +38,21 @@ bool URedemptionSaveGame::FindDirectoryIndex(int DirectoryId, int& OutDirectoryI
 			break;
 		}
 	}
+	
+	return result;
+}
+
+int URedemptionSaveGame::GetAvailableFileId()
+{
+	int result = 0;
+	TArray<int> used;
+	for (FFileData& file : this->Files)
+	{
+		used.Add(file.Id);
+	}
+
+	while (used.Contains(result))
+		result++;
 	
 	return result;
 }
