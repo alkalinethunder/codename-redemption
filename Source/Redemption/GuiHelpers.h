@@ -3,6 +3,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
+
+#include "Components/VerticalBox.h"
 #include "UObject/Object.h"
 #include "GuiHelpers.generated.h"
 
@@ -17,4 +19,7 @@ class REDEMPTION_API UGuiHelpers : public UObject
 public:
 	UFUNCTION(BlueprintPure, Category = "GUI utils for the Shell")
 	static FText GetTimeFromNow(const FDateTime& InUtcDateTime);
+
+	UFUNCTION(BlueprintCallable)
+	static void InsertChildAtStart(UVerticalBox* Target, UWidget* InChild);
 };

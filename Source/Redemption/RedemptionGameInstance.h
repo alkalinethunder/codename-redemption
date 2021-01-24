@@ -81,7 +81,7 @@ public:
 public: // cheats/internal functions
 	UFUNCTION(Exec)
 	void AddXP(int Amount);
-
+	
 	UFUNCTION(Exec)
 	void AddUpgradePoints(int Amount);
 };

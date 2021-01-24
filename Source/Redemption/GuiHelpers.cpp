@@ -56,3 +56,15 @@ FText UGuiHelpers::GetTimeFromNow(const FDateTime& InUtcDateTime)
 		}
 	}
 }
+
+void UGuiHelpers::InsertChildAtStart(UVerticalBox* Target, UWidget* InChild)
+{
+	int childCount = Target->GetChildrenCount();
+	Target->AddChild(InChild);
+	for(int i = 0; i < childCount; i++)
+	{
+		UWidget* child = Target->GetChildAt(0);
+		Target->RemoveChildAt(0);
+		Target->AddChild(child);
+	}
+}

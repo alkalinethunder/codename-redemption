@@ -33808,6 +33808,8 @@
           <e p="GraphicalAppAsset.h" t="Include" />
           <e p="GuiHelpers.cpp" t="Include" />
           <e p="GuiHelpers.h" t="Include" />
+          <e p="NewsFeedApp.cpp" t="Include" />
+          <e p="NewsFeedApp.h" t="Include" />
           <e p="NewsFeedEntry.h" t="Include" />
           <e p="OperatingSystemApp.h" t="Include" />
           <e p="PathUtils.cpp" t="Include" />
@@ -33832,6 +33834,7 @@
           <e p="RedemptionPlayerState.h" t="Include" />
           <e p="RedemptionSaveGame.cpp" t="Include" />
           <e p="RedemptionSaveGame.h" t="Include" />
+          <e p="RedemptionState.cpp" t="Include" />
           <e p="RedemptionState.h" t="Include" />
           <e p="SaveSlot.h" t="Include" />
           <e p="SendMessage.cpp" t="Include" />
