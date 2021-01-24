@@ -9,6 +9,7 @@
 #include "SocialGuiState.h"
 #include "DirectoryEntry.h"
 #include "ChatLog.h"
+#include "NewsFeedEntry.h"
 #include "RedemptionSaveGame.generated.h"
 
 /**
@@ -20,6 +21,9 @@ class REDEMPTION_API URedemptionSaveGame : public USaveGame
 	GENERATED_BODY()
 
 public:
+	UPROPERTY(BlueprintReadOnly, EditAnywhere)
+	TArray<FNewsFeedEntry> NewsFeedEntries;
+	
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)
 	TArray<FFileData> Files;
 	

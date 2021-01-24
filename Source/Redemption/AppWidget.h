@@ -21,9 +21,9 @@ protected:
 	UVirtualFileSystem* GetFileSystem();
 
 public:
-	UFUNCTION(BlueprintImplementableEvent)
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
 	void FileOpened(const FString& InFilePath);
 
-	UFUNCTION(BlueprintImplementableEvent)
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
     void FolderOpened(const FString& InFilePath);
 };
