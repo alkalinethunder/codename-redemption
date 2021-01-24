@@ -6,16 +6,16 @@
 #include "GameFramework/GameModeBase.h"
 #include "Wallpaper.h"
 #include "ProgressionLevelsListAsset.h"
+#include "DesktopWidget.h"
+#include "ConsoleWidget.h"
+#include "Shell.h"
+#include "ShellCommandAsset.h"
+#include "GraphicalAppAsset.h"
 #include "RedemptionGameModeBase.generated.h"
 
-class UDesktopWidget;
 class URedemptionGameInstance;
 class ARedemptionPlayerState;
 class AShellManagementActor;
-class UConsoleWidget;
-class UShell;
-class UShellCommandAsset;
-class UGraphicalAppAsset;
 
 /**
  * 

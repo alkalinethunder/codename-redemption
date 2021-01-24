@@ -5,9 +5,9 @@
 #include "CoreMinimal.h"
 #include "DiskNode.h"
 #include "FileType.h"
+#include "RedemptionSaveGame.h"
 #include "DirectoryNode.generated.h"
 
-class URedemptionSaveGame;
 class UFileNode;
 
 /**
@@ -17,7 +17,7 @@ UCLASS()
 class REDEMPTION_API UDirectoryNode : public UDiskNode
 {
 	GENERATED_BODY()
-
+	
 private:
 	UPROPERTY()
 	URedemptionSaveGame* SaveGame;

@@ -9,6 +9,9 @@
 #include "ShellAppExecutionCommand.h"
 #include "ShellManagementActor.h"
 #include "VirtualFileSystem.h"
+#include "RedemptionPlayerController.h"
+#include "ShellCommandAsset.h"
+#include "GraphicalAppAsset.h"
 #include "UsefulTip.h"
 
 void UShell::PrepareFileSystem()

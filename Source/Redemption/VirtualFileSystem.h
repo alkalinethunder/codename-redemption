@@ -4,13 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "UObject/Object.h"
-#include "DiskNode.h"
 #include "FileData.h"
+#include "DiskNode.h"
+#include "FileNode.h"
 #include "VirtualFileSystem.generated.h"
-
-class URedemptionSaveGame;
-class UDirectoryNode;
-class UFileNode;
 
 /**
  * 

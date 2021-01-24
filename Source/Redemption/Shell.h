@@ -3,14 +3,15 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "RedemptionPlayerController.h"
 #include "UObject/Object.h"
+#include "CommandFlags.h"
+#include "ConsoleWidget.h"
+#include "UsefulTip.h"
+#include "CommandScript.h"
 #include "Shell.generated.h"
 
-class UConsoleWidget;
-class UCommandScript;
+class ARedemptionPlayerController;
 class AShellManagementActor;
-class UUsefulTip;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FShellExitedEvent);
 

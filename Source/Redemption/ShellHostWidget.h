@@ -3,12 +3,10 @@
 #pragma once
 
 #include "CoreMinimal.h"
-
 #include "ConsoleWidget.h"
+#include "Shell.h"
 #include "Blueprint/UserWidget.h"
 #include "ShellHostWidget.generated.h"
-
-class UShell;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnShellHostExit);
 

@@ -3,19 +3,14 @@
 #pragma once
 
 #include "CoreMinimal.h"
-
-
-#include "GraphicalAppAsset.h"
-#include "ShellCommandAsset.h"
 #include "GameFramework/PlayerController.h"
+#include "Blueprint/UserWidget.h"
+#include "VirtualFileSystem.h"
+#include "ShellCommandAsset.h"
+#include "GraphicalAppAsset.h"
+#include "RedemptionGameModeBase.h"
+#include "ChatContact.h"
 #include "RedemptionPlayerController.generated.h"
-
-class UUserWidget;
-class ARedemptionGameModeBase;
-class UVirtualFileSystem;
-class UChatContact;
-class UOperatingSystemApp;
-class URedemptionGameInstance;
 
 UCLASS()
 class REDEMPTION_API ARedemptionPlayerController : public APlayerController

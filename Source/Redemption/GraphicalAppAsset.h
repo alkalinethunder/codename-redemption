@@ -5,12 +5,10 @@
 #include "CoreMinimal.h"
 #include "Engine/DataAsset.h"
 #include "DisplayTarget.h"
-#include "Blueprint/UserWidget.h"
+#include "AppWidget.h"
 #include "CommandFlags.h"
 #include "UpgradeAsset.h"
 #include "GraphicalAppAsset.generated.h"
-
-class UAppWidget;
 
 /**
  * Information about a graphical Operating System app.

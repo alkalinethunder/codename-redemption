@@ -3,9 +3,10 @@
 
 #include "VirtualFileSystem.h"
 #include "RedemptionSaveGame.h"
-#include "DirectoryNode.h"
 #include "PathUtils.h"
 #include "FileNode.h"
+#include "FileData.h"
+#include "DirectoryNode.h"
 
 UDiskNode* UVirtualFileSystem::MapToNode(FString InPath)
 {

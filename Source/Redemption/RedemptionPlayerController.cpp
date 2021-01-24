@@ -10,6 +10,8 @@
 #include "RedemptionPlayerState.h"
 #include "RedemptionGameInstance.h"
 #include "RedemptionGameState.h"
+#include "GraphicalAppAsset.h"
+#include "ShellCommandAsset.h"
 #include "DesktopWidget.h"
 
 // Sets default values

@@ -8,8 +8,6 @@
 #include "GraphicalAppAsset.h"
 #include "OperatingSystemApp.generated.h"
 
-class UAppWidget;
-
 /**
  * Contains the GUI data of a graphical app.
  */

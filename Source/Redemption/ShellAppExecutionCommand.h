@@ -4,10 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "CommandScript.h"
+#include "RedemptionPlayerController.h"
+#include "GraphicalAppAsset.h"
 #include "ShellAppExecutionCommand.generated.h"
-
-class UGraphicalAppAsset;
-class ARedemptionPlayerController;
 
 /**
  * 

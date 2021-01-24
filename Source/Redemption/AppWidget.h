@@ -4,9 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
+#include "VirtualFileSystem.h"
 #include "AppWidget.generated.h"
-
-class UVirtualFileSystem;
 
 /**
  * 

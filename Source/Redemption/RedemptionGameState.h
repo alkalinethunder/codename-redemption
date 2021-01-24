@@ -4,15 +4,12 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/GameStateBase.h"
+#include "UpgradeAsset.h"
+#include "ConversationManager.h"
+#include "Conversation.h"
+#include "ChatContact.h"
+#include "RedemptionGameModeBase.h"
 #include "RedemptionGameState.generated.h"
-
-class UUpgradeAsset;
-class AConversationManager;
-class UConversation;
-class UChatContact;
-class URedemptionGameInstance;
-class UConversationAppWidget;
-class ARedemptionGameModeBase;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FContactAddedEvent);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FDoNotDisturbChanged, bool, InIsDoNotDisturb);

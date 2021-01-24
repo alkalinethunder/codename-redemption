@@ -8,11 +8,11 @@
 #include "ConsoleWidget.h"
 #include "RedemptionGameInstance.h"
 #include "RedemptionPlayerController.h"
-#include "RedemptionState.h"
 #include "DesktopWidget.h"
 #include "RedemptionPlayerState.h"
 #include "RedemptionGameState.h"
 #include "ShellManagementActor.h"
+#include "RedemptionState.h"
 #include "ShellCommandAsset.h"
 #include "GraphicalAppAsset.h"
 

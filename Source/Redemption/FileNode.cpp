@@ -4,6 +4,7 @@
 #include "FileNode.h"
 #include "RedemptionSaveGame.h"
 #include "DirectoryNode.h"
+#include "FileData.h"
 
 FFileData& UFileNode::GetFileData()
 {

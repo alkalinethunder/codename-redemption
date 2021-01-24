@@ -6,12 +6,9 @@
 #include "GameFramework/PlayerState.h"
 #include "ProgressionLevel.h"
 #include "VirtualFileSystem.h"
+#include "UpgradeAsset.h"
+#include "RedemptionGameState.h"
 #include "RedemptionPlayerState.generated.h"
-
-class URedemptionGameInstance;
-class UUpgradeAsset;
-class UDesktopWidget;
-class ARedemptionGameState;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnUserLevelUp, FProgressionLevel, InLevel);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnUpgradeUnlocked);

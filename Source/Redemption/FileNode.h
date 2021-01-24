@@ -5,10 +5,9 @@
 #include "CoreMinimal.h"
 #include "DiskNode.h"
 #include "FileData.h"
+#include "DirectoryNode.h"
+#include "RedemptionSaveGame.h"
 #include "FileNode.generated.h"
-
-class UDirectoryNode;
-class URedemptionSaveGame;
 
 /**
  * 

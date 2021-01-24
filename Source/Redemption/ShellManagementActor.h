@@ -4,10 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "ConsoleWidget.h"
+#include "Shell.h"
 #include "ShellManagementActor.generated.h"
-
-class UShell;
-class UConsoleWidget;
 
 UCLASS()
 class REDEMPTION_API AShellManagementActor : public AActor
