@@ -9,6 +9,7 @@
 #include "ShellHostWidget.h"
 #include "RedemptionGameModeBase.h"
 #include "AppWidget.h"
+#include "RedemptionGameState.h"
 
 void UDesktopWidget::HandleShellClose(UAppTabWidget* RequestingWidget)
 {
@@ -174,7 +175,8 @@ UOperatingSystemApp* UDesktopWidget::LaunchAppInternal(UGraphicalAppAsset* InApp
 void UDesktopWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
-	
+
+	this->MyGameState = Cast<ARedemptionGameState>(this->GetWorld()->GetGameState());
 	this->GameMode = Cast<ARedemptionGameModeBase>(this->GetWorld()->GetAuthGameMode());
 
 	// launch the login shell.
@@ -187,6 +189,19 @@ void UDesktopWidget::NativeConstruct()
 	}
 
 	this->CreateShellTrigger->OnClicked.AddUniqueDynamic(this, &UDesktopWidget::CreateShell);
+}
+
+void UDesktopWidget::NativeTick(const FGeometry& MyGeometry, float InDeltaTime)
+{
+	Super::NativeTick(MyGeometry, InDeltaTime);
+
+	int hour = this->MyGameState->GetHour();
+	int minute = this->MyGameState->GetMinute();
+
+	FString minText = minute >= 10 ? FString::FromInt(minute) : "0" + FString::FromInt(minute);
+	FString hourText = FString::FromInt(hour > 12 ? hour - 12 : hour);
+
+	this->TimeOfDay->SetText(FText::FromString(hourText + ":" + minText));
 }
 
 bool UDesktopWidget::SwitchToApp(TSubclassOf<UAppWidget> InWidgetClass, UOperatingSystemApp*& OutWidget)

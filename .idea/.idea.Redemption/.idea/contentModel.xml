@@ -33792,6 +33792,7 @@
           <e p="ConversationManager.h" t="Include" />
           <e p="ConvoBranch.h" t="Include" />
           <e p="ConvoChoice.h" t="Include" />
+          <e p="DayList.h" t="Include" />
           <e p="DesktopWidget.cpp" t="Include" />
           <e p="DesktopWidget.h" t="Include" />
           <e p="DirectoryEntry.h" t="Include" />
@@ -33805,6 +33806,8 @@
           <e p="FileNode.cpp" t="Include" />
           <e p="FileNode.h" t="Include" />
           <e p="FileType.h" t="Include" />
+          <e p="GrapevinePost.h" t="Include" />
+          <e p="GrapevinePostType.h" t="Include" />
           <e p="GraphicalAppAsset.h" t="Include" />
           <e p="GuiHelpers.cpp" t="Include" />
           <e p="GuiHelpers.h" t="Include" />
@@ -33834,8 +33837,6 @@
           <e p="RedemptionPlayerState.h" t="Include" />
           <e p="RedemptionSaveGame.cpp" t="Include" />
           <e p="RedemptionSaveGame.h" t="Include" />
-          <e p="RedemptionState.cpp" t="Include" />
-          <e p="RedemptionState.h" t="Include" />
           <e p="SaveSlot.h" t="Include" />
           <e p="SendMessage.cpp" t="Include" />
           <e p="SendMessage.h" t="Include" />

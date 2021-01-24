@@ -21,6 +21,39 @@ ARedemptionGameState::ARedemptionGameState()
 	PrimaryActorTick.bCanEverTick = true;
 }
 
+void ARedemptionGameState::PostGrapevineAds()
+{
+	for (UGrapevinePost* post : this->GrapevinePosts)
+	{
+		if (post->PostType == EGrapevinePostType::DailyAd)
+		{
+			if (this->Hour == post->PostOnHour && this->IsCurrentDay(post->PostOnDays))
+			{
+				this->PostThought(post->PostAuthor, post->PostText);				
+			}
+		}
+	}
+}
+
+void ARedemptionGameState::UpdateFriendlyTime()
+{
+	int secsAsInt = static_cast<int>(this->WorldClock);
+	int hour = secsAsInt / 60;
+	int min = secsAsInt % 60;
+
+	if (this->Minute != min)
+	{
+		this->Minute = min;
+	}
+
+	if (this->Hour != hour)
+	{
+		this->Hour = hour;
+		this->PostGrapevineAds();
+	}
+}
+
+
 // Called when the game starts or when spawned
 void ARedemptionGameState::BeginPlay()
 {
@@ -55,6 +88,24 @@ void ARedemptionGameState::BeginPlay()
 		}
 	}
 
+	for (UObject* asset : UAssetUtils::LoadAssetsOfClass(UPerson::StaticClass()))
+	{
+		UPerson* person = Cast<UPerson>(asset);
+		if (person)
+		{
+			this->People.Add(person);
+		}
+	}
+
+	for (UObject* asset : UAssetUtils::LoadAssetsOfClass(UGrapevinePost::StaticClass()))
+	{
+		UGrapevinePost* post = Cast<UGrapevinePost>(asset);
+		if (post)
+		{
+			this->GrapevinePosts.Add(post);
+		}
+	}
+	
 	this->MyGameMode = Cast<ARedemptionGameModeBase>(this->GetWorld()->GetAuthGameMode());
 
 	if (this->MyGameMode)
@@ -64,13 +115,100 @@ void ARedemptionGameState::BeginPlay()
 	
 	// Spawn in the conversation manager.
 	this->ConversationManager = this->GetWorld()->SpawnActor<AConversationManager>();
+
+	// resume the day/night cycle
+	this->CurrentDay = static_cast<int>(this->MyGameInstance->GetSaveGame()->CurrentDayOfWeek);
+	this->WorldClock = this->MyGameInstance->GetSaveGame()->CurrentDaySeconds;
 }
 
 // Called every frame
 void ARedemptionGameState::Tick(float DeltaTime)
 {
+	this->WorldClock += DeltaTime * this->MyGameMode->TimeScale;
+	if (this->WorldClock >= this->SecondsPerDay)
+	{
+		this->WorldClock = 0.f;
+		this->CurrentDay++;
+		if (this->CurrentDay == static_cast<int>(EWeekDay::NUM_EWeekDay))
+		{
+			this->CurrentDay = 0;
+		}
+		this->MyGameInstance->GetSaveGame()->CurrentDayOfWeek = static_cast<EWeekDay>(this->CurrentDay);
+	}
+	this->MyGameInstance->GetSaveGame()->CurrentDaySeconds = this->WorldClock;
+
+	this->UpdateFriendlyTime();
+
 	Super::Tick(DeltaTime);
 }
+
+void ARedemptionGameState::PostThought(UPerson* InPerson, FString InThoughtText)
+{
+	check (InPerson);
+	
+	FString personId = InPerson->GetName();
+
+	FNewsFeedEntry newsFeedEntry;
+	newsFeedEntry.Text = InThoughtText;
+	newsFeedEntry.Sender = personId;
+	newsFeedEntry.PostedOn = FDateTime::UtcNow();
+
+	this->MyGameInstance->GetSaveGame()->NewsFeedEntries.Add(newsFeedEntry);
+
+	this->NewsFeedUpdated.Broadcast(newsFeedEntry);
+}
+
+UPerson* ARedemptionGameState::FindPersonById(FString InPersonId)
+{
+	UPerson* result = nullptr;
+
+	for (UPerson* person : this->People)
+	{
+		if (person->GetName() == InPersonId)
+		{
+			result = person;
+			break;
+		}
+	}
+	
+	return result;
+}
+
+TArray<FNewsFeedEntry> ARedemptionGameState::GetNewsFeed()
+{
+	return this->MyGameInstance->GetSaveGame()->NewsFeedEntries;
+}
+
+bool ARedemptionGameState::IsCurrentDay(FDayList InDayList)
+{
+	EWeekDay day = static_cast<EWeekDay>(this->CurrentDay);
+
+	switch (day)
+	{
+	case EWeekDay::Sunday:
+		return InDayList.Sunday;
+	case EWeekDay::Monday:
+		return InDayList.Monday;
+	case EWeekDay::Tuesday:
+		return InDayList.Tuesday;
+	case EWeekDay::Wednesday:
+		return InDayList.Wednesday;
+	case EWeekDay::Thursday:
+		return InDayList.Thursday;
+	case EWeekDay::Friday:
+		return InDayList.Friday;
+	case EWeekDay::Saturday:
+		return InDayList.Saturday;
+	}
+
+	return false;
+}
+
+int ARedemptionGameState::GetMinute()
+{
+	return this->Minute;
+}
+
 
 TArray<UUpgradeAsset*> ARedemptionGameState::GetAllUpgrades()
 {
@@ -143,6 +281,11 @@ void ARedemptionGameState::ActivateConversation(UChatContact* InContact, UConver
 
 	// present choices to the user
 	InWidget->PresentConversationChoices(this->ConversationManager, available);
+}
+
+int ARedemptionGameState::GetHour()
+{
+	return this->Hour;
 }
 
 void ARedemptionGameState::AddContact(FString InContactName)

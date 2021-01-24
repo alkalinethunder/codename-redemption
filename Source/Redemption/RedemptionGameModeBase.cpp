@@ -12,7 +12,6 @@
 #include "RedemptionPlayerState.h"
 #include "RedemptionGameState.h"
 #include "ShellManagementActor.h"
-#include "RedemptionState.h"
 #include "ShellCommandAsset.h"
 #include "GraphicalAppAsset.h"
 
@@ -20,7 +19,6 @@ ARedemptionGameModeBase::ARedemptionGameModeBase()
 {
 	PrimaryActorTick.bCanEverTick = true;
 	
-	this->GameStateClass = ARedemptionState::StaticClass();
 	this->PlayerControllerClass = ARedemptionPlayerController::StaticClass();
 	this->PlayerStateClass = ARedemptionPlayerState::StaticClass();
 	this->GameStateClass = ARedemptionGameState::StaticClass();

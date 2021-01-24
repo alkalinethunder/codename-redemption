@@ -6,13 +6,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="06c14ef7-907b-4990-b8f7-291c57d35a51" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Source/Redemption/WeekDay.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Redemption/DayList.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Redemption/GrapevinePost.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Redemption/GrapevinePostType.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Redemption/RedemptionGameModeBase.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/RedemptionGameModeBase.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Redemption/RedemptionSaveGame.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/RedemptionSaveGame.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Redemption/RedemptionState.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/RedemptionState.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Redemption/RedemptionState.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/RedemptionState.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Gui/Components/GrapevinePost.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Gui/Components/GrapevinePost.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Gui/OS/Desktop.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Gui/OS/Desktop.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Redemption/DesktopWidget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/DesktopWidget.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Redemption/DesktopWidget.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/DesktopWidget.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Redemption/NewsFeedApp.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/NewsFeedApp.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Redemption/NewsFeedApp.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/NewsFeedApp.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Redemption/Person.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/Person.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Redemption/RedemptionGameModeBase.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/RedemptionGameModeBase.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Redemption/RedemptionGameState.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/RedemptionGameState.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Redemption/RedemptionGameState.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/RedemptionGameState.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Redemption/RedemptionState.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Redemption/RedemptionState.h" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,28 +33,29 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://C:/Program Files/Epic Games/UE_4.26/Engine/Source/Runtime/SlateCore/Public/Fonts/FontMeasure.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Epic Games/UE_4.26/Engine/Source/Runtime/Core/Public/Containers/EnumAsByte.h" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://C:/Program Files/Epic Games/UE_4.26/Engine/Source/Runtime/Core/Public/HAL/Platform.h" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://C:/Program Files/Epic Games/UE_4.26/Engine/Source/Runtime/SlateCore/Public/Rendering/DrawElements.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/Redemption/GuiHelpers.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Epic Games/UE_4.26/Engine/Source/Runtime/Core/Public/Containers/Array.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/Redemption/GuiHelpers.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/Redemption/RedemptionGameState.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://C:/Program Files (x86)/Windows Kits/10/Include/10.0.18362.0/um/winnt.h" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Epic Games/UE_4.26/Engine/Source/Runtime/Engine/Classes/GameFramework/PlayerController.h" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://C:/Program Files/Epic Games/UE_4.26/Engine/Source/Runtime/Slate/Public/Framework/Application/SlateApplication.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Epic Games/UE_4.26/Engine/Source/Runtime/UMG/Public/Blueprint/UserWidget.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Epic Games/UE_4.26/Engine/Source/Runtime/Core/Public/Containers/UnrealString.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Epic Games/UE_4.26/Engine/Source/Runtime/CoreUObject/Public/Templates/SubclassOf.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://C:/Program Files/Epic Games/UE_4.26/Engine/Source/Runtime/SlateCore/Public/Fonts/FontMeasure.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://C:/Program Files/Epic Games/UE_4.26/Engine/Source/Runtime/Core/Public/HAL/Platform.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/Redemption/RedemptionSaveGame.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://C:/Program Files/Epic Games/UE_4.26/Engine/Source/Runtime/SlateCore/Public/Rendering/DrawElements.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/Redemption/NewsFeedApp.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/Redemption/RedemptionGameModeBase.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/Redemption/WeekDay.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/Redemption/RedemptionGameModeBase.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://C:/Program Files/Epic Games/UE_4.26/Engine/Source/Runtime/Slate/Public/Framework/Application/SlateApplication.h" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Source/Redemption/FileType.h" />
-      <option value="$PROJECT_DIR$/Source/Redemption/FileType.cpp" />
-      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionSaveGame.cpp" />
-      <option value="$PROJECT_DIR$/Source/Redemption/FileData.h" />
-      <option value="$PROJECT_DIR$/Source/Redemption/GraphicalAppAsset.cpp" />
-      <option value="$PROJECT_DIR$/Source/Redemption/DesktopWidget.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/ConversationAppWidget.h" />
-      <option value="$PROJECT_DIR$/Source/Redemption/DesktopWidget.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/AppWidget.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/ExpectedFileType.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/ExpectedFileType.h" />
@@ -60,10 +71,8 @@
       <option value="$PROJECT_DIR$/Source/Redemption/OperatingSystemApp.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/GraphicalAppAsset.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerState.h" />
-      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionGameState.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/OperatingSystemApp.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/NewsFeedEntry.cpp" />
-      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionGameModeBase.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/VirtualFileSystem.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/ShellManagementActor.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/ShellHostWidget.h" />
@@ -77,17 +86,26 @@
       <option value="$PROJECT_DIR$/Source/Redemption/DirectoryNode.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerController.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/RedemptionGameInstance.h" />
-      <option value="$PROJECT_DIR$/Source/Redemption/NewsFeedApp.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/GuiHelpers.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/GuiHelpers.cpp" />
-      <option value="$PROJECT_DIR$/Source/Redemption/NewsFeedApp.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/DayOfWeek.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/DayOfWeek.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/RedemptionSaveGame.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/WeekDay.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/RedemptionGameModeBase.h" />
+      <option value="$PROJECT_DIR$/Source/Redemption/GrapevinePostType.h" />
+      <option value="$PROJECT_DIR$/Source/Redemption/DayList.h" />
+      <option value="$PROJECT_DIR$/Source/Redemption/GrapevinePost.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/RedemptionState.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/RedemptionState.cpp" />
+      <option value="$PROJECT_DIR$/Source/Redemption/NewsFeedApp.h" />
+      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionGameModeBase.cpp" />
+      <option value="$PROJECT_DIR$/Source/Redemption/DesktopWidget.h" />
+      <option value="$PROJECT_DIR$/Source/Redemption/DesktopWidget.cpp" />
+      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionGameState.h" />
+      <option value="$PROJECT_DIR$/Source/Redemption/NewsFeedApp.cpp" />
+      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionGameState.cpp" />
+      <option value="$PROJECT_DIR$/Source/Redemption/Person.h" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1mSCTesrzm0AEkY2lywPjJ7v9sD" />
@@ -378,7 +396,7 @@
       <workItem from="1611423868634" duration="17921000" />
       <workItem from="1611456655094" duration="4666000" />
       <workItem from="1611461842919" duration="3838000" />
-      <workItem from="1611512739944" duration="1594000" />
+      <workItem from="1611512739944" duration="9355000" />
     </task>
     <servers />
   </component>

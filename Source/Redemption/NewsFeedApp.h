@@ -7,7 +7,7 @@
 #include "Components/ScrollBox.h"
 #include "NewsFeedApp.generated.h"
 
-class ARedemptionState;
+class ARedemptionGameState;
 
 /**
  * 
@@ -22,7 +22,7 @@ private:
 	TArray<FNewsFeedEntry> PostQueue;
 	
 	UPROPERTY()
-	ARedemptionState* GameState;
+	ARedemptionGameState* GameState;
 	
 protected:
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, meta=(BindWidget))

@@ -2,8 +2,7 @@
 
 
 #include "NewsFeedApp.h"
-
-#include "RedemptionState.h"
+#include "RedemptionGameState.h"
 
 void UNewsFeedApp::HandleNewPost(FNewsFeedEntry InNewEntry)
 {
@@ -12,7 +11,7 @@ void UNewsFeedApp::HandleNewPost(FNewsFeedEntry InNewEntry)
 
 void UNewsFeedApp::NativeConstruct()
 {
-	this->GameState = Cast<ARedemptionState>(this->GetPlayerContext().GetGameState());
+	this->GameState = Cast<ARedemptionGameState>(this->GetWorld()->GetGameState());
 	this->GameState->NewsFeedUpdated.AddUniqueDynamic(this, &UNewsFeedApp::HandleNewPost);
 	this->PostQueue = this->GameState->GetNewsFeed();
 	Super::NativeConstruct();
@@ -32,7 +31,7 @@ void UNewsFeedApp::NativeTick(const FGeometry& MyGeometry, float InDeltaTime)
 	while (i < 10 && this->PostQueue.Num())
 	{
 		i++;
-		FNewsFeedEntry entry = this->PostQueue[i];
+		FNewsFeedEntry entry = this->PostQueue[0];
 
 		UPerson* person = this->GameState->FindPersonById(entry.Sender);
 		this->SpawnNewsFeedPost(person, entry);

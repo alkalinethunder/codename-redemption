@@ -8,6 +8,8 @@
 #include "Components/HorizontalBox.h"
 #include "Components/WidgetSwitcher.h"
 #include "AppWidget.h"
+#include "Components/TextBlock.h"
+
 #include "DesktopWidget.generated.h"
 
 class UAppTabWidget;
@@ -16,6 +18,7 @@ class UOperatingSystemApp;
 class UAppHostWidget;
 class ARedemptionGameModeBase;
 class UGraphicalAppAsset;
+class ARedemptionGameState;
 
 /**
  * Base widget for desktop UIs.
@@ -28,7 +31,9 @@ class REDEMPTION_API UDesktopWidget : public UUserWidget
 private:
 	UPROPERTY()
 	ARedemptionGameModeBase* GameMode;
-	
+
+	UPROPERTY()
+	ARedemptionGameState* MyGameState;
 protected:
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)
 	TSubclassOf<UAppTabWidget> AppTabWidgetClass;
@@ -40,6 +45,9 @@ protected:
 	TSubclassOf<UAppHostWidget> AppHostWidgetClass;
 	
 protected:
+	UPROPERTY(BlueprintReadOnly, meta=(BindWidget))
+	UTextBlock* TimeOfDay;
+	
 	UPROPERTY(BlueprintReadOnly, meta=(BindWidget))
 	UWidgetSwitcher* ConsoleSwitcher;
 
@@ -85,7 +93,8 @@ private:
 	
 protected:
 	virtual void NativeConstruct() override;
-
+	virtual void NativeTick(const FGeometry& MyGeometry, float InDeltaTime) override;
+	
 public:
 	UFUNCTION()
 	bool SwitchToApp(TSubclassOf<UAppWidget> InWidgetClass, UOperatingSystemApp*& OutWidget);

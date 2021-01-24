@@ -39,4 +39,11 @@ public:
 	 */
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Metadata")
 	EPersonalPronoun Pronouns;
+
+	/**
+	 * Determines whether a blue check-mark is displayed on this person's
+	 * Grapevine social posts.
+	 */
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Grapevine Social Posts")
+	bool bIsVerifiedUser = false;
 };

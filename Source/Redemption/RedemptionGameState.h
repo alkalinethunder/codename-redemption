@@ -9,10 +9,12 @@
 #include "Conversation.h"
 #include "ChatContact.h"
 #include "RedemptionGameModeBase.h"
+#include "GrapevinePost.h"
 #include "RedemptionGameState.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FContactAddedEvent);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FDoNotDisturbChanged, bool, InIsDoNotDisturb);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnNewsFeedUpdatedEvent, FNewsFeedEntry, InNewEntry);
 
 UCLASS(BlueprintType)
 class REDEMPTION_API ARedemptionGameState : public AGameStateBase
@@ -20,6 +22,27 @@ class REDEMPTION_API ARedemptionGameState : public AGameStateBase
 	GENERATED_BODY()
 
 private:
+	UPROPERTY()
+	TArray<UPerson*> People;
+	
+	UPROPERTY()
+	float SecondsPerDay = 1440.f;
+
+	UPROPERTY()
+	float WorldClock = 0.f;
+
+	UPROPERTY()
+	int CurrentDay = 0;
+	
+	UPROPERTY()
+	int Hour;
+
+	UPROPERTY()
+	int Minute;
+	
+	UPROPERTY()
+	TArray<UGrapevinePost*> GrapevinePosts;
+	
 	UPROPERTY()
 	ARedemptionGameModeBase* MyGameMode;
 	
@@ -47,10 +70,20 @@ public:
 	
 	UPROPERTY(BlueprintAssignable)
 	FContactAddedEvent OnContactAdded;
-	
+
+	UPROPERTY(BlueprintAssignable)
+	FOnNewsFeedUpdatedEvent NewsFeedUpdated;
+
 public:
 	// Sets default values for this actor's properties
 	ARedemptionGameState();
+
+private:
+	UFUNCTION()
+	void PostGrapevineAds();
+	
+	UFUNCTION()
+    void UpdateFriendlyTime();
 
 protected:
 	// Called when the game starts or when spawned
@@ -79,6 +112,24 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void ActivateConversation(UChatContact* InContact, UConversationAppWidget* InWidget);
+
+	UFUNCTION()
+	void PostThought(UPerson* InPerson, FString InThoughtText);
+
+	UFUNCTION()
+    UPerson* FindPersonById(FString InPersonId);
+
+	UFUNCTION()
+    TArray<FNewsFeedEntry> GetNewsFeed();
+
+	UFUNCTION(BlueprintPure)
+    bool IsCurrentDay(FDayList InDayList);
+
+	UFUNCTION()
+	int GetMinute();
+
+	UFUNCTION()
+	int GetHour();
 	
 public:
 	UFUNCTION(Exec)
