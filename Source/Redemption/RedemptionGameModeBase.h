@@ -11,6 +11,7 @@
 #include "Shell.h"
 #include "ShellCommandAsset.h"
 #include "GraphicalAppAsset.h"
+#include "WeekDay.h"
 #include "RedemptionGameModeBase.generated.h"
 
 class URedemptionGameInstance;
@@ -66,7 +67,10 @@ public:
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "World")
 	float TimeScale = 1.f;	
 
-public:
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "World")
+	EWeekDay DayOfWeek;
+
+	public:
 	ARedemptionGameModeBase();
 
 protected:

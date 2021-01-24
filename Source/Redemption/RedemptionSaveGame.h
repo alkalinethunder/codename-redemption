@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/SAveGame.h"
+#include "WeekDay.h"
 #include "Wallpaper.h"
 #include "FileData.h"
 #include "SocialGuiState.h"
@@ -21,6 +22,12 @@ class REDEMPTION_API URedemptionSaveGame : public USaveGame
 	GENERATED_BODY()
 
 public:
+	UPROPERTY(BlueprintReadOnly, EditAnywhere)
+	float CurrentDaySeconds;
+
+	UPROPERTY(BlueprintReadOnly, EditAnywhere)
+	EWeekDay CurrentDayOfWeek;
+	
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)
 	TArray<FNewsFeedEntry> NewsFeedEntries;
 	
