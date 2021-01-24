@@ -263,7 +263,7 @@ bool UVirtualFileSystem::TryWritingTextToFile(FString InFilePath, FString InText
 		}
 	}
 
-	fnode = dnode->CreateFile(parts[parts.Num() - 1], EFileType::UserData);
+	fnode = dnode->MakeFile(parts[parts.Num() - 1], EFileType::UserData);
 	fnode->SetTextContent(InText);
 	return true;
 }

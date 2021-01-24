@@ -111,7 +111,7 @@ TArray<UFileNode*> UDirectoryNode::GetChildFiles()
 
 }
 
-UFileNode* UDirectoryNode::CreateFile(FString InFileName, EFileType InFileType)
+UFileNode* UDirectoryNode::MakeFile(FString InFileName, EFileType InFileType)
 {
 	FFileData data;
 	data.Id = this->SaveGame->GetAvailableFileId();

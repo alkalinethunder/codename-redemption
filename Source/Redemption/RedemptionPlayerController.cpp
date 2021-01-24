@@ -212,7 +212,7 @@ bool ARedemptionPlayerController::TryGetAppByName(FString InCommandName, UGraphi
 	}
 }
 
-FString ARedemptionPlayerController::GetUserName()
+FString ARedemptionPlayerController::GetUserNameOfPlayer()
 {
 	return this->GameInstance->GetPlayerName();
 }

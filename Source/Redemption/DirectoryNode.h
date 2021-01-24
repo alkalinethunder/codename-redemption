@@ -53,5 +53,5 @@ public:
 	TArray<UFileNode*> GetChildFiles();
 
 	UFUNCTION()
-	UFileNode* CreateFile(FString InFileName, EFileType InFileType);
+	UFileNode* MakeFile(FString InFileName, EFileType InFileType);
 };

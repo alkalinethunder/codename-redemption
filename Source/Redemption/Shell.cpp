@@ -27,7 +27,7 @@ void UShell::PrepareFileSystem()
 	// a default /etc/hostname and use that
 	if (!fs->GetFileTextIfFileExists("/etc/hostname", this->Hostname))
 	{
-		this->Hostname = this->PlayerController->GetUserName() + "-pc";
+		this->Hostname = this->PlayerController->GetUserNameOfPlayer() + "-pc";
 		fs->TryWritingTextToFile("/etc/hostname", this->Hostname);
 	}
 	
