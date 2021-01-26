@@ -14,6 +14,7 @@
 #include "ShellManagementActor.h"
 #include "ShellCommandAsset.h"
 #include "GraphicalAppAsset.h"
+#include "NetPage.h"
 
 ARedemptionGameModeBase::ARedemptionGameModeBase()
 {
@@ -53,8 +54,32 @@ void ARedemptionGameModeBase::BeginPlay()
 		this->ShellManager = this->GetWorld()->SpawnActor<AShellManagementActor>();
 	}
 
+	for (UObject* asset : UAssetUtils::LoadAssetsOfClass(UNetPage::StaticClass()))
+	{
+		UNetPage* page = Cast<UNetPage>(asset);
+		if (page)
+		{
+			this->NetPages.Add(page);
+		}
+	}
+	
 	Super::BeginPlay();
 }
+
+UNetPage* ARedemptionGameModeBase::FindNetPage(FString InHost)
+{
+	UNetPage* page = nullptr;
+	for (UNetPage* test : this->NetPages)
+	{
+		if (test->HostName == InHost && test->PageWidget)
+		{
+			page = test;
+			break;
+		}
+	}
+	return page;
+}
+
 
 void ARedemptionGameModeBase::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {

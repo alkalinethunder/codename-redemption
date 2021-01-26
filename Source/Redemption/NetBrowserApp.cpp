@@ -3,7 +3,11 @@
 
 #include "NetBrowserApp.h"
 
+
+#include "NetPage.h"
 #include "Blueprint/WidgetTree.h"
+#include "RedemptionGameModeBase.h"
+#include "Windows/WindowsPlatformHttp.h"
 
 void UNetBrowserApp::HandleHtmlUrlChanged(const FText& InText)
 {
@@ -16,6 +20,12 @@ void UNetBrowserApp::HandleGoButton()
 	this->NavigateToUrl(this->AddressBar->GetText().ToString());
 }
 
+bool UNetBrowserApp::IsHttp(FString InProtocol)
+{
+	return InProtocol.ToLower() == "http" || InProtocol.ToLower() == "https";
+}
+
+
 void UNetBrowserApp::NavigateInternal(FString InUrl, bool AddToHistory)
 {
 	if (AddToHistory)
@@ -26,10 +36,18 @@ void UNetBrowserApp::NavigateInternal(FString InUrl, bool AddToHistory)
 	this->CurrentUrl = InUrl;
 	this->AddressBar->SetText(FText::FromString(this->CurrentUrl));
 
-	// TODO: in-game websites
-	if (false)
-	{
-		
+	FURL urlParse = FURL(nullptr, InUrl.GetCharArray().GetData(), ETravelType::TRAVEL_Absolute);
+	UNetPage* netPage = this->GameMode->FindNetPage(urlParse.Host);
+	if (netPage && !this->IsHttp(urlParse.Protocol))
+	{	
+		urlParse.Protocol = "net";
+		this->HtmlBrowser->SetVisibility(ESlateVisibility::Collapsed);
+		this->WebContent->SetVisibility(ESlateVisibility::Visible);
+		this->WebContent->ClearChildren();
+		UUserWidget* w = CreateWidget<UUserWidget, APlayerController>(this->GetOwningPlayer(), netPage->PageWidget);
+		this->WebContent->AddChild(w);
+		this->CurrentUrl = urlParse.ToString();
+		this->AddressBar->SetText(FText::FromString(this->CurrentUrl));
 	}
 	else
 	{
@@ -43,6 +61,8 @@ void UNetBrowserApp::NativeConstruct()
 {
 	Super::NativeConstruct();
 
+	this->GameMode = Cast<ARedemptionGameModeBase>(this->GetWorld()->GetAuthGameMode());
+	
 	this->HtmlBrowser->OnUrlChanged.AddUniqueDynamic(this, &UNetBrowserApp::HandleHtmlUrlChanged);
 
 	this->BackButton->OnClicked.AddUniqueDynamic(this, &UNetBrowserApp::GoBack);

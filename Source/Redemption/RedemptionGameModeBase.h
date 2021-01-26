@@ -17,6 +17,7 @@
 class URedemptionGameInstance;
 class ARedemptionPlayerState;
 class AShellManagementActor;
+class UNetPage;
 
 /**
  * 
@@ -27,6 +28,9 @@ class REDEMPTION_API ARedemptionGameModeBase : public AGameModeBase
 	GENERATED_BODY()
 
 private:
+	UPROPERTY()
+	TArray<UNetPage*> NetPages;
+	
 	UPROPERTY()
 	TArray<UGraphicalAppAsset*> Apps;
 	
@@ -46,6 +50,9 @@ public:
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Progression")
     int StartingUpgradePoints;
 
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="World")
+	UNetPage* DefaultNetBrowserHomePage;
+	
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Progression")
 	UProgressionLevelsListAsset* LevelsList;
 
@@ -81,6 +88,9 @@ public:
 	UFUNCTION(BlueprintCallable)
 	UShell* CreateShell(UConsoleWidget* InConsoleWidget, bool InLoginShell = false);
 
+	UFUNCTION()
+	UNetPage* FindNetPage(FString InHost);
+	
 	UFUNCTION()
 	UGraphicalAppAsset* FindApp(FString InName);
 	

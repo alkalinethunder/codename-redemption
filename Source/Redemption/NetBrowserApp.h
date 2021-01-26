@@ -51,6 +51,9 @@ protected:
 
 private:
 	UFUNCTION()
+	bool IsHttp(FString InProtocol);
+	
+	UFUNCTION()
 	void HandleAddressSubmission(const FText& InText, ETextCommit::Type InCommitType);
 	
 	UFUNCTION()
