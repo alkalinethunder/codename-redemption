@@ -6,13 +6,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="06c14ef7-907b-4990-b8f7-291c57d35a51" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Source/Redemption/NetPage.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Redemption/NetBrowserApp.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/NetBrowserApp.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Redemption/NetBrowserApp.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/NetBrowserApp.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Redemption/RedemptionGameModeBase.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/RedemptionGameModeBase.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Redemption/RedemptionGameModeBase.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/RedemptionGameModeBase.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -389,7 +384,7 @@
       <workItem from="1611461842919" duration="3838000" />
       <workItem from="1611512739944" duration="10957000" />
       <workItem from="1611618481723" duration="4822000" />
-      <workItem from="1611686585682" duration="5957000" />
+      <workItem from="1611686585682" duration="6884000" />
     </task>
     <servers />
   </component>

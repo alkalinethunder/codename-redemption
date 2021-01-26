@@ -11,8 +11,11 @@
 
 void UNetBrowserApp::HandleHtmlUrlChanged(const FText& InText)
 {
-	this->CurrentUrl = InText.ToString();
-	this->AddressBar->SetText(InText);
+	if (this->HtmlBrowser->GetVisibility() == ESlateVisibility::Visible)
+	{
+		this->CurrentUrl = InText.ToString();
+		this->AddressBar->SetText(InText);
+	}
 }
 
 void UNetBrowserApp::HandleGoButton()
@@ -39,7 +42,7 @@ void UNetBrowserApp::NavigateInternal(FString InUrl, bool AddToHistory)
 	FURL urlParse = FURL(nullptr, InUrl.GetCharArray().GetData(), ETravelType::TRAVEL_Absolute);
 	UNetPage* netPage = this->GameMode->FindNetPage(urlParse.Host);
 	if (netPage && !this->IsHttp(urlParse.Protocol))
-	{	
+	{		
 		urlParse.Protocol = "net";
 		this->HtmlBrowser->SetVisibility(ESlateVisibility::Collapsed);
 		this->WebContent->SetVisibility(ESlateVisibility::Visible);
@@ -48,6 +51,9 @@ void UNetBrowserApp::NavigateInternal(FString InUrl, bool AddToHistory)
 		this->WebContent->AddChild(w);
 		this->CurrentUrl = urlParse.ToString();
 		this->AddressBar->SetText(FText::FromString(this->CurrentUrl));
+
+		// Fixes a bug when watching youtube videos/playing audio then navigating to in-game pages
+		this->HtmlBrowser->LoadURL("about:blank");
 	}
 	else
 	{
