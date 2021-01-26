@@ -33811,6 +33811,8 @@
           <e p="GraphicalAppAsset.h" t="Include" />
           <e p="GuiHelpers.cpp" t="Include" />
           <e p="GuiHelpers.h" t="Include" />
+          <e p="NetBrowserApp.cpp" t="Include" />
+          <e p="NetBrowserApp.h" t="Include" />
           <e p="NewsFeedApp.cpp" t="Include" />
           <e p="NewsFeedApp.h" t="Include" />
           <e p="NewsFeedEntry.h" t="Include" />

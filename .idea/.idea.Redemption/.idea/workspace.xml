@@ -6,23 +6,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="06c14ef7-907b-4990-b8f7-291c57d35a51" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Source/Redemption/DayList.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/Redemption/GrapevinePost.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/Redemption/GrapevinePostType.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Redemption/NetBrowserApp.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Gui/Components/GrapevinePost.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Gui/Components/GrapevinePost.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/GuiFunctions.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/GuiFunctions.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Gui/Components/WidgetSwitcherTab.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Gui/Components/WidgetSwitcherTab.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Gui/OS/Desktop.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Gui/OS/Desktop.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Redemption/DesktopWidget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/DesktopWidget.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Redemption/DesktopWidget.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/DesktopWidget.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Redemption/NewsFeedApp.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/NewsFeedApp.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Redemption/NewsFeedApp.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/NewsFeedApp.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Redemption/Person.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/Person.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Redemption/RedemptionGameModeBase.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/RedemptionGameModeBase.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Redemption/RedemptionGameState.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/RedemptionGameState.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Redemption/RedemptionGameState.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/RedemptionGameState.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Redemption/RedemptionState.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Redemption/RedemptionState.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Gui/OS/DesktopSection.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Gui/OS/DesktopSection.uasset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +45,6 @@
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Source/Redemption/ConversationAppWidget.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/AppWidget.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/ExpectedFileType.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/ExpectedFileType.h" />
@@ -106,6 +95,7 @@
       <option value="$PROJECT_DIR$/Source/Redemption/NewsFeedApp.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/RedemptionGameState.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/Person.h" />
+      <option value="$PROJECT_DIR$/Source/Redemption/NetBrowserApp.h" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1mSCTesrzm0AEkY2lywPjJ7v9sD" />
@@ -396,7 +386,8 @@
       <workItem from="1611423868634" duration="17921000" />
       <workItem from="1611456655094" duration="4666000" />
       <workItem from="1611461842919" duration="3838000" />
-      <workItem from="1611512739944" duration="9355000" />
+      <workItem from="1611512739944" duration="10957000" />
+      <workItem from="1611618481723" duration="2023000" />
     </task>
     <servers />
   </component>
