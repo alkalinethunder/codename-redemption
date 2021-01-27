@@ -7,6 +7,7 @@
   <component name="ChangeListManager">
     <list default="true" id="06c14ef7-907b-4990-b8f7-291c57d35a51" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Gui/Displays/NetBrowser.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Gui/Displays/NetBrowser.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Redemption/NetBrowserApp.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/NetBrowserApp.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -384,7 +385,8 @@
       <workItem from="1611461842919" duration="3838000" />
       <workItem from="1611512739944" duration="10957000" />
       <workItem from="1611618481723" duration="4822000" />
-      <workItem from="1611686585682" duration="6884000" />
+      <workItem from="1611686585682" duration="8513000" />
+      <workItem from="1611760194845" duration="403000" />
     </task>
     <servers />
   </component>

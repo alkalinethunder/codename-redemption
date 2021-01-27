@@ -76,6 +76,15 @@ void UNetBrowserApp::NativeConstruct()
 	this->GoButton->OnClicked.AddUniqueDynamic(this, &UNetBrowserApp::HandleGoButton);
 
 	this->AddressBar->OnTextCommitted.AddUniqueDynamic(this, &UNetBrowserApp::HandleAddressSubmission);
+
+	if (this->GameMode->DefaultNetBrowserHomePage)
+	{
+		this->NavigateInternal("net://" + this->GameMode->DefaultNetBrowserHomePage->HostName, false);
+	}
+	else
+	{
+		this->NavigateInternal("about:blank", false);
+	}
 }
 
 void UNetBrowserApp::HandleAddressSubmission(const FText& InText, ETextCommit::Type InCommitType)
