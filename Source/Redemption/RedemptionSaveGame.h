@@ -11,6 +11,8 @@
 #include "DirectoryEntry.h"
 #include "ChatLog.h"
 #include "NewsFeedEntry.h"
+#include "Network.h"
+#include "Device.h"
 #include "RedemptionSaveGame.generated.h"
 
 /**
@@ -22,6 +24,12 @@ class REDEMPTION_API URedemptionSaveGame : public USaveGame
 	GENERATED_BODY()
 
 public:
+	UPROPERTY(BlueprintReadOnly, EditAnywhere)
+	TArray<FDevice> Devices;
+	
+	UPROPERTY(BlueprintReadOnly, EditAnywhere)
+	TArray<FNetwork> Networks;
+	
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)
 	float CurrentDaySeconds;
 

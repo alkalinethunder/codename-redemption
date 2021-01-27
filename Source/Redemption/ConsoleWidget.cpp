@@ -268,7 +268,11 @@ void UConsoleWidget::RecalculateTextSizes()
 	float width;
 	float height;
 	this->MeasureText(this->GetCachedGeometry(), AllText, width, height);
-	this->SetMinimumDesiredSize(FVector2D(width, height));
+
+	if (this->bEnableDesiredSizeMeasurement)
+	{
+		this->SetMinimumDesiredSize(FVector2D(width, height));
+	}
 }
 
 bool UConsoleWidget::GetColor(TCHAR InColorCode, FLinearColor& OutColor)

@@ -6,9 +6,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="06c14ef7-907b-4990-b8f7-291c57d35a51" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Source/Redemption/Device.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Redemption/DeviceType.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Redemption/Network.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Gui/Displays/NetBrowser.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Gui/Displays/NetBrowser.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Redemption/NetBrowserApp.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/NetBrowserApp.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Gui/OS/Desktop.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Gui/OS/Desktop.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Redemption/ConsoleWidget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/ConsoleWidget.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Redemption/ConsoleWidget.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/ConsoleWidget.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Redemption/RedemptionSaveGame.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/RedemptionSaveGame.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,12 +48,6 @@
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Source/Redemption/ShellAppExecutionCommand.cpp" />
-      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionGameInstance.cpp" />
-      <option value="$PROJECT_DIR$/Source/Redemption/CommandFlags.h" />
-      <option value="$PROJECT_DIR$/Source/Redemption/NewsFeedEntry.h" />
-      <option value="$PROJECT_DIR$/Source/Redemption/NewsFeedDisplay.h" />
-      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerController.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/Shell.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/FileNode.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/AppWidget.h" />
@@ -73,7 +73,6 @@
       <option value="$PROJECT_DIR$/Source/Redemption/GuiHelpers.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/DayOfWeek.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/DayOfWeek.h" />
-      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionSaveGame.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/WeekDay.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/GrapevinePostType.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/DayList.h" />
@@ -93,6 +92,13 @@
       <option value="$PROJECT_DIR$/Source/Redemption/RedemptionGameModeBase.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/NetBrowserApp.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/NetBrowserApp.cpp" />
+      <option value="$PROJECT_DIR$/Source/Redemption/ConsoleWidget.h" />
+      <option value="$PROJECT_DIR$/Source/Redemption/ConsoleWidget.cpp" />
+      <option value="$PROJECT_DIR$/Source/Redemption/Network.cpp" />
+      <option value="$PROJECT_DIR$/Source/Redemption/DeviceType.h" />
+      <option value="$PROJECT_DIR$/Source/Redemption/Device.h" />
+      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionSaveGame.h" />
+      <option value="$PROJECT_DIR$/Source/Redemption/Network.h" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1mSCTesrzm0AEkY2lywPjJ7v9sD" />
@@ -386,7 +392,7 @@
       <workItem from="1611512739944" duration="10957000" />
       <workItem from="1611618481723" duration="4822000" />
       <workItem from="1611686585682" duration="8513000" />
-      <workItem from="1611760194845" duration="403000" />
+      <workItem from="1611760194845" duration="3456000" />
     </task>
     <servers />
   </component>

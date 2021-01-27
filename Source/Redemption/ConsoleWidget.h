@@ -68,6 +68,9 @@ private:
 public:
 	UPROPERTY(BlueprintAssignable)
 	FOnTextSubmitted OnTextSubmitted;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	bool bEnableDesiredSizeMeasurement = false;
 	
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)
 	FSlateBrush Brush;
