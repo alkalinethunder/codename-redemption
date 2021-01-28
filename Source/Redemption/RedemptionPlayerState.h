@@ -71,6 +71,12 @@ public:
 	
 private:
 	UFUNCTION()
+	FDevice& GetPlayerDevice();
+	
+	UFUNCTION()
+	void GeneratePlayerNetwork();
+	
+	UFUNCTION()
 	void UpdateSkillState();
 
 	UFUNCTION()
@@ -97,7 +103,7 @@ public:
 	UFUNCTION()
 	void NotifyUpgradeUnlocked();
 	
-public:
+public:	
 	UFUNCTION(BlueprintPure)
 	UDesktopWidget* GetDesktop();
 	

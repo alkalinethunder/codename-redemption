@@ -7,6 +7,61 @@
 #include "ChatContact.h"
 #include "ConversationAppWidget.h"
 
+bool URedemptionSaveGame::DeviceTypeExistsInNetwork(const FNetwork& InNetwork, EDeviceType InDeviceType)
+{
+	bool result = false;
+	
+	for (const FDevice& dev : this->Devices)
+	{
+		if (InNetwork.Devices.Contains(dev.Id))
+		{
+			if (dev.DeviceType == InDeviceType)
+			{
+				result = true;
+				break;
+			}
+		}
+	}
+
+	return result;
+}
+
+int URedemptionSaveGame::GetNextDeviceId()
+{
+	int result = 0;
+	TArray<int> used;
+
+	for (FDevice& dev : this->Devices)
+	{
+		used.Add(dev.Id);
+	}
+
+	while (used.Contains(result))
+	{
+		result++;
+	}
+	
+	return result;
+}
+
+int URedemptionSaveGame::GetNextNetworkId()
+{
+	int result = 0;
+	TArray<int> used;
+
+	for (FNetwork& net : this->Networks)
+	{
+		used.Add(net.Id);
+	}
+
+	while (used.Contains(result))
+	{
+		result++;
+	}
+	
+	return result;
+}
+
 bool URedemptionSaveGame::FindFileIndex(int InFileId, int& OutIndex)
 {
 	bool result = false;

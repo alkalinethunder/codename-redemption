@@ -7,6 +7,7 @@ UENUM(BlueprintType)
 enum class EDeviceType : uint8
 {
 	Player,
+	Router,
 	Workstation,
 	NetServer,
 	Database,

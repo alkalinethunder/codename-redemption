@@ -29,6 +29,9 @@ public:
 	
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)
 	TArray<FNetwork> Networks;
+
+	UPROPERTY(BlueprintReadOnly, EditAnywhere)
+	int PlayernetworkId;
 	
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)
 	float CurrentDaySeconds;
@@ -79,6 +82,15 @@ public:
 	ESocialGuiState LastSocialState;
 
 public:
+	UFUNCTION()
+	bool DeviceTypeExistsInNetwork(const FNetwork& InNetwork, EDeviceType InDeviceType);
+
+	UFUNCTION()
+	int GetNextDeviceId();
+
+	UFUNCTION()
+	int GetNextNetworkId();
+	
 	UFUNCTION()
 	bool FindFileIndex(int InFileId, int& OutIndex);
 	

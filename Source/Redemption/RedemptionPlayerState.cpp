@@ -67,12 +67,14 @@ void ARedemptionPlayerState::BeginPlay()
 	this->GameMode = Cast<ARedemptionGameModeBase>(UGameplayStatics::GetGameMode(this));
 	
 	this->GameInstance->OnExperienceAdded.AddUniqueDynamic(this, &ARedemptionPlayerState::UpdateSkillState);
+
+	this->GeneratePlayerNetwork();
 	
 	this->UpdateSkillState();
 	this->SortUpgrades();
 
 	this->VirtualFileSystem = NewObject<UVirtualFileSystem>();
-	this->VirtualFileSystem->MountRootNode(this->GetSaveGame(), -1);
+	this->VirtualFileSystem->MountRootNode(this->GetSaveGame(), GetPlayerDevice().DiskRoot);
 	
 	this->Desktop = CreateWidget<UDesktopWidget, APlayerController>(UGameplayStatics::GetPlayerController(this, 0), this->GameMode->DesktopWidget);
 	this->Desktop->AddToViewport();
@@ -87,6 +89,69 @@ void ARedemptionPlayerState::Tick(float DeltaTime)
 UVirtualFileSystem* ARedemptionPlayerState::GetFileSystem()
 {
 	return this->VirtualFileSystem;
+}
+
+FDevice& ARedemptionPlayerState::GetPlayerDevice()
+{
+	int index = -1;
+
+	for (int i = 0; i < this->GameInstance->GetSaveGame()->Devices.Num(); i++)
+	{
+		if (this->GameInstance->GetSaveGame()->Devices[i].DeviceType == EDeviceType::Player)
+		{
+			index = i;
+			break;
+		}
+	}
+	
+	check(index > -1);
+
+	return this->GameInstance->GetSaveGame()->Devices[index];
+}
+
+void ARedemptionPlayerState::GeneratePlayerNetwork()
+{
+	bool foundNetwork = false;
+	for (FNetwork& net : this->GameInstance->GetSaveGame()->Networks)
+	{
+		if (this->GameInstance->GetSaveGame()->DeviceTypeExistsInNetwork(net, EDeviceType::Player))
+		{
+			foundNetwork = true;
+			this->GameInstance->GetSaveGame()->PlayernetworkId = net.Id;
+			break;
+		}
+	}
+
+	if (!foundNetwork)
+	{
+		FDevice device;
+		device.Id = this->GameInstance->GetSaveGame()->GetNextDeviceId();
+		device.DeviceType = EDeviceType::Player;
+		device.Name = "Your Computer";
+		device.Hostname = this->GameInstance->GetPlayerName() + "-pc";
+		device.LocalIP = "108";
+		device.DiskRoot = -1;
+
+		FDevice router;
+		router.Id = this->GameInstance->GetSaveGame()->GetNextDeviceId();
+		router.DeviceType = EDeviceType::Router;
+		router.Name = "Your Router";
+		router.LocalIP = "1";
+		router.DiskRoot = 0;
+
+		
+		FNetwork newNet;
+		newNet.Id = this->GameInstance->GetSaveGame()->GetNextNetworkId();
+		newNet.Name = "Your network (" + this->GameInstance->GetPlayerName() + ")";
+		newNet.Devices.Add(device.Id);
+		newNet.Devices.Add(router.Id);
+		newNet.LocalSubnet = "192.168.1";
+
+		this->GameInstance->GetSaveGame()->Devices.Add(router);
+		this->GameInstance->GetSaveGame()->Devices.Add(device);
+		this->GameInstance->GetSaveGame()->Networks.Add(newNet);
+		this->GameInstance->GetSaveGame()->PlayernetworkId = newNet.Id;
+	}
 }
 
 void ARedemptionPlayerState::UpdateSkillState()
