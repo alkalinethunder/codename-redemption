@@ -74,6 +74,9 @@ protected:
 
 private:
 	UFUNCTION()
+	void ToggleDND();
+	
+	UFUNCTION()
 	void HandleShellClose(UAppTabWidget* RequestingWidget);
 	
 	UFUNCTION()

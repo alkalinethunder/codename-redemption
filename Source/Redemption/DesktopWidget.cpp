@@ -11,6 +11,11 @@
 #include "AppWidget.h"
 #include "RedemptionGameState.h"
 
+void UDesktopWidget::ToggleDND()
+{
+	this->MyGameState->ToggleDoNotDisturb();
+}
+
 void UDesktopWidget::HandleShellClose(UAppTabWidget* RequestingWidget)
 {
 	UShellHostWidget* ShellHost = Cast<UShellHostWidget>(RequestingWidget->WidgetSwitcher->GetChildAt(RequestingWidget->TrackedIndex));
@@ -189,6 +194,8 @@ void UDesktopWidget::NativeConstruct()
 	}
 
 	this->CreateShellTrigger->OnClicked.AddUniqueDynamic(this, &UDesktopWidget::CreateShell);
+
+	this->DoNotDisturbToggle->OnClicked.AddUniqueDynamic(this, &UDesktopWidget::ToggleDND);
 }
 
 void UDesktopWidget::NativeTick(const FGeometry& MyGeometry, float InDeltaTime)
