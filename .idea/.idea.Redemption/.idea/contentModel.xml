@@ -33803,6 +33803,8 @@
           <e p="DiskNode.cpp" t="Include" />
           <e p="DiskNode.h" t="Include" />
           <e p="DisplayTarget.h" t="Include" />
+          <e p="EntryPoint.cpp" t="Include" />
+          <e p="EntryPoint.h" t="Include" />
           <e p="ExpectedFileType.h" t="Include" />
           <e p="FileData.h" t="Include" />
           <e p="FileNode.cpp" t="Include" />
@@ -33857,6 +33859,7 @@
           <e p="ShellManagementActor.cpp" t="Include" />
           <e p="ShellManagementActor.h" t="Include" />
           <e p="SocialGuiState.h" t="Include" />
+          <e p="SpawnFlags.h" t="Include" />
           <e p="UpgradeAsset.cpp" t="Include" />
           <e p="UpgradeAsset.h" t="Include" />
           <e p="UpgradeCategory.h" t="Include" />

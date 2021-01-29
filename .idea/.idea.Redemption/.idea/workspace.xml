@@ -6,8 +6,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="06c14ef7-907b-4990-b8f7-291c57d35a51" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Source/Redemption/DesktopWidget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/DesktopWidget.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Redemption/DesktopWidget.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/DesktopWidget.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Redemption/EntryPoint.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Redemption/SpawnFlags.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Gui/Components/ShellHost.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Gui/Components/ShellHost.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Redemption/PathUtils.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/PathUtils.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,9 +45,6 @@
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Source/Redemption/AppWidget.h" />
-      <option value="$PROJECT_DIR$/Source/Redemption/OperatingSystemApp.h" />
-      <option value="$PROJECT_DIR$/Source/Redemption/GraphicalAppAsset.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/OperatingSystemApp.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/NewsFeedEntry.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/VirtualFileSystem.h" />
@@ -92,6 +93,9 @@
       <option value="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerState.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/DesktopWidget.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/DesktopWidget.cpp" />
+      <option value="$PROJECT_DIR$/Source/Redemption/SpawnFlags.h" />
+      <option value="$PROJECT_DIR$/Source/Redemption/EntryPoint.h" />
+      <option value="$PROJECT_DIR$/Source/Redemption/PathUtils.cpp" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1mSCTesrzm0AEkY2lywPjJ7v9sD" />
@@ -385,7 +389,9 @@
       <workItem from="1611512739944" duration="10957000" />
       <workItem from="1611618481723" duration="4822000" />
       <workItem from="1611686585682" duration="8513000" />
-      <workItem from="1611760194845" duration="7425000" />
+      <workItem from="1611760194845" duration="8108000" />
+      <workItem from="1611879121597" duration="2909000" />
+      <workItem from="1611948460840" duration="303000" />
     </task>
     <servers />
   </component>

@@ -47,28 +47,31 @@ FString UPathUtils::GetAbsolutePath(FString InWorkingDirectory, FString InRelati
 	GetPathParts(InWorkingDirectory, workParts);
 	GetPathParts(InRelativePath, relParts);
 
-	for (FString part : workParts)
+	if (!InRelativePath.StartsWith("/"))
 	{
-		if (part == GetThisDirectoryString()) continue;
-		if (part == GetUpOneDirectoryString())
+		for (FString part : workParts)
 		{
-			if (stack.Num() > 0)
+			if (part == GetThisDirectoryString()) continue;
+			if (part == GetUpOneDirectoryString())
 			{
-				stack.RemoveAt(stack.Num() - 1);
+				if (stack.Num() > 0)
+				{
+					stack.RemoveAt(stack.Num() - 1);
+				}
+				continue;
 			}
-			continue;
-		}
 		
-		if (part == GetHomeDelimeterString())
-		{
-			stack.Empty();
-			stack.Add(GetHomeDelimeterString());
-			continue;
+			if (part == GetHomeDelimeterString())
+			{
+				stack.Empty();
+				stack.Add(GetHomeDelimeterString());
+				continue;
+			}
+
+			stack.Add(part);
 		}
-
-		stack.Add(part);
 	}
-
+	
 	for (FString part : relParts)
 	{
 		if (part == GetThisDirectoryString()) continue;
