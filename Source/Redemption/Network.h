@@ -13,6 +13,9 @@ struct FNetwork
 public:
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)
 	int Id;
+
+	UPROPERTY(BlueprintReadOnly, EditAnywhere)
+	FString AssetId;
 	
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)
 	FString Name;

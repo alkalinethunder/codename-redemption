@@ -16,6 +16,9 @@ public:
 	int Id;
 
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)
+	FString AssetId;
+	
+	UPROPERTY(BlueprintReadOnly, EditAnywhere)
 	int DiskRoot;
 	
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)

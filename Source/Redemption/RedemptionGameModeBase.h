@@ -5,6 +5,8 @@
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
 #include "Wallpaper.h"
+#include "SpecialDeviceAsset.h"
+#include "NetworkAsset.h"
 #include "ProgressionLevelsListAsset.h"
 #include "DesktopWidget.h"
 #include "ConsoleWidget.h"
@@ -28,6 +30,12 @@ class REDEMPTION_API ARedemptionGameModeBase : public AGameModeBase
 	GENERATED_BODY()
 
 private:
+	UPROPERTY()
+	TArray<UNetworkAsset*> NetworkAssets;
+
+	UPROPERTY()
+	TArray<USpecialDeviceAsset*> SpecialDevices;
+	
 	UPROPERTY()
 	TArray<UNetPage*> NetPages;
 	

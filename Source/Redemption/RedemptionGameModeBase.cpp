@@ -29,6 +29,25 @@ void ARedemptionGameModeBase::BeginPlay()
 {
 	this->GameInstance = Cast<URedemptionGameInstance>(this->GetWorld()->GetGameInstance());
 
+	for (UObject* asset : UAssetUtils::LoadAssetsOfClass(UNetworkAsset::StaticClass()))
+	{
+		UNetworkAsset* net = Cast<UNetworkAsset>(asset);
+		if (net)
+		{
+			this->NetworkAssets.Add(net);
+		}
+	}
+	
+	for (UObject* asset : UAssetUtils::LoadAssetsOfClass(USpecialDeviceAsset::StaticClass()))
+	{
+		USpecialDeviceAsset* net = Cast<USpecialDeviceAsset>(asset);
+		if (net)
+		{
+			this->SpecialDevices.Add(net);
+		}
+	}
+
+	
 	for (UObject* commandAsset : UAssetUtils::LoadAssetsOfClass(UShellCommandAsset::StaticClass()))
 	{
 		UShellCommandAsset* asset = Cast<UShellCommandAsset>(commandAsset);
