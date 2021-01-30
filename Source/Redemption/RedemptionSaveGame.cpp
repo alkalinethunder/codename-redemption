@@ -6,6 +6,24 @@
 #include "AssetUtils.h"
 #include "ChatContact.h"
 #include "ConversationAppWidget.h"
+#include "NetworkAsset.h"
+
+int URedemptionSaveGame::FindNetwork(UNetworkAsset* InNetworkAsset)
+{
+	int result = -1;
+
+	for (int i = 0; i < this->Networks.Num(); i++)
+	{
+		FNetwork net = this->Networks[i];
+		if (net.AssetId == InNetworkAsset->GetName())
+		{
+			result = i;
+			break;
+		}
+	}
+	
+	return result;
+}
 
 bool URedemptionSaveGame::DeviceTypeExistsInNetwork(const FNetwork& InNetwork, EDeviceType InDeviceType)
 {

@@ -85,9 +85,13 @@ public:
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "World")
 	EWeekDay DayOfWeek;
 
-	public:
+public:
 	ARedemptionGameModeBase();
 
+private:
+	UFUNCTION()
+	void GenerateNetworks();
+	
 protected:
 	virtual void BeginPlay() override;
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;

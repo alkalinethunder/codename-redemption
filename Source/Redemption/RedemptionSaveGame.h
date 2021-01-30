@@ -15,6 +15,7 @@
 #include "Device.h"
 #include "RedemptionSaveGame.generated.h"
 
+class UNetworkAsset;
 /**
  * Stores all of the player's progress and important game state.
  */
@@ -82,6 +83,9 @@ public:
 	ESocialGuiState LastSocialState;
 
 public:
+	UFUNCTION()
+	int FindNetwork(UNetworkAsset* InNetworkAsset);
+	
 	UFUNCTION()
 	bool DeviceTypeExistsInNetwork(const FNetwork& InNetwork, EDeviceType InDeviceType);
 

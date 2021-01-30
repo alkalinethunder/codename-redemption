@@ -6,16 +6,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="06c14ef7-907b-4990-b8f7-291c57d35a51" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Source/Redemption/Difficulty.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/Redemption/NetworkAsset.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/Redemption/NetworkType.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/Redemption/SpecialDeviceAsset.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Redemption/Device.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/Device.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Data/Networks/KidnapperVan.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Data/Networks/KidnapperVan.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Redemption/Network.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/Network.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Redemption/RedemptionGameModeBase.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/RedemptionGameModeBase.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Redemption/RedemptionGameModeBase.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/RedemptionGameModeBase.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Redemption/RedemptionGameState.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/RedemptionGameState.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Redemption/RedemptionGameState.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/RedemptionGameState.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Redemption/RedemptionSaveGame.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/RedemptionSaveGame.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Redemption/RedemptionSaveGame.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/RedemptionSaveGame.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,9 +70,7 @@
       <option value="$PROJECT_DIR$/Source/Redemption/RedemptionState.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/RedemptionState.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/NewsFeedApp.h" />
-      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionGameState.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/NewsFeedApp.cpp" />
-      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionGameState.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/Person.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/Redemption.Build.cs" />
       <option value="$PROJECT_DIR$/Source/Redemption/NetPage.h" />
@@ -83,9 +80,7 @@
       <option value="$PROJECT_DIR$/Source/Redemption/ConsoleWidget.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/Network.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/DeviceType.h" />
-      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionSaveGame.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerState.h" />
-      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionSaveGame.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerState.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/DesktopWidget.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/DesktopWidget.cpp" />
@@ -97,8 +92,12 @@
       <option value="$PROJECT_DIR$/Source/Redemption/NetworkAsset.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/SpecialDeviceAsset.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/Device.h" />
-      <option value="$PROJECT_DIR$/Source/Redemption/Network.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/RedemptionGameModeBase.h" />
+      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionGameState.h" />
+      <option value="$PROJECT_DIR$/Source/Redemption/Network.h" />
+      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionGameState.cpp" />
+      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionSaveGame.h" />
+      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionSaveGame.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/RedemptionGameModeBase.cpp" />
     </changedPaths>
   </component>
@@ -396,7 +395,7 @@
       <workItem from="1611760194845" duration="8108000" />
       <workItem from="1611879121597" duration="2909000" />
       <workItem from="1611948460840" duration="2474000" />
-      <workItem from="1611952924984" duration="1091000" />
+      <workItem from="1611952924984" duration="4176000" />
     </task>
     <servers />
   </component>

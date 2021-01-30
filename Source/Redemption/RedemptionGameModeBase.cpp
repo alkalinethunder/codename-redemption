@@ -25,6 +25,36 @@ ARedemptionGameModeBase::ARedemptionGameModeBase()
 	this->GameStateClass = ARedemptionGameState::StaticClass();
 }
 
+void ARedemptionGameModeBase::GenerateNetworks()
+{
+	TArray<UNetworkAsset*> missing;
+	for (UNetworkAsset* net : this->NetworkAssets)
+	{
+		int i = this->GameInstance->GetSaveGame()->FindNetwork(net);
+		if (i != -1)
+		{
+			FNetwork& netRef = this->GameInstance->GetSaveGame()->Networks[i];
+			netRef.Name = net->Name.ToString();
+			netRef.HostName = net->HostName;
+		}
+		else
+		{
+			missing.Add(net);
+		}
+	}
+
+	for (UNetworkAsset* net : missing)
+	{
+		FNetwork NewNet;
+		NewNet.AssetId = net->GetName();
+		NewNet.Id = this->GameInstance->GetSaveGame()->GetNextNetworkId();
+		NewNet.Name = net->Name.ToString();
+		NewNet.HostName = net->HostName;
+
+		this->GameInstance->GetSaveGame()->Networks.Add(NewNet);
+	}
+}
+
 void ARedemptionGameModeBase::BeginPlay()
 {
 	this->GameInstance = Cast<URedemptionGameInstance>(this->GetWorld()->GetGameInstance());
@@ -81,6 +111,8 @@ void ARedemptionGameModeBase::BeginPlay()
 			this->NetPages.Add(page);
 		}
 	}
+
+	this->GenerateNetworks();
 	
 	Super::BeginPlay();
 }

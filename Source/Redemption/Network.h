@@ -16,6 +16,9 @@ public:
 
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)
 	FString AssetId;
+
+	UPROPERTY(BlueprintReadOnly, EditAnywhere)
+	bool IsHacked = false;
 	
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)
 	FString Name;

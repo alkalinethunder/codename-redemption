@@ -133,6 +133,9 @@ public:
 	
 public:
 	UFUNCTION(Exec)
+	void ListNets();
+	
+	UFUNCTION(Exec)
 	void AddContact(FString InContactName);
 	
 	UFUNCTION(Exec)

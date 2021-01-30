@@ -288,6 +288,15 @@ int ARedemptionGameState::GetHour()
 	return this->Hour;
 }
 
+void ARedemptionGameState::ListNets()
+{
+	for (FNetwork& net : this->MyGameInstance->GetSaveGame()->Networks)
+	{
+		FString log = FString::FromInt(net.Id) + " - name: " + net.Name + ", hacked: " + (net.IsHacked ? "yes" : "no");
+		UGameplayStatics::GetPlayerController(this->GetWorld(), 0)->ClientMessage(log);
+	}
+}
+
 void ARedemptionGameState::AddContact(FString InContactName)
 {
 	for (UChatContact* contact : this->Contacts)
