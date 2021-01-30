@@ -25,6 +25,46 @@ ARedemptionGameModeBase::ARedemptionGameModeBase()
 	this->GameStateClass = ARedemptionGameState::StaticClass();
 }
 
+void ARedemptionGameModeBase::SpawnSpecialDevices()
+{
+	for (UNetworkAsset* net : this->NetworkAssets)
+	{
+		int i = this->GameInstance->GetSaveGame()->FindNetwork(net);
+		for (USpecialDeviceAsset* specDev : net->SpecialDevices)
+		{
+			int devIndex = this->GameInstance->GetSaveGame()->FindDevice(specDev);
+			if (devIndex != -1)
+			{
+				FDevice& devData = this->GameInstance->GetSaveGame()->Devices[devIndex];
+				devData.Name = specDev->Name.ToString();
+				devData.Hostname = specDev->HostName;
+				devData.DeviceType = specDev->DeviceType;
+				devData.Difficulty = specDev->Difficulty;
+				
+				FNetwork& netData = this->GameInstance->GetSaveGame()->Networks[i];
+				if (!netData.Devices.Contains(devData.Id))
+				{
+					netData.Devices.Add(devData.Id);
+				}
+			}
+			else
+			{
+				FDevice dev;
+				dev.Id = this->GameInstance->GetSaveGame()->GetNextDeviceId();
+				dev.DeviceType = specDev->DeviceType;
+				dev.Name = specDev->Name.ToString();
+				dev.Hostname = specDev->HostName;
+				dev.AssetId = specDev->GetName();
+				dev.Difficulty = specDev->Difficulty;
+				
+				FNetwork& netData = this->GameInstance->GetSaveGame()->Networks[i];
+				netData.Devices.Add(dev.Id);
+				this->GameInstance->GetSaveGame()->Devices.Add(dev);
+			}
+		}
+	}
+}
+
 void ARedemptionGameModeBase::GenerateNetworks()
 {
 	TArray<UNetworkAsset*> missing;
@@ -36,6 +76,7 @@ void ARedemptionGameModeBase::GenerateNetworks()
 			FNetwork& netRef = this->GameInstance->GetSaveGame()->Networks[i];
 			netRef.Name = net->Name.ToString();
 			netRef.HostName = net->HostName;
+			netRef.Difficulty = net->Difficulty;
 		}
 		else
 		{
@@ -50,6 +91,7 @@ void ARedemptionGameModeBase::GenerateNetworks()
 		NewNet.Id = this->GameInstance->GetSaveGame()->GetNextNetworkId();
 		NewNet.Name = net->Name.ToString();
 		NewNet.HostName = net->HostName;
+		NewNet.Difficulty = net->Difficulty;
 
 		this->GameInstance->GetSaveGame()->Networks.Add(NewNet);
 	}
@@ -113,6 +155,7 @@ void ARedemptionGameModeBase::BeginPlay()
 	}
 
 	this->GenerateNetworks();
+	this->SpawnSpecialDevices();
 	
 	Super::BeginPlay();
 }

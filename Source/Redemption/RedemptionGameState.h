@@ -23,6 +23,9 @@ class REDEMPTION_API ARedemptionGameState : public AGameStateBase
 
 private:
 	UPROPERTY()
+	FRandomStream Random;
+	
+	UPROPERTY()
 	TArray<UPerson*> People;
 	
 	UPROPERTY()
@@ -79,6 +82,12 @@ public:
 	ARedemptionGameState();
 
 private:
+	UFUNCTION()
+	FString GeneratePublicIP();
+	
+	UFUNCTION()
+	void AssignIPAddresses();
+	
 	UFUNCTION()
 	void PostGrapevineAds();
 	

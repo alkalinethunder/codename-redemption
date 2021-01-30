@@ -90,6 +90,9 @@ public:
 
 private:
 	UFUNCTION()
+	void SpawnSpecialDevices();
+	
+	UFUNCTION()
 	void GenerateNetworks();
 	
 protected:

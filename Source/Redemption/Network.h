@@ -3,6 +3,9 @@
 #pragma once
 
 #include "CoreMinimal.h"
+
+#include "Difficulty.h"
+
 #include "Network.generated.h"
 
 USTRUCT(BlueprintType)
@@ -32,6 +35,9 @@ public:
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)
 	FString LocalSubnet;
 
+	UPROPERTY(BlueprintReadOnly, EditAnywhere)
+	EDifficulty Difficulty;
+	
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)
 	TArray<int> Devices;
 };

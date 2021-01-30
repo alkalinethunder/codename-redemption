@@ -13,6 +13,8 @@
 #include "NewsFeedEntry.h"
 #include "Network.h"
 #include "Device.h"
+#include "SpecialDeviceAsset.h"
+
 #include "RedemptionSaveGame.generated.h"
 
 class UNetworkAsset;
@@ -83,6 +85,9 @@ public:
 	ESocialGuiState LastSocialState;
 
 public:
+	UFUNCTION()
+	int FindDevice(USpecialDeviceAsset* InSpecialDevice);
+	
 	UFUNCTION()
 	int FindNetwork(UNetworkAsset* InNetworkAsset);
 	

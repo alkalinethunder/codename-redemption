@@ -21,6 +21,35 @@ ARedemptionGameState::ARedemptionGameState()
 	PrimaryActorTick.bCanEverTick = true;
 }
 
+FString ARedemptionGameState::GeneratePublicIP()
+{
+	int b1 = this->Random.RandRange(12, 253);
+	int b2 = this->Random.RandRange(12, 253);
+	int b3 = this->Random.RandRange(12, 253);
+	int b4 = this->Random.RandRange(12, 253);
+	return FString::FromInt(b1) + "." + FString::FromInt(b2) + "." + FString::FromInt(b3) + "." + FString::FromInt(b4);
+}
+
+void ARedemptionGameState::AssignIPAddresses()
+{
+	TArray<FString> takenIPs;
+	for (FNetwork& net : this->MyGameInstance->GetSaveGame()->Networks)
+	{
+		if (net.IPAddress.TrimEnd().Len())
+		{
+			takenIPs.Add(net.IPAddress);
+		}
+		else
+		{
+			do
+			{
+				net.IPAddress = this->GeneratePublicIP();
+			} while (takenIPs.Contains(net.IPAddress));
+			takenIPs.Add(net.IPAddress);
+		}
+	}
+}
+
 void ARedemptionGameState::PostGrapevineAds()
 {
 	for (UGrapevinePost* post : this->GrapevinePosts)
@@ -119,6 +148,8 @@ void ARedemptionGameState::BeginPlay()
 	// resume the day/night cycle
 	this->CurrentDay = static_cast<int>(this->MyGameInstance->GetSaveGame()->CurrentDayOfWeek);
 	this->WorldClock = this->MyGameInstance->GetSaveGame()->CurrentDaySeconds;
+
+	this->AssignIPAddresses();
 }
 
 // Called every frame
@@ -292,7 +323,7 @@ void ARedemptionGameState::ListNets()
 {
 	for (FNetwork& net : this->MyGameInstance->GetSaveGame()->Networks)
 	{
-		FString log = FString::FromInt(net.Id) + " - name: " + net.Name + ", hacked: " + (net.IsHacked ? "yes" : "no");
+		FString log = FString::FromInt(net.Id) + " - name: " + net.Name + ", hacked: " + (net.IsHacked ? "yes" : "no") + ", public IP: " + net.IPAddress + ", hostname: " + net.HostName;
 		UGameplayStatics::GetPlayerController(this->GetWorld(), 0)->ClientMessage(log);
 	}
 }

@@ -8,6 +8,21 @@
 #include "ConversationAppWidget.h"
 #include "NetworkAsset.h"
 
+int URedemptionSaveGame::FindDevice(USpecialDeviceAsset* InSpecialDevice)
+{
+	int result = -1;
+	for (int i = 0; i < this->Devices.Num(); i++)
+	{
+		FDevice& dev = this->Devices[i];
+		if (dev.AssetId == InSpecialDevice->GetName())
+		{
+			result = i;
+			break;
+		}
+	}
+	return result;
+}
+
 int URedemptionSaveGame::FindNetwork(UNetworkAsset* InNetworkAsset)
 {
 	int result = -1;

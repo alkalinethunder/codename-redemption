@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "DeviceType.h"
+#include "Difficulty.h"
 #include "Device.generated.h"
 
 USTRUCT(BlueprintType)
@@ -29,6 +30,9 @@ public:
 
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)
 	FString Name;
+
+	UPROPERTY(BlueprintReadOnly, EditAnywhere)
+	EDifficulty Difficulty;
 
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)
 	EDeviceType DeviceType;
