@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "UObject/Object.h"
+#include "Network.h"
 #include "NetworkNode.generated.h"
 
 class UNetworkManager;
@@ -23,6 +24,10 @@ private:
 	UPROPERTY()
 	int NetworkId;
 
+private:
+	UFUNCTION()
+	FNetwork& GetNetwork();
+	
 public:
 	UFUNCTION()
 	void Init(UNetworkManager* InNetManager, int InNetId);
@@ -36,4 +41,14 @@ public:
 public:
 	UFUNCTION(BlueprintPure)
 	int GetNetworkId();
+
+	UFUNCTION(BlueprintPure)
+	FString GetNetworkName();
+
+	UFUNCTION(BlueprintPure)
+    FString GetHostName();
+
+	UFUNCTION(BlueprintPure)
+    FString GetIPAddress();
+
 };

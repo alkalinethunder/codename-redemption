@@ -3,6 +3,15 @@
 
 #include "NetworkNode.h"
 #include "NetworkManager.h"
+#include "RedemptionGameInstance.h"
+#include "RedemptionGameState.h"
+
+FNetwork& UNetworkNode::GetNetwork()
+{
+	int index = this->NetworkManager->GetGameState()->GetGameInstance()->GetSaveGame()->GetNetworkIndex(this->NetworkId);
+	check (index != -1);
+	return this->NetworkManager->GetGameState()->GetGameInstance()->GetSaveGame()->Networks[index];
+}
 
 void UNetworkNode::Init(UNetworkManager* InNetManager, int InNetId)
 {
@@ -50,4 +59,23 @@ TArray<UNetworkNode*> UNetworkNode::TraceRoute(UNetworkNode* InDestination)
 int UNetworkNode::GetNetworkId()
 {
 	return this->NetworkId;
+}
+
+FString UNetworkNode::GetNetworkName()
+{
+	return this->GetNetwork().Name;
+}
+
+FString UNetworkNode::GetHostName()
+{
+	FNetwork& net = this->GetNetwork();
+	if (net.HostName.Len())
+		return net.HostName;
+	else
+		return this->GetIPAddress();
+}
+
+FString UNetworkNode::GetIPAddress()
+{
+	return this->GetNetwork().IPAddress;
 }
