@@ -3,8 +3,10 @@
 #pragma once
 
 #include "CoreMinimal.h"
-
+#include "NetworkType.h"
 #include "Difficulty.h"
+#include "Hackable.h"
+
 
 #include "Network.generated.h"
 
@@ -17,6 +19,9 @@ public:
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)
 	int Id;
 
+	UPROPERTY(BlueprintReadOnly, EditAnywhere)
+	ENetworkType NetworkType;
+	
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)
 	FString AssetId;
 
@@ -37,6 +42,9 @@ public:
 
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)
 	EDifficulty Difficulty;
+
+	UPROPERTY(BlueprintReadOnly, EditAnywhere)
+	TArray<FHackable> Hackables;
 	
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)
 	TArray<int> Devices;

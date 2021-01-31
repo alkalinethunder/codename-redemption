@@ -9,6 +9,7 @@
 #include "RedemptionGameInstance.h"
 #include "RedemptionPlayerController.h"
 #include "DesktopWidget.h"
+#include "GameStructUtils.h"
 #include "RedemptionPlayerState.h"
 #include "RedemptionGameState.h"
 #include "ShellManagementActor.h"
@@ -38,7 +39,11 @@ void ARedemptionGameModeBase::SpawnSpecialDevices()
 				FDevice& devData = this->GameInstance->GetSaveGame()->Devices[devIndex];
 				devData.Name = specDev->Name.ToString();
 				devData.Hostname = specDev->HostName;
-				devData.DeviceType = specDev->DeviceType;
+				if (devData.DeviceType != specDev->DeviceType)
+				{
+					devData.DeviceType = specDev->DeviceType;
+					UGameStructUtils::DeleteUnhackedHackables(devData);
+				}
 				devData.Difficulty = specDev->Difficulty;
 				
 				FNetwork& netData = this->GameInstance->GetSaveGame()->Networks[i];

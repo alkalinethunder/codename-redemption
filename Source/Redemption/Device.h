@@ -5,6 +5,8 @@
 #include "CoreMinimal.h"
 #include "DeviceType.h"
 #include "Difficulty.h"
+#include "Hackable.h"
+
 #include "Device.generated.h"
 
 USTRUCT(BlueprintType)
@@ -36,4 +38,7 @@ public:
 
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)
 	EDeviceType DeviceType;
+
+	UPROPERTY(BlueprintReadOnly, EditAnywhere)
+	TArray<FHackable> Hackables;
 };

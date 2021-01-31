@@ -33811,15 +33811,20 @@
           <e p="FileNode.cpp" t="Include" />
           <e p="FileNode.h" t="Include" />
           <e p="FileType.h" t="Include" />
+          <e p="GameStructUtils.cpp" t="Include" />
+          <e p="GameStructUtils.h" t="Include" />
           <e p="GrapevinePost.h" t="Include" />
           <e p="GrapevinePostType.h" t="Include" />
           <e p="GraphicalAppAsset.h" t="Include" />
           <e p="GuiHelpers.cpp" t="Include" />
           <e p="GuiHelpers.h" t="Include" />
+          <e p="Hackable.h" t="Include" />
+          <e p="HackableType.h" t="Include" />
           <e p="NetBrowserApp.cpp" t="Include" />
           <e p="NetBrowserApp.h" t="Include" />
           <e p="NetPage.cpp" t="Include" />
           <e p="NetPage.h" t="Include" />
+          <e p="NetRoute.h" t="Include" />
           <e p="Network.h" t="Include" />
           <e p="NetworkAsset.h" t="Include" />
           <e p="NetworkType.h" t="Include" />

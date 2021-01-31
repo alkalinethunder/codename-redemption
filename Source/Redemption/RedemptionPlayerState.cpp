@@ -132,6 +132,8 @@ void ARedemptionPlayerState::GeneratePlayerNetwork()
 		device.LocalIP = "108";
 		device.DiskRoot = -1;
 
+		this->GameInstance->GetSaveGame()->Devices.Add(device);
+		
 		FDevice router;
 		router.Id = this->GameInstance->GetSaveGame()->GetNextDeviceId();
 		router.DeviceType = EDeviceType::Router;
@@ -139,6 +141,7 @@ void ARedemptionPlayerState::GeneratePlayerNetwork()
 		router.LocalIP = "1";
 		router.DiskRoot = 0;
 
+		this->GameInstance->GetSaveGame()->Devices.Add(router);
 		
 		FNetwork newNet;
 		newNet.Id = this->GameInstance->GetSaveGame()->GetNextNetworkId();
@@ -147,8 +150,6 @@ void ARedemptionPlayerState::GeneratePlayerNetwork()
 		newNet.Devices.Add(router.Id);
 		newNet.LocalSubnet = "192.168.1";
 
-		this->GameInstance->GetSaveGame()->Devices.Add(router);
-		this->GameInstance->GetSaveGame()->Devices.Add(device);
 		this->GameInstance->GetSaveGame()->Networks.Add(newNet);
 		this->GameInstance->GetSaveGame()->PlayernetworkId = newNet.Id;
 	}

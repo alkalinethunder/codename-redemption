@@ -14,7 +14,7 @@
 #include "Network.h"
 #include "Device.h"
 #include "SpecialDeviceAsset.h"
-
+#include "NetRoute.h"
 #include "RedemptionSaveGame.generated.h"
 
 class UNetworkAsset;
@@ -27,6 +27,9 @@ class REDEMPTION_API URedemptionSaveGame : public USaveGame
 	GENERATED_BODY()
 
 public:
+	UPROPERTY(BlueprintReadOnly, EditAnywhere)
+	TArray<FNetRoute> Routes;
+	
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)
 	TArray<FDevice> Devices;
 	

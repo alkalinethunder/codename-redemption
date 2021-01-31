@@ -83,6 +83,15 @@ public:
 
 private:
 	UFUNCTION()
+	void MakeISPs();
+	
+	UFUNCTION()
+	void CreateMissingRouters();
+	
+	UFUNCTION()
+	void AssignLocalIPs();
+	
+	UFUNCTION()
 	FString GeneratePublicIP();
 	
 	UFUNCTION()
@@ -141,6 +150,9 @@ public:
 	int GetHour();
 	
 public:
+	UFUNCTION(Exec)
+	void ListDevices();
+	
 	UFUNCTION(Exec)
 	void ListNets();
 	
