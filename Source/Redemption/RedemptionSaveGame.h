@@ -89,6 +89,15 @@ public:
 
 public:
 	UFUNCTION()
+	int GetNetworkIndex(int NetworkId);
+
+	UFUNCTION()
+	int GetConnectionCount(int ISP);
+	
+	UFUNCTION()
+	bool NetworkHasISP(int NetworkId);
+	
+	UFUNCTION()
 	int FindDevice(USpecialDeviceAsset* InSpecialDevice);
 	
 	UFUNCTION()

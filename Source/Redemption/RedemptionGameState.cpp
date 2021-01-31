@@ -22,6 +22,46 @@ ARedemptionGameState::ARedemptionGameState()
 	PrimaryActorTick.bCanEverTick = true;
 }
 
+void ARedemptionGameState::MakeRoutes()
+{
+	TArray<int> ispIDs;
+	TArray<int> nonIspIDs;
+
+	// Get all network IDs.
+	for (FNetwork& net : this->MyGameInstance->GetSaveGame()->Networks)
+	{
+		if (net.NetworkType == ENetworkType::InternetServiceProvider)
+		{
+			ispIDs.Add(net.Id);
+		}
+		else
+		{
+			nonIspIDs.Add(net.Id);
+		}
+	}
+
+	// Give all client nets an Internet Service Provider.
+	for (int net : nonIspIDs)
+	{
+		if (!this->MyGameInstance->GetSaveGame()->NetworkHasISP(net))
+		{
+			for (int isp : ispIDs)
+			{
+				int connCount = this->MyGameInstance->GetSaveGame()->GetConnectionCount(isp);
+				if (connCount < 5)
+				{
+					FNetRoute route;
+					route.Start = net;
+					route.End = isp;
+					this->MyGameInstance->GetSaveGame()->Routes.Add(route);
+				}
+			}
+		}
+	}
+
+	
+}
+
 void ARedemptionGameState::MakeISPs()
 {
 	// so there are a few rules to be known here.
@@ -268,6 +308,7 @@ void ARedemptionGameState::BeginPlay()
 
 	this->MakeISPs();
 	this->CreateMissingRouters();
+	this->MakeRoutes();
 	this->AssignIPAddresses();
 	this->AssignLocalIPs();
 }

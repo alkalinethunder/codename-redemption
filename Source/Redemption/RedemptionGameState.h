@@ -83,6 +83,9 @@ public:
 
 private:
 	UFUNCTION()
+	void MakeRoutes();
+	
+	UFUNCTION()
 	void MakeISPs();
 	
 	UFUNCTION()

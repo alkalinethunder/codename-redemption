@@ -8,6 +8,79 @@
 #include "ConversationAppWidget.h"
 #include "NetworkAsset.h"
 
+int URedemptionSaveGame::GetNetworkIndex(int NetworkId)
+{
+	int result = -1;
+
+	for (int i = 0; i < this->Networks.Num(); i++)
+	{
+		if (this->Networks[i].Id == NetworkId)
+		{
+			result = i;
+			break;
+		}
+	}
+	
+	return result;
+}
+
+int URedemptionSaveGame::GetConnectionCount(int ISP)
+{
+	int count = 0;
+
+	for (FNetRoute& route : this->Routes)
+	{
+		int i = -1;
+		if (route.Start == ISP)
+		{
+			i = this->GetNetworkIndex(route.End);
+		}
+		else if (route.End == ISP)
+		{
+			i = this->GetNetworkIndex(route.Start);
+		}
+
+		if (i != -1)
+		{
+			if (this->Networks[i].NetworkType != ENetworkType::InternetServiceProvider)
+			{
+				count++;
+			}
+		}
+	}
+	
+	return count;
+}
+
+bool URedemptionSaveGame::NetworkHasISP(int NetworkId)
+{
+	bool result = false;
+
+	for (FNetRoute route : this->Routes)
+	{
+		int i = -1;
+		if (route.Start == NetworkId)
+		{
+			i = this->GetNetworkIndex(route.End);
+		}
+		else if (route.End == NetworkId)
+		{
+			i = this->GetNetworkIndex(route.Start);
+		}
+
+		if (i != -1)
+		{
+			if (this->Networks[i].NetworkType == ENetworkType::InternetServiceProvider)
+			{
+				result = true;
+				break;
+			}
+		}
+	}
+	
+	return result;
+}
+
 int URedemptionSaveGame::FindDevice(USpecialDeviceAsset* InSpecialDevice)
 {
 	int result = -1;
