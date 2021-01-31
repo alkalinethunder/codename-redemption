@@ -22,6 +22,31 @@ void UNetworkNode::AddConnection(UNetworkNode* InNode)
 	this->Connections.Add(InNode);
 }
 
+TArray<UNetworkNode*> UNetworkNode::TraceRoute(UNetworkNode* InDestination)
+{
+	TArray<UNetworkNode*> route;
+
+	route.Add(this);
+	
+	if (this->Connections.Contains(InDestination))
+	{
+		route.Add(InDestination);
+	}
+	else
+	{
+		for (UNetworkNode* conn : this->Connections)
+		{
+			TArray<UNetworkNode*> trace = conn->TraceRoute(InDestination);
+			if (trace.Contains(InDestination))
+			{
+				route.Append(trace);
+			}
+		}
+	}
+	
+	return route;
+}
+
 int UNetworkNode::GetNetworkId()
 {
 	return this->NetworkId;

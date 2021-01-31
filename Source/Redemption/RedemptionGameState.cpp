@@ -551,3 +551,38 @@ void ARedemptionGameState::LoadedContacts()
 	}
 }
 
+void ARedemptionGameState::TraceNetRoute(int Start, int Destination)
+{
+	UNetworkNode* startNode = this->GetNetworkManager()->GetNetworkNode(Start);
+	UNetworkNode* destNode = this->GetNetworkManager()->GetNetworkNode(Destination);
+
+	APlayerController* pc = UGameplayStatics::GetPlayerController(this->GetWorld(), 0);
+	
+	if (!startNode)
+	{
+		pc->ClientMessage("non-existent starting network ID.");
+		return;
+	}
+
+	if (!destNode)
+	{
+		pc->ClientMessage("non-existent destination network ID.");
+		return;
+	}
+
+	TArray<UNetworkNode*> trace = startNode->TraceRoute(destNode);
+
+	if (trace.Num())
+	{
+		for (UNetworkNode* node : trace)
+		{
+			FString log = FString::FromInt(node->GetNetworkId());
+			pc->ClientMessage(log);
+		}
+	}
+	else
+	{
+		pc->ClientMessage("could not trace a path between the two networks, this is a bug.");
+	}
+}
+

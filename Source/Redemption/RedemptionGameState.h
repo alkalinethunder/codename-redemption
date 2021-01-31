@@ -175,4 +175,7 @@ public:
 	
 	UFUNCTION(Exec)
 	void LoadedContacts();
+
+	UFUNCTION(Exec)
+	void TraceNetRoute(int Start, int Destination);
 };

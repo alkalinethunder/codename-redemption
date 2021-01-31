@@ -29,6 +29,9 @@ public:
 
 	UFUNCTION()
 	void AddConnection(UNetworkNode* InNode);
+
+	UFUNCTION()
+	TArray<UNetworkNode*> TraceRoute(UNetworkNode* InDestination);
 	
 public:
 	UFUNCTION(BlueprintPure)
