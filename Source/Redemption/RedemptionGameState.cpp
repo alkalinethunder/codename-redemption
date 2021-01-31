@@ -59,7 +59,27 @@ void ARedemptionGameState::MakeRoutes()
 		}
 	}
 
-	
+	// Connect ISPs to each other, completing the Web.
+	for (int isp : ispIDs)
+	{
+		if (!this->MyGameInstance->GetSaveGame()->NetworkHasISP(isp))
+		{
+			for (int peer : ispIDs)
+			{
+				if (peer == isp)
+					continue;
+
+				int peerCount = this->MyGameInstance->GetSaveGame()->GetPeerCount(peer);
+				if (peerCount < 2)
+				{
+					FNetRoute route;
+					route.Start = isp;
+					route.End = peer;
+					this->MyGameInstance->GetSaveGame()->Routes.Add(route);
+				}
+			}
+		}
+	}
 }
 
 void ARedemptionGameState::MakeISPs()
@@ -311,6 +331,9 @@ void ARedemptionGameState::BeginPlay()
 	this->MakeRoutes();
 	this->AssignIPAddresses();
 	this->AssignLocalIPs();
+
+	this->NetworkManager = NewObject<UNetworkManager>();
+	this->NetworkManager->Init(this);
 }
 
 // Called every frame
@@ -407,6 +430,11 @@ TArray<UUpgradeAsset*> ARedemptionGameState::GetAllUpgrades()
 	return this->Upgrades;
 }
 
+URedemptionGameInstance* ARedemptionGameState::GetGameInstance()
+{
+	return this->MyGameInstance;
+}
+
 UChatContact* ARedemptionGameState::GetContactByName(FString InName)
 {
 	UChatContact* result = nullptr;
@@ -432,6 +460,11 @@ void ARedemptionGameState::ToggleDoNotDisturb()
 {
 	this->bDoNotDisturb = !this->bDoNotDisturb;
 	this->DoNotDisturbChanged.Broadcast(this->bDoNotDisturb);
+}
+
+UNetworkManager* ARedemptionGameState::GetNetworkManager()
+{
+	return this->NetworkManager;
 }
 
 AConversationManager* ARedemptionGameState::GetConversationManager()

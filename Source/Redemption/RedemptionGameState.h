@@ -10,6 +10,8 @@
 #include "ChatContact.h"
 #include "RedemptionGameModeBase.h"
 #include "GrapevinePost.h"
+#include "NetworkManager.h"
+
 #include "RedemptionGameState.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FContactAddedEvent);
@@ -22,6 +24,9 @@ class REDEMPTION_API ARedemptionGameState : public AGameStateBase
 	GENERATED_BODY()
 
 private:
+	UPROPERTY()
+	UNetworkManager* NetworkManager;
+	
 	UPROPERTY()
 	FRandomStream Random;
 	
@@ -119,6 +124,9 @@ public:
 	TArray<UUpgradeAsset*> GetAllUpgrades();
 
 	UFUNCTION()
+	URedemptionGameInstance* GetGameInstance();
+	
+	UFUNCTION()
 	UChatContact* GetContactByName(FString InName);
 
 public:
@@ -127,6 +135,9 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void ToggleDoNotDisturb();
+
+	UFUNCTION(BlueprintPure)
+	UNetworkManager* GetNetworkManager();
 	
 	UFUNCTION(BlueprintPure)
 	AConversationManager* GetConversationManager();

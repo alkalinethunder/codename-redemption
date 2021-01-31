@@ -92,6 +92,9 @@ public:
 	int GetNetworkIndex(int NetworkId);
 
 	UFUNCTION()
+    int GetPeerCount(int ISP);
+	
+	UFUNCTION()
 	int GetConnectionCount(int ISP);
 	
 	UFUNCTION()
