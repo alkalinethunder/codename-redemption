@@ -72,6 +72,9 @@ public:
 private:
 	UFUNCTION()
 	FDevice& GetPlayerDevice();
+
+	UFUNCTION()
+	FNetwork& GetPlayerNetwork();
 	
 	UFUNCTION()
 	void GeneratePlayerNetwork();
@@ -91,6 +94,9 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 public:
+	UFUNCTION(BlueprintPure)
+	UNetworkNode* GetMyNetwork();
+	
 	UFUNCTION(BlueprintPure)
 	UVirtualFileSystem* GetFileSystem();
 	

@@ -33796,6 +33796,8 @@
           <e p="DesktopWidget.cpp" t="Include" />
           <e p="DesktopWidget.h" t="Include" />
           <e p="Device.h" t="Include" />
+          <e p="DeviceNode.cpp" t="Include" />
+          <e p="DeviceNode.h" t="Include" />
           <e p="DeviceType.h" t="Include" />
           <e p="Difficulty.h" t="Include" />
           <e p="DirectoryEntry.h" t="Include" />

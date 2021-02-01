@@ -9,6 +9,8 @@
 
 class UConsoleWidget;
 class UVirtualFileSystem;
+class UNetworkManager;
+class UNetworkNode;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FCommandCompletedEvent);
 
@@ -73,6 +75,12 @@ protected:
 
 	UFUNCTION(BlueprintPure)
 	FString RelativeToAbsolutePath(FString InPath);
+
+	UFUNCTION(BlueprintPure)
+	UNetworkManager* GetNetworkManager();
+
+	UFUNCTION(BlueprintPure)
+	UNetworkNode* GetMyNetwork();
 	
 public:
 	UFUNCTION()

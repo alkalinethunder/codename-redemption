@@ -86,6 +86,11 @@ void ARedemptionPlayerState::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 }
 
+UNetworkNode* ARedemptionPlayerState::GetMyNetwork()
+{
+	return this->GameState->GetNetworkManager()->GetNetworkNode(this->GetPlayerNetwork().Id);
+}
+
 UVirtualFileSystem* ARedemptionPlayerState::GetFileSystem()
 {
 	return this->VirtualFileSystem;
@@ -107,6 +112,22 @@ FDevice& ARedemptionPlayerState::GetPlayerDevice()
 	check(index > -1);
 
 	return this->GameInstance->GetSaveGame()->Devices[index];
+}
+
+FNetwork& ARedemptionPlayerState::GetPlayerNetwork()
+{
+	int i = -1;
+	int devon = this->GetPlayerDevice().Id;
+	for (int j = 0; j < this->GameInstance->GetSaveGame()->Networks.Num(); j++)
+	{
+		if (this->GameInstance->GetSaveGame()->Networks[j].Devices.Contains(devon))
+		{
+			i = j;
+			break;
+		}
+	}
+	check (i != -1);
+	return this->GameInstance->GetSaveGame()->Networks[i];
 }
 
 void ARedemptionPlayerState::GeneratePlayerNetwork()

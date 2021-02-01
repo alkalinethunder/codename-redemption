@@ -70,3 +70,20 @@ UNetworkNode* UNetworkManager::GetNetworkNode(int InNetworkId)
 	
 	return result;
 }
+
+bool UNetworkManager::ResolveNetworkAddress(FString IPAddress, UNetworkNode*& OutNetwork)
+{
+	UNetworkNode* result = nullptr;
+
+	for (UNetworkNode* node : this->Nodes)
+	{
+		if (node->GetHostName() == IPAddress || node->GetIPAddress() == IPAddress)
+		{
+			result = node;
+			break;
+		}
+	}
+	
+	OutNetwork = result;
+	return result != nullptr;
+}

@@ -8,6 +8,7 @@
 #include "NetworkNode.generated.h"
 
 class UNetworkManager;
+class UDeviceNode;
 
 UCLASS(BlueprintType)
 class REDEMPTION_API UNetworkNode : public UObject
@@ -15,6 +16,9 @@ class REDEMPTION_API UNetworkNode : public UObject
 	GENERATED_BODY()
 
 private:
+	UPROPERTY()
+	TArray<UDeviceNode*> Devices;
+	
 	UPROPERTY()
 	TArray<UNetworkNode*> Connections;
 	
@@ -34,11 +38,11 @@ public:
 
 	UFUNCTION()
 	void AddConnection(UNetworkNode* InNode);
-
-	UFUNCTION()
-	TArray<UNetworkNode*> TraceRoute(UNetworkNode* InDestination);
 	
 public:
+	UFUNCTION(BlueprintCallable)
+    TArray<UNetworkNode*> TraceRoute(UNetworkNode* InDestination);
+
 	UFUNCTION(BlueprintPure)
 	int GetNetworkId();
 

@@ -5,6 +5,7 @@
 #include "NetworkManager.h"
 #include "RedemptionGameInstance.h"
 #include "RedemptionGameState.h"
+#include "DeviceNode.h"
 
 FNetwork& UNetworkNode::GetNetwork()
 {
@@ -20,6 +21,13 @@ void UNetworkNode::Init(UNetworkManager* InNetManager, int InNetId)
 
 	this->NetworkManager = InNetManager;
 	this->NetworkId = InNetId;
+
+	for (int deviceId : this->GetNetwork().Devices)
+	{
+		UDeviceNode* node = NewObject<UDeviceNode>();
+		node->Init(this, deviceId);
+		this->Devices.Add(node);
+	}
 }
 
 void UNetworkNode::AddConnection(UNetworkNode* InNode)

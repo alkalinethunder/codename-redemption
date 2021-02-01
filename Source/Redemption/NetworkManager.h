@@ -31,4 +31,7 @@ public:
 public:
 	UFUNCTION(BlueprintPure)
 	UNetworkNode* GetNetworkNode(int InNetworkId);
+
+	UFUNCTION(BlueprintPure)
+	bool ResolveNetworkAddress(FString IPAddress, UNetworkNode*& OutNetwork);
 };

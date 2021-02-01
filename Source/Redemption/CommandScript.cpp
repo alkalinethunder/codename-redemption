@@ -4,7 +4,11 @@
 #include "CommandScript.h"
 #include "ConsoleWidget.h"
 #include "PathUtils.h"
+#include "RedemptionGameState.h"
 #include "RedemptionPlayerController.h"
+#include "NetworkNode.h"
+#include "NetworkManager.h"
+#include "RedemptionPlayerState.h"
 
 UWorld* UCommandScript::GetWorld() const
 {
@@ -75,6 +79,19 @@ TArray<FString> UCommandScript::GetArguments()
 FString UCommandScript::RelativeToAbsolutePath(FString InPath)
 {
 	return UPathUtils::GetAbsolutePath(this->WorkingDirectory, InPath);
+}
+
+UNetworkManager* UCommandScript::GetNetworkManager()
+{
+	ARedemptionPlayerController* pc = Cast<ARedemptionPlayerController>(this->GetConsole()->GetOwningPlayer());
+	ARedemptionGameState* gs = Cast<ARedemptionGameState>(pc->GetWorld()->GetGameState());
+	return gs->GetNetworkManager();
+}
+
+UNetworkNode* UCommandScript::GetMyNetwork()
+{
+	ARedemptionPlayerState* ps = this->GetConsole()->GetOwningPlayer()->GetPlayerState<ARedemptionPlayerState>();
+	return ps->GetMyNetwork();
 }
 
 void UCommandScript::Begin(FString InCommandName, TArray<FString> InArgs, FString InWorkingDirectory,
