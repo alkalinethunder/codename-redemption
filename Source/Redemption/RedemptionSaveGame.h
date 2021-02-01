@@ -17,6 +17,7 @@
 #include "NetRoute.h"
 #include "RedemptionSaveGame.generated.h"
 
+class UDesktopEnvironment;
 class UNetworkAsset;
 /**
  * Stores all of the player's progress and important game state.
@@ -27,6 +28,9 @@ class REDEMPTION_API URedemptionSaveGame : public USaveGame
 	GENERATED_BODY()
 
 public:
+	UPROPERTY(BlueprintReadOnly, EditAnywhere)
+	UDesktopEnvironment* PlayerDesktop;
+	
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)
 	TArray<FNetRoute> Routes;
 	

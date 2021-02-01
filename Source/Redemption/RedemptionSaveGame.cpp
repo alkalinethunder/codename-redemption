@@ -2,11 +2,11 @@
 
 
 #include "RedemptionSaveGame.h"
-
 #include "AssetUtils.h"
 #include "ChatContact.h"
 #include "ConversationAppWidget.h"
 #include "NetworkAsset.h"
+#include "DesktopEnvironment.h"
 
 int URedemptionSaveGame::GetNetworkIndex(int NetworkId)
 {

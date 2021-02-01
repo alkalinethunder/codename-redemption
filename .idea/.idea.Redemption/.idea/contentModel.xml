@@ -33793,6 +33793,7 @@
           <e p="ConvoBranch.h" t="Include" />
           <e p="ConvoChoice.h" t="Include" />
           <e p="DayList.h" t="Include" />
+          <e p="DesktopEnvironment.h" t="Include" />
           <e p="DesktopWidget.cpp" t="Include" />
           <e p="DesktopWidget.h" t="Include" />
           <e p="Device.h" t="Include" />

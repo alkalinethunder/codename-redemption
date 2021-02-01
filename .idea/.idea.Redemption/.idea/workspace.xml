@@ -6,17 +6,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="06c14ef7-907b-4990-b8f7-291c57d35a51" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Source/Redemption/DeviceNode.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Redemption/DesktopEnvironment.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Redemption/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Redemption/CommandScript.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/CommandScript.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Redemption/CommandScript.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/CommandScript.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Redemption/NetworkManager.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/NetworkManager.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Redemption/NetworkManager.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/NetworkManager.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Redemption/NetworkNode.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/NetworkNode.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Redemption/NetworkNode.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/NetworkNode.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Levels/MainMenu.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Levels/MainMenu.umap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Levels/OS.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Levels/OS.umap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Modes/Campaign.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Modes/Campaign.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Redemption/RedemptionGameModeBase.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/RedemptionGameModeBase.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerState.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerState.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerState.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerState.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Redemption/RedemptionSaveGame.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/RedemptionSaveGame.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Redemption/RedemptionSaveGame.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Redemption/RedemptionSaveGame.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +51,6 @@
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Source/Redemption/DayOfWeek.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/DayOfWeek.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/WeekDay.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/GrapevinePostType.h" />
@@ -79,7 +78,6 @@
       <option value="$PROJECT_DIR$/Source/Redemption/Difficulty.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/NetworkAsset.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/SpecialDeviceAsset.h" />
-      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionGameModeBase.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/Hackable.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/HackableType.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/Device.h" />
@@ -88,8 +86,6 @@
       <option value="$PROJECT_DIR$/Source/Redemption/GameStructUtils.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/NetRoute.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/Network.h" />
-      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionSaveGame.h" />
-      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionSaveGame.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/RedemptionGameState.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/RedemptionGameState.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/DeviceNode.h" />
@@ -98,10 +94,14 @@
       <option value="$PROJECT_DIR$/Source/Redemption/NetworkManager.h" />
       <option value="$PROJECT_DIR$/Source/Redemption/NetworkManager.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/CommandScript.h" />
-      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerState.h" />
-      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerState.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/CommandScript.cpp" />
       <option value="$PROJECT_DIR$/Source/Redemption/NetworkNode.h" />
+      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionGameModeBase.h" />
+      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionSaveGame.h" />
+      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionSaveGame.cpp" />
+      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerState.h" />
+      <option value="$PROJECT_DIR$/Source/Redemption/RedemptionPlayerState.cpp" />
+      <option value="$PROJECT_DIR$/Source/Redemption/DesktopEnvironment.h" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1mSCTesrzm0AEkY2lywPjJ7v9sD" />
@@ -401,7 +401,12 @@
       <workItem from="1611952924984" duration="4176000" />
       <workItem from="1612025550455" duration="14820000" />
       <workItem from="1612099473614" duration="11082000" />
-      <workItem from="1612138712415" duration="1828000" />
+      <workItem from="1612138712415" duration="2429000" />
+      <workItem from="1612143962841" duration="1688000" />
+      <workItem from="1612146114041" duration="812000" />
+      <workItem from="1612183427652" duration="1415000" />
+      <workItem from="1612190827339" duration="1676000" />
+      <workItem from="1612199594618" duration="2006000" />
     </task>
     <servers />
   </component>

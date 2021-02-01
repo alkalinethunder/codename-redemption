@@ -10,6 +10,7 @@
 #include "ProgressionLevelsListAsset.h"
 #include "DesktopWidget.h"
 #include "ConsoleWidget.h"
+#include "DesktopEnvironment.h"
 #include "Shell.h"
 #include "ShellCommandAsset.h"
 #include "GraphicalAppAsset.h"
@@ -65,7 +66,7 @@ public:
 	UProgressionLevelsListAsset* LevelsList;
 
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Progression")
-	TSubclassOf<UDesktopWidget> DesktopWidget;
+	UDesktopEnvironment* DesktopWidget;
 	
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "OS")
 	FString PlayerHostName = "localhost";

@@ -2,6 +2,8 @@
 
 
 #include "RedemptionPlayerState.h"
+
+#include "AssetUtils.h"
 #include "RedemptionGameInstance.h"
 #include "Kismet/GameplayStatics.h"
 #include "RedemptionGameModeBase.h"
@@ -40,6 +42,11 @@ UDesktopWidget* ARedemptionPlayerState::GetDesktop()
 	return this->Desktop;
 }
 
+TArray<UDesktopEnvironment*> ARedemptionPlayerState::GetDesktopEnvironments()
+{
+	return this->Desktops;
+}
+
 TArray<UUpgradeAsset*> ARedemptionPlayerState::GetAvailableUpgrades()
 {
 	return this->AvailableUpgrades;
@@ -62,6 +69,15 @@ void ARedemptionPlayerState::BeginPlay()
 {
 	Super::BeginPlay();
 
+	for (UObject* asset : UAssetUtils::LoadAssetsOfClass(UDesktopEnvironment::StaticClass()))
+	{
+		UDesktopEnvironment* env = Cast<UDesktopEnvironment>(asset);
+		if (env)
+		{
+			this->Desktops.Add(env);
+		}
+	}
+	
 	this->GameState = Cast<ARedemptionGameState>(this->GetWorld()->GetGameState());
 	this->GameInstance = Cast<URedemptionGameInstance>(this->GetGameInstance());
 	this->GameMode = Cast<ARedemptionGameModeBase>(UGameplayStatics::GetGameMode(this));
@@ -75,8 +91,15 @@ void ARedemptionPlayerState::BeginPlay()
 
 	this->VirtualFileSystem = NewObject<UVirtualFileSystem>();
 	this->VirtualFileSystem->MountRootNode(this->GetSaveGame(), GetPlayerDevice().DiskRoot);
-	
-	this->Desktop = CreateWidget<UDesktopWidget, APlayerController>(UGameplayStatics::GetPlayerController(this, 0), this->GameMode->DesktopWidget);
+
+	if (this->GameInstance->GetSaveGame()->PlayerDesktop)
+	{
+		this->Desktop = CreateWidget<UDesktopWidget, APlayerController>(UGameplayStatics::GetPlayerController(this, 0), this->GameInstance->GetSaveGame()->PlayerDesktop->WidgetClass);
+	}
+	else
+	{
+		this->Desktop = CreateWidget<UDesktopWidget, APlayerController>(UGameplayStatics::GetPlayerController(this, 0), this->GameMode->DesktopWidget->WidgetClass);
+	}
 	this->Desktop->AddToViewport();
 }
 
@@ -276,6 +299,39 @@ bool ARedemptionPlayerState::IsUpgradeUnlocked(UUpgradeAsset* Upgrade)
 	return Upgrade && Upgrade->IsUnlocked(this);
 }
 
+bool ARedemptionPlayerState::SetDefaultDesktop(UDesktopEnvironment* InDesktopEnvironment)
+{
+	if (!InDesktopEnvironment)
+		return false;
+
+	if (!InDesktopEnvironment->WidgetClass)
+		return false;
+
+	bool result = true;
+
+	for (UUpgradeAsset* upg : InDesktopEnvironment->RequiredUpgrades)
+	{
+		if (!upg->IsUnlocked(this))
+		{
+			result = false;
+			break;
+		}
+	}
+
+	if (result)
+	{
+		this->GameInstance->GetSaveGame()->PlayerDesktop = InDesktopEnvironment;
+
+		APlayerController* owner = this->Desktop->GetOwningPlayer();
+		
+		this->Desktop->RemoveFromParent();
+		this->Desktop = CreateWidget<UDesktopWidget, APlayerController>(owner, InDesktopEnvironment->WidgetClass);
+		this->Desktop->AddToViewport();
+	}
+	
+	return result;
+}
+
 int ARedemptionPlayerState::GetTotalXP()
 {
 	return this->TotalXP;
@@ -291,4 +347,15 @@ int ARedemptionPlayerState::GetLevel()
 {
 	return this->Level;
 }
+
+void ARedemptionPlayerState::ListDesktops()
+{
+	APlayerController* pc = UGameplayStatics::GetPlayerController(this->GetWorld(), 0);
+
+	for (UDesktopEnvironment* desk : this->Desktops)
+	{
+		pc->ClientMessage(desk->GetName());
+	}
+}
+
 

@@ -8,6 +8,8 @@
 #include "VirtualFileSystem.h"
 #include "UpgradeAsset.h"
 #include "RedemptionGameState.h"
+#include "Kismet/GameplayStatics.h"
+
 #include "RedemptionPlayerState.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnUserLevelUp, FProgressionLevel, InLevel);
@@ -19,6 +21,9 @@ class REDEMPTION_API ARedemptionPlayerState : public APlayerState
 	GENERATED_BODY()
 
 private:
+	UPROPERTY()
+	TArray<UDesktopEnvironment*> Desktops;
+	
 	UPROPERTY()
 	UVirtualFileSystem* VirtualFileSystem;
 	
@@ -112,6 +117,9 @@ public:
 public:	
 	UFUNCTION(BlueprintPure)
 	UDesktopWidget* GetDesktop();
+
+	UFUNCTION(BlueprintPure)
+	TArray<UDesktopEnvironment*> GetDesktopEnvironments();
 	
 	UFUNCTION(BlueprintPure)
 	TArray<UUpgradeAsset*> GetAvailableUpgrades();
@@ -139,4 +147,11 @@ public:
 
 	UFUNCTION(BlueprintPure)
 	bool IsUpgradeUnlocked(UUpgradeAsset* Upgrade);
+
+	UFUNCTION(BlueprintCallable)
+	bool SetDefaultDesktop(UDesktopEnvironment* InDesktopEnvironment);
+	
+public:
+	UFUNCTION(Exec)
+	void ListDesktops();
 };
