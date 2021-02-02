@@ -93,6 +93,9 @@ public:
 
 public:
 	UFUNCTION()
+	int MapDevice(int InDeviceId);
+	
+	UFUNCTION()
 	int GetNetworkIndex(int NetworkId);
 
 	UFUNCTION()

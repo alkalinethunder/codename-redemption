@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "UObject/Object.h"
 #include "NetworkNode.h"
+#include "Hackable.h"
 #include "NetworkManager.generated.h"
 
 class ARedemptionGameState;
@@ -29,6 +30,9 @@ public:
 	ARedemptionGameState* GetGameState();
 
 public:
+	UFUNCTION(BlueprintCallable)
+	bool GetHackables(UNetworkNode* InNetwork, FString InHost, TArray<FHackable>& OutHackables);
+	
 	UFUNCTION(BlueprintPure)
 	UNetworkNode* GetNetworkNode(int InNetworkId);
 

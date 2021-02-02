@@ -6,7 +6,7 @@
 UENUM(BlueprintType)
 enum class EDeviceType : uint8
 {
-	Player,
+	Player UMETA(Hidden),
 	Router,
 	Workstation,
 	NetServer,
@@ -20,5 +20,7 @@ enum class EDeviceType : uint8
 	CarInfotainment,
 	CellTower,
 	AutomatedTeller,
-	LotteryTerminal
+	LotteryTerminal,
+
+	NUM_DeviceType UMETA(Hidden),
 };

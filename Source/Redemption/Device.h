@@ -41,4 +41,7 @@ public:
 
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)
 	TArray<FHackable> Hackables;
+
+	UPROPERTY(BlueprintReadOnly, EditAnywhere)
+	bool bNeedsHackables = true;
 };

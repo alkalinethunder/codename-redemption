@@ -38,11 +38,17 @@ public:
 
 	UFUNCTION()
 	void AddConnection(UNetworkNode* InNode);
+
+	UFUNCTION()
+	bool ResolveLocalDevice(FString InHost, int& OutDeviceIndex);
 	
 public:
 	UFUNCTION(BlueprintCallable)
     TArray<UNetworkNode*> TraceRoute(UNetworkNode* InDestination);
 
+	UFUNCTION(BlueprintType)
+	EDifficulty GetDifficulty();
+	
 	UFUNCTION(BlueprintPure)
 	int GetNetworkId();
 

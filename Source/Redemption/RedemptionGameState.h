@@ -11,7 +11,7 @@
 #include "RedemptionGameModeBase.h"
 #include "GrapevinePost.h"
 #include "NetworkManager.h"
-
+#include "HackableAsset.h"
 #include "RedemptionGameState.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FContactAddedEvent);
@@ -24,6 +24,9 @@ class REDEMPTION_API ARedemptionGameState : public AGameStateBase
 	GENERATED_BODY()
 
 private:
+	UPROPERTY()
+	TArray<UHackableAsset*> Hackables;
+	
 	UPROPERTY()
 	UNetworkManager* NetworkManager;
 	
@@ -164,6 +167,9 @@ public:
 	int GetHour();
 	
 public:
+	UFUNCTION(Exec)
+	void GenerateHackables(int DeviceIndex, EDifficulty Difficulty);
+	
 	UFUNCTION(Exec)
 	void ListDevices();
 	

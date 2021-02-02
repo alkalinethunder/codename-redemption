@@ -33822,6 +33822,8 @@
           <e p="GuiHelpers.cpp" t="Include" />
           <e p="GuiHelpers.h" t="Include" />
           <e p="Hackable.h" t="Include" />
+          <e p="HackableAsset.cpp" t="Include" />
+          <e p="HackableAsset.h" t="Include" />
           <e p="HackableType.h" t="Include" />
           <e p="NetBrowserApp.cpp" t="Include" />
           <e p="NetBrowserApp.h" t="Include" />
@@ -33838,6 +33840,8 @@
           <e p="NewsFeedApp.cpp" t="Include" />
           <e p="NewsFeedApp.h" t="Include" />
           <e p="NewsFeedEntry.h" t="Include" />
+          <e p="NmapCommand.cpp" t="Include" />
+          <e p="NmapCommand.h" t="Include" />
           <e p="OperatingSystemApp.h" t="Include" />
           <e p="PathUtils.cpp" t="Include" />
           <e p="PathUtils.h" t="Include" />

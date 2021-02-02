@@ -266,6 +266,15 @@ void ARedemptionGameState::BeginPlay()
 	Super::BeginPlay();
 
 	this->MyGameInstance = Cast<URedemptionGameInstance>(this->GetWorld()->GetGameInstance());
+
+	for (UObject* asset : UAssetUtils::LoadAssetsOfClass(UHackableAsset::StaticClass()))
+	{
+		UHackableAsset* hackable = Cast<UHackableAsset>(asset);
+		if (hackable)
+		{
+			this->Hackables.Add(hackable);
+		}
+	}
 	
 	for (UObject* asset : UAssetUtils::LoadAssetsOfClass(UConversation::StaticClass()))
 	{
@@ -511,6 +520,18 @@ void ARedemptionGameState::ActivateConversation(UChatContact* InContact, UConver
 int ARedemptionGameState::GetHour()
 {
 	return this->Hour;
+}
+
+void ARedemptionGameState::GenerateHackables(int DeviceIndex, EDifficulty Difficulty)
+{
+	FDevice& dev = this->MyGameInstance->GetSaveGame()->Devices[DeviceIndex];
+
+	if (dev.bNeedsHackables)
+	{
+		UGameStructUtils::DeleteUnhackedHackables(dev);
+
+		
+	}
 }
 
 void ARedemptionGameState::ListDevices()

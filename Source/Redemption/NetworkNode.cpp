@@ -39,6 +39,29 @@ void UNetworkNode::AddConnection(UNetworkNode* InNode)
 	this->Connections.Add(InNode);
 }
 
+bool UNetworkNode::ResolveLocalDevice(FString InHost, int& OutDeviceIndex)
+{
+	FString subnet = this->GetNetwork().LocalSubnet;
+	for (int deviceId : this->GetNetwork().Devices)
+	{
+		int i = this->NetworkManager->GetGameState()->GetGameInstance()->GetSaveGame()->MapDevice(deviceId);
+		if (i != -1)
+		{
+			FDevice dev = this->NetworkManager->GetGameState()->GetGameInstance()->GetSaveGame()->Devices[i];
+			FString ip = subnet + "." + dev.LocalIP;
+			FString host = dev.Hostname.Len() ? dev.Hostname : ip;
+
+			if (InHost == ip || InHost == host)
+			{
+				OutDeviceIndex = i;
+				return true;
+			}
+		}
+	}
+
+	return false;
+}
+
 TArray<UNetworkNode*> UNetworkNode::TraceRoute(UNetworkNode* InDestination)
 {
 	TArray<UNetworkNode*> route;
@@ -62,6 +85,11 @@ TArray<UNetworkNode*> UNetworkNode::TraceRoute(UNetworkNode* InDestination)
 	}
 	
 	return route;
+}
+
+EDifficulty UNetworkNode::GetDifficulty()
+{
+	return this->GetNetwork().Difficulty;
 }
 
 int UNetworkNode::GetNetworkId()

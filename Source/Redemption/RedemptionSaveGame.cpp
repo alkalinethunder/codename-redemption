@@ -8,6 +8,22 @@
 #include "NetworkAsset.h"
 #include "DesktopEnvironment.h"
 
+int URedemptionSaveGame::MapDevice(int InDeviceId)
+{
+	int result = -1;
+
+	for (int i = 0; i < this->Devices.Num(); i++)
+	{
+		if (this->Devices[i].Id == InDeviceId)
+		{
+			result = i;
+			break;
+		}
+	}
+	
+	return result;
+}
+
 int URedemptionSaveGame::GetNetworkIndex(int NetworkId)
 {
 	int result = -1;

@@ -55,6 +55,22 @@ ARedemptionGameState* UNetworkManager::GetGameState()
 	return this->GameState;
 }
 
+bool UNetworkManager::GetHackables(UNetworkNode* InNetwork, FString InHost, TArray<FHackable>& OutHackables)
+{
+	if (!InNetwork)
+		return false;
+
+	int localDevice;
+	if (InNetwork->ResolveLocalDevice(InHost, localDevice))
+	{
+		this->GameState->GenerateHackables(localDevice, InNetwork->GetDifficulty());
+		OutHackables = this->GameState->GetGameInstance()->GetSaveGame()->Devices[localDevice].Hackables;
+		return true;
+	}
+
+	return false;
+}
+
 UNetworkNode* UNetworkManager::GetNetworkNode(int InNetworkId)
 {
 	UNetworkNode* result = nullptr;
