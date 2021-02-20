@@ -8,6 +8,36 @@
 #include "NetworkAsset.h"
 #include "DesktopEnvironment.h"
 
+FString URedemptionSaveGame::GetAvailableLocalIP(int NetworkId)
+{
+	FString result = "";
+	
+	int netIndex = this->MapNetwork(NetworkId);
+	if (netIndex > -1)
+	{
+		FNetwork net = this->Networks[netIndex];
+		TArray<FString> taken;
+
+		for (FDevice& dev : this->Devices)
+		{
+			if (net.Devices.Contains(dev.Id))
+			{
+				taken.Add(dev.LocalIP);
+			}
+		}
+
+		int i = 0;
+
+		do
+		{
+			result = FString::FromInt(i);
+			i++;
+		} while (taken.Contains(result));
+	}
+
+	return result;
+}
+
 int URedemptionSaveGame::MapDevice(int InDeviceId)
 {
 	int result = -1;
@@ -15,6 +45,22 @@ int URedemptionSaveGame::MapDevice(int InDeviceId)
 	for (int i = 0; i < this->Devices.Num(); i++)
 	{
 		if (this->Devices[i].Id == InDeviceId)
+		{
+			result = i;
+			break;
+		}
+	}
+	
+	return result;
+}
+
+int URedemptionSaveGame::MapNetwork(int InNetworkId)
+{
+	int result = -1;
+
+	for (int i = 0; i < this->Networks.Num(); i++)
+	{
+		if (this->Networks[i].Id == InNetworkId)
 		{
 			result = i;
 			break;

@@ -93,7 +93,13 @@ public:
 
 public:
 	UFUNCTION()
+	FString GetAvailableLocalIP(int NetworkId);
+	
+	UFUNCTION()
 	int MapDevice(int InDeviceId);
+
+	UFUNCTION()
+	int MapNetwork(int InNetworkId);
 	
 	UFUNCTION()
 	int GetNetworkIndex(int NetworkId);

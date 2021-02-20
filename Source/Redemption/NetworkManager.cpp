@@ -6,6 +6,22 @@
 #include "RedemptionGameInstance.h"
 #include "RedemptionGameState.h"
 
+UNetworkNode* UNetworkManager::MapNetwork(FString InHost)
+{
+	UNetworkNode* result = nullptr;
+
+	for (UNetworkNode* node : this->Nodes)
+	{
+		if (node->GetHostName() == InHost || node->GetIPAddress() == InHost)
+		{
+			result = node;
+			break;
+		}
+	}
+	
+	return result;
+}
+
 void UNetworkManager::Init(ARedemptionGameState* InGameState)
 {
 	check (InGameState);
@@ -67,7 +83,22 @@ bool UNetworkManager::GetHackables(UNetworkNode* InNetwork, FString InHost, TArr
 		OutHackables = this->GameState->GetGameInstance()->GetSaveGame()->Devices[localDevice].Hackables;
 		return true;
 	}
-
+	else
+	{
+		// So here's the thing...
+		// We can easily map public IPs like this to their device IDs in the save file.
+		// But that's not how this game works.
+		// Ya gotta hack the feckin network BEFORE you can hack its devices.
+		// So instead I'll just do what that little programmer brain of mine is thinking...
+		// And route to the IP's Network.
+		UNetworkNode* dest = this->MapNetwork(InHost);
+		if (dest)
+		{
+			dest->GetHackables(OutHackables);
+			return true;
+		}
+	}
+	
 	return false;
 }
 

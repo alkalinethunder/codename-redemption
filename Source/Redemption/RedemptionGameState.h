@@ -11,6 +11,7 @@
 #include "RedemptionGameModeBase.h"
 #include "GrapevinePost.h"
 #include "NetworkManager.h"
+#include "NetworkTypeRules.h"
 #include "HackableAsset.h"
 #include "RedemptionGameState.generated.h"
 
@@ -24,6 +25,12 @@ class REDEMPTION_API ARedemptionGameState : public AGameStateBase
 	GENERATED_BODY()
 
 private:
+	UPROPERTY()
+	UNetworkTypeRules* DefaultNetworkRules = nullptr;
+	
+	UPROPERTY()
+	TArray<UNetworkTypeRules*> NetworkTypeRules;
+	
 	UPROPERTY()
 	TArray<UHackableAsset*> Hackables;
 	
@@ -91,6 +98,9 @@ public:
 
 private:
 	UFUNCTION()
+	UNetworkTypeRules* GetNetworkRules(ENetworkType NetworkType);
+	
+	UFUNCTION()
 	void MakeRoutes();
 	
 	UFUNCTION()
@@ -133,6 +143,9 @@ public:
 	UChatContact* GetContactByName(FString InName);
 
 public:
+	UFUNCTION()
+	void GenerateNetworkHackables(int NetworkId);
+	
 	UFUNCTION(BlueprintPure)
 	bool IsDoNotDisturbActive();
 

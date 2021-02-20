@@ -61,4 +61,7 @@ public:
 	UFUNCTION(BlueprintPure)
     FString GetIPAddress();
 
+public:
+	UFUNCTION()
+	void GetHackables(TArray<FHackable>& OutHackables);
 };

@@ -6,6 +6,8 @@
 #include "NetworkType.h"
 #include "Difficulty.h"
 #include "Hackable.h"
+#include "NetworkHackable.h"
+
 
 
 #include "Network.generated.h"
@@ -27,6 +29,9 @@ public:
 
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)
 	bool IsHacked = false;
+
+	UPROPERTY(BlueprintReadOnly, EditAnywhere)
+	bool HackablesGenerated = false;
 	
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)
 	FString Name;
@@ -44,7 +49,7 @@ public:
 	EDifficulty Difficulty;
 
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)
-	TArray<FHackable> Hackables;
+	TArray<FNetworkHackable> Hackables;
 	
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)
 	TArray<int> Devices;

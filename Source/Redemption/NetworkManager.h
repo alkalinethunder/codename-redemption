@@ -21,6 +21,10 @@ private:
 
 	UPROPERTY()
 	TArray<UNetworkNode*> Nodes;
+
+private:
+	UFUNCTION()
+	UNetworkNode* MapNetwork(FString InHost);
 	
 public:
 	UFUNCTION()

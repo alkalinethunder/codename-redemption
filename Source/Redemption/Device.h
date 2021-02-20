@@ -6,7 +6,6 @@
 #include "DeviceType.h"
 #include "Difficulty.h"
 #include "Hackable.h"
-
 #include "Device.generated.h"
 
 USTRUCT(BlueprintType)
@@ -45,3 +44,4 @@ public:
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)
 	bool bNeedsHackables = true;
 };
+  

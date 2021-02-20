@@ -115,3 +115,24 @@ FString UNetworkNode::GetIPAddress()
 {
 	return this->GetNetwork().IPAddress;
 }
+
+void UNetworkNode::GetHackables(TArray<FHackable>& OutHackables)
+{
+	if (this->GetNetwork().HackablesGenerated)
+	{
+		for (FNetworkHackable nHackable : this->GetNetwork().Hackables)
+		{
+			URedemptionSaveGame* save = this->NetworkManager->GetGameState()->GetGameInstance()->GetSaveGame();
+
+			int devId = save->MapDevice(nHackable.DeviceId);
+			if (devId)
+			{
+				OutHackables.Add(save->Devices[devId].Hackables[nHackable.HackableId]);
+			}
+		}
+	}
+	else
+	{
+		this->NetworkManager->GetGameState()->GenerateNetworkHackables(this->NetworkId);
+	}
+}
