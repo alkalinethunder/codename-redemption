@@ -16,7 +16,29 @@ void UNmapCommand::NativeRun()
 		TArray<FHackable> hackables;
 		if (this->GetNetworkManager()->GetHackables(this->GetMyNetwork(), ip, hackables))
 		{
-			
+			for (FHackable hackable : hackables)
+			{
+				this->GetConsole()->Write(FText::AsNumber(hackable.Port));
+				this->GetConsole()->Write(FText::FromString("    "));
+
+				if (hackable.bIsHacked)
+				{
+					this->GetConsole()->Write(FText::FromString("%2HACKED%1"));
+				}
+				else
+				{
+					if (hackable.bHasTrace)
+					{
+						this->GetConsole()->Write(FText::FromString("filtered"));
+					}
+					else
+					{
+						this->GetConsole()->Write(FText::FromString("open"));
+					}
+				}
+				
+				this->GetConsole()->WriteLine(FText::GetEmpty());
+			}
 		}
 		else
 		{
