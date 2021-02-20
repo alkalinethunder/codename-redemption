@@ -21,6 +21,33 @@ bool UGameStructUtils::IsDeviceHacked(const FDevice& InDevice)
 	return result;
 }
 
+int UGameStructUtils::DefaultPort(EHackableType HackableType)
+{
+	switch (HackableType)
+	{
+		case EHackableType::Cast:
+			return 9080; // apparently my new monitor has this port open on the LAN...nmap says it's "glrpc"
+		case EHackableType::Chat:
+			return 6667;
+		case EHackableType::Ftp:
+			return 21;
+		case EHackableType::Http:
+			return 80;
+		case EHackableType::Https:
+			return 443;
+		case EHackableType::Sql:
+			return 3800;
+		case EHackableType::Ssh:
+			return 22;
+		case EHackableType::Voip:
+			return 420;
+		case EHackableType::RemoteDesktop:
+			return 3389;
+		default:
+			return 0;
+	}
+}
+
 void UGameStructUtils::DeleteUnhackedHackables(FDevice& InDevice)
 {
 	TArray<int> toDelete;

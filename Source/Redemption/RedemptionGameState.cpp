@@ -22,6 +22,22 @@ ARedemptionGameState::ARedemptionGameState()
 	PrimaryActorTick.bCanEverTick = true;
 }
 
+UDeviceTypeRules* ARedemptionGameState::GetDeviceRules(EDeviceType DeviceType)
+{
+	UDeviceTypeRules* rules = this->DefaultDeviceTypeRules;
+
+	for(UDeviceTypeRules* rule : this->DeviceRules)
+	{
+		if (rule->DeviceType == DeviceType)
+		{
+			rules = rule;
+			break;
+		}
+	}
+	
+	return rules;
+}
+
 UNetworkTypeRules* ARedemptionGameState::GetNetworkRules(ENetworkType NetworkType)
 {
 	UNetworkTypeRules* rules = this->DefaultNetworkRules;
@@ -643,7 +659,61 @@ void ARedemptionGameState::GenerateHackables(int DeviceIndex, EDifficulty Diffic
 	{
 		UGameStructUtils::DeleteUnhackedHackables(dev);
 
-		
+		EDeviceType devType = dev.DeviceType;
+
+		UDeviceTypeRules* rules = this->GetDeviceRules(devType);
+
+		if (rules)
+		{
+			for (EHackableType hType : rules->Hackables)
+			{
+				TArray<UHackableAsset*> available;
+				for (UHackableAsset* hackable : this->Hackables)
+				{
+					if (hackable->Type == hType)
+					{
+						available.Add(hackable);
+					}	
+				}
+
+				if (available.Num())
+				{
+					int r = available.Num() * 10;
+					int i = 0;
+					while (r > 0)
+					{
+						if (i + 1 >= available.Num())
+						{
+							i = 0;
+						}
+						else
+						{
+							i++;
+						}
+
+						r -= FMath::RandRange(1, 5);
+					}
+
+					FHackable h;
+					h.Port = UGameStructUtils::DefaultPort(hType);
+					h.Difficulty = available[i]->Difficulty;
+					h.HackableType = available[i]->Type;
+					h.Name = available[i]->Name.ToString();
+
+					dev.Hackables.Add(h);
+				}
+				else
+				{
+					FHackable h;
+					h.Name = "<unknown>";
+					h.Port = UGameStructUtils::DefaultPort(hType);
+					h.HackableType = hType;
+					h.Difficulty = dev.Difficulty;
+
+					dev.Hackables.Add(h);
+				}
+			}
+		}
 	}
 }
 

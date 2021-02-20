@@ -8,6 +8,7 @@
 #include "ConversationManager.h"
 #include "Conversation.h"
 #include "ChatContact.h"
+#include "DeviceTypeRules.h"
 #include "RedemptionGameModeBase.h"
 #include "GrapevinePost.h"
 #include "NetworkManager.h"
@@ -25,6 +26,12 @@ class REDEMPTION_API ARedemptionGameState : public AGameStateBase
 	GENERATED_BODY()
 
 private:
+	UPROPERTY()
+	UDeviceTypeRules* DefaultDeviceTypeRules = nullptr;
+
+	UPROPERTY()
+	TArray<UDeviceTypeRules*> DeviceRules;
+	
 	UPROPERTY()
 	UNetworkTypeRules* DefaultNetworkRules = nullptr;
 	
@@ -97,6 +104,9 @@ public:
 	ARedemptionGameState();
 
 private:
+	UFUNCTION()
+	UDeviceTypeRules* GetDeviceRules(EDeviceType DeviceType);
+	
 	UFUNCTION()
 	UNetworkTypeRules* GetNetworkRules(ENetworkType NetworkType);
 	

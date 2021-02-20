@@ -35,6 +35,9 @@ void UNmapCommand::NativeRun()
 					{
 						this->GetConsole()->Write(FText::FromString("open"));
 					}
+
+					this->GetConsole()->Write(FText::FromString("        "));
+					this->GetConsole()->Write(FText::FromString(hackable.Name));
 				}
 				
 				this->GetConsole()->WriteLine(FText::GetEmpty());

@@ -15,6 +15,9 @@ public:
 	int Port;
 
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)
+	FString Name;
+	
+	UPROPERTY(BlueprintReadOnly, EditAnywhere)
 	bool bIsHacked = false;
 
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)

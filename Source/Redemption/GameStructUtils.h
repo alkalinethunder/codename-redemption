@@ -22,6 +22,9 @@ public:
 	UFUNCTION(BlueprintPure)
 	static bool IsDeviceHacked(const FDevice& InDevice);
 
+	UFUNCTION(BlueprintPure)
+	static int DefaultPort(EHackableType HackableType);
+	
 	UFUNCTION()
 	static void DeleteUnhackedHackables(FDevice& InDevice);
 
