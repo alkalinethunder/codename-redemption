@@ -28,9 +28,13 @@ void UNmapCommand::NativeRun()
 				}
 				else
 				{
-					if (hackable.bHasTrace)
+					if (hackable.bIsFirewalled)
 					{
 						this->GetConsole()->Write(FText::FromString("filtered"));
+					}
+					else if (hackable.bHasTrace)
+					{
+						this->GetConsole()->Write(FText::FromString("%2POSSIBLE TRACE%1"));	
 					}
 					else
 					{
