@@ -128,7 +128,7 @@ void UNetworkNode::GetHackables(TArray<FHackable>& OutHackables)
 	{
 		URedemptionSaveGame* save = this->NetworkManager->GetGameState()->GetGameInstance()->GetSaveGame();
 		int devId = save->MapDevice(nHackable.DeviceId);
-		if (devId)
+		if (devId > -1)
 		{
 			OutHackables.Add(save->Devices[devId].Hackables[nHackable.HackableId]);
 		}

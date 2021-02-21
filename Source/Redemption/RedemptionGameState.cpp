@@ -297,12 +297,24 @@ void ARedemptionGameState::BeginPlay()
 {
 	Super::BeginPlay();
 
+	this->DefaultDeviceTypeRules = NewObject<UDeviceTypeRules>();
+	this->DefaultDeviceTypeRules->Hackables.Add(EHackableType::Ssh);
+	
 	this->DefaultNetworkRules = NewObject<UNetworkTypeRules>();
 	this->DefaultNetworkRules->RequiredDevices.Add(EDeviceType::Workstation);
 	this->DefaultNetworkRules->Hackables.Add(EHackableType::Ssh);
 	
 	this->MyGameInstance = Cast<URedemptionGameInstance>(this->GetWorld()->GetGameInstance());
 
+	for (UObject* asset : UAssetUtils::LoadAssetsOfClass(UDeviceTypeRules::StaticClass()))
+	{
+		UDeviceTypeRules* rules = Cast<UDeviceTypeRules>(asset);
+		if (rules)
+		{
+			this->DeviceRules.Add(rules);
+		}
+	}
+	
 	for(UObject* asset : UAssetUtils::LoadAssetsOfClass(UNetworkTypeRules::StaticClass()))
 	{
 		UNetworkTypeRules* rules = Cast<UNetworkTypeRules>(asset);
@@ -559,9 +571,7 @@ void ARedemptionGameState::GenerateNetworkHackables(int NetworkId)
 
 				for (EHackableType hType : genRules->Hackables)
 				{
-					FNetworkHackable nHackable;
-
-					for (int devId : save->Networks[netIndex].Devices)
+						for (int devId : save->Networks[netIndex].Devices)
 					{
 						int dIndex = save->MapDevice(devId);
 
@@ -572,16 +582,16 @@ void ARedemptionGameState::GenerateNetworkHackables(int NetworkId)
 							{
 								if (!takenHackables.Contains(hash))
 								{
+									FNetworkHackable nHackable;
 									nHackable.DeviceId = devId;
 									nHackable.HackableId = h;
+									save->Networks[netIndex].Hackables.Add(nHackable);
 									takenHackables.Add(hash);
 									break;
 								}
 							}
 						}
 					}
-					
-					save->Networks[netIndex].Hackables.Add(nHackable);
 				}
 			}
 		}
@@ -713,6 +723,8 @@ void ARedemptionGameState::GenerateHackables(int DeviceIndex, EDifficulty Diffic
 					dev.Hackables.Add(h);
 				}
 			}
+
+			dev.bNeedsHackables = false;
 		}
 	}
 }
