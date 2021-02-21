@@ -4,6 +4,7 @@
 #include "NmapCommand.h"
 #include "NetworkManager.h"
 #include "ConsoleWidget.h"
+#include "GameStructUtils.h"
 #include "Hackable.h"
 
 void UNmapCommand::NativeRun()
@@ -37,9 +38,16 @@ void UNmapCommand::NativeRun()
 					}
 
 					this->GetConsole()->Write(FText::FromString("        "));
-					this->GetConsole()->Write(FText::FromString(hackable.Name));
+					if (!hackable.Name.TrimEnd().Len() || hackable.Name == "<unknown>")
+					{
+						this->GetConsole()->Write(FText::FromString(UGameStructUtils::GetHackableIdentifier(hackable.HackableType)));	
+					}
+					else
+					{
+						this->GetConsole()->Write(FText::FromString(hackable.Name));
+					}
 				}
-				
+
 				this->GetConsole()->WriteLine(FText::GetEmpty());
 			}
 		}

@@ -20,6 +20,9 @@ class REDEMPTION_API UGameStructUtils : public UObject
 
 public:
 	UFUNCTION(BlueprintPure)
+	static FString GetHackableIdentifier(EHackableType InHackableType);
+	
+	UFUNCTION(BlueprintPure)
 	static bool IsDeviceHacked(const FDevice& InDevice);
 
 	UFUNCTION(BlueprintPure)

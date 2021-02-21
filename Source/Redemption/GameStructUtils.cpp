@@ -5,6 +5,33 @@
 
 #include "RedemptionGameInstance.h"
 
+FString UGameStructUtils::GetHackableIdentifier(EHackableType InHackableType)
+{
+	switch (InHackableType)
+	{
+		default:
+			return "<unknown>";
+		case EHackableType::Cast:
+			return "lumacast"; // Play on "Chromecast"
+		case EHackableType::Chat:
+			return "irc";
+		case EHackableType::Ftp:
+			return "ftp";
+		case EHackableType::Http:
+			return "http";
+		case EHackableType::Https:
+			return "https";
+		case EHackableType::Sql:
+			return "whysql";
+		case EHackableType::Ssh:
+			return "ssh";
+		case EHackableType::Voip:
+			return "zoom"; // lol we gon git SUED
+		case EHackableType::RemoteDesktop:
+			return "remote-desktop"; // FOR SURE...
+	}
+}
+
 bool UGameStructUtils::IsDeviceHacked(const FDevice& InDevice)
 {
 	bool result = false;
