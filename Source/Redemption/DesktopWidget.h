@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
 #include "Components/Button.h"
+#include "FileSelectMode.h"
 #include "Components/HorizontalBox.h"
 #include "Components/WidgetSwitcher.h"
 #include "AppWidget.h"
@@ -19,6 +20,7 @@ class UAppHostWidget;
 class ARedemptionGameModeBase;
 class UGraphicalAppAsset;
 class ARedemptionGameState;
+class UFileSelectBase;
 
 /**
  * Base widget for desktop UIs.
@@ -104,4 +106,9 @@ public:
 
 	UFUNCTION()
 	bool LaunchApp(UGraphicalAppAsset* InApp, UOperatingSystemApp*& OutWidget);
+
+public:
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
+	UFileSelectBase* CreateFileDialog(EFileSelectMode InFileSelectMode);
+	
 };
