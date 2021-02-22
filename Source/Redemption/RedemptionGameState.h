@@ -14,6 +14,7 @@
 #include "NetworkManager.h"
 #include "NetworkTypeRules.h"
 #include "HackableAsset.h"
+#include "Payload.h"
 #include "RedemptionGameState.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FContactAddedEvent);
@@ -26,6 +27,9 @@ class REDEMPTION_API ARedemptionGameState : public AGameStateBase
 	GENERATED_BODY()
 
 private:
+	UPROPERTY()
+	TArray<UPayload*> Payloads;
+	
 	UPROPERTY()
 	UDeviceTypeRules* DefaultDeviceTypeRules = nullptr;
 

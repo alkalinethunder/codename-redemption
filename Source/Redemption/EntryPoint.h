@@ -3,6 +3,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
+
+#include "HackableType.h"
 #include "SpawnFlags.h"
 #include "UpgradeAsset.h"
 #include "Engine/DataAsset.h"
@@ -25,4 +27,7 @@ public:
 
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Metadata")
 	FSpawnFlags SpawnFlags;
+
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Entry Point")
+	TArray<EHackableType> HackableTypes;
 };

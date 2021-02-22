@@ -306,6 +306,15 @@ void ARedemptionGameState::BeginPlay()
 	
 	this->MyGameInstance = Cast<URedemptionGameInstance>(this->GetWorld()->GetGameInstance());
 
+	for (UObject* asset : UAssetUtils::LoadAssetsOfClass(UPayload::StaticClass()))
+	{
+		UPayload* payload = Cast<UPayload>(asset);
+		if (payload)
+		{
+			this->Payloads.Add(payload);
+		}
+	}
+	
 	for (UObject* asset : UAssetUtils::LoadAssetsOfClass(UDeviceTypeRules::StaticClass()))
 	{
 		UDeviceTypeRules* rules = Cast<UDeviceTypeRules>(asset);
