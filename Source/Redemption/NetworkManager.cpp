@@ -5,6 +5,7 @@
 
 #include "RedemptionGameInstance.h"
 #include "RedemptionGameState.h"
+#include "UserContext.h"
 
 UNetworkNode* UNetworkManager::MapNetwork(FString InHost)
 {
@@ -71,8 +72,32 @@ ARedemptionGameState* UNetworkManager::GetGameState()
 	return this->GameState;
 }
 
-UHackSession* UNetworkManager::BeginHack(FString InTargetHost)
+UHackSession* UNetworkManager::BeginHack(UUserContext* InUserContext, FString InTargetHost)
 {
+	check (InUserContext);
+
+	UNetworkNode* origin = this->GetNetworkNode(InUserContext->GetNetwork().Id);
+
+	check(origin);
+
+	UNetworkNode* dest = nullptr;
+	if(this->ResolveNetworkAddress(InTargetHost, dest))
+	{
+		TArray<UNetworkNode*> trace = origin->TraceRoute(dest);
+		if (trace.Num())
+		{
+			UHackSession* hack = NewObject<UHackSession>();
+			hack->SetGameState(this->GameState);
+			hack->SetUserContext(InUserContext);
+			hack->SetSourceNetwork(origin);
+			hack->SetDestinationNetwork(dest);
+			hack->SetDestinationAddress(InTargetHost);
+			hack->SetHopsCount(trace.Num());
+
+			return hack;
+		}
+	}
+
 	return nullptr;
 }
 

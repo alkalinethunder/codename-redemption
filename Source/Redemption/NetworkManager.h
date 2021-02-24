@@ -7,9 +7,9 @@
 #include "NetworkNode.h"
 #include "Hackable.h"
 #include "HackSession.h"
-
 #include "NetworkManager.generated.h"
 
+class UUserContext;
 class ARedemptionGameState;
 
 UCLASS(BlueprintType)
@@ -37,7 +37,7 @@ public:
 
 public:
 	UFUNCTION()
-	UHackSession* BeginHack(FString InTargetHost);
+	UHackSession* BeginHack(UUserContext* InUserContext, FString InTargetHost);
 
 public:
 	UFUNCTION(BlueprintCallable)

@@ -23,6 +23,9 @@ private:
 private:
 	UFUNCTION()
 	void HandleCommandLine(FString InCommandLine);
+
+	UFUNCTION()
+	void WritePrompt();
 	
 protected:
 	virtual void NativeRun() override;;

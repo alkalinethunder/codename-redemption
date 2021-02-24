@@ -5,7 +5,12 @@
 
 void UHackerShell::HandleCommandLine(FString InCommandLine)
 {
-	this->GetConsole()->WriteLine(FText::FromString(InCommandLine));
+	this->WritePrompt();
+}
+
+void UHackerShell::WritePrompt()
+{
+	this->GetConsole()->Write(FText::FromString(this->GetCommandName() + ":" + this->HackedHost + " >> "));
 }
 
 void UHackerShell::NativeRun()
@@ -23,7 +28,7 @@ void UHackerShell::NativeRun()
 	}
 
 	// Start a hack session on that IP address we found above.
-	UHackSession* hackSession = this->GetNetworkManager()->BeginHack(this->HackedHost);
+	UHackSession* hackSession = this->GetNetworkManager()->BeginHack(this->GetUserContext(), this->HackedHost);
 	
 	// if we get nullptr then the host was unreachable.
 	if (!hackSession)
@@ -38,6 +43,7 @@ void UHackerShell::NativeRun()
 
 	// Let's make sure the fucking console gives us the fucking text input we fucking need in this fucking program.
 	this->GetConsole()->OnTextSubmitted.AddUniqueDynamic(this, &UHackerShell::UHackerShell::HandleCommandLine);
-	
-	this->Complete();
+
+	// let's act just like a shell BECAUSE WE ARE A FUCKING SHELL
+	this->WritePrompt();
 }
