@@ -6,6 +6,8 @@
 #include "UObject/Object.h"
 #include "NetworkNode.h"
 #include "Hackable.h"
+#include "HackSession.h"
+
 #include "NetworkManager.generated.h"
 
 class ARedemptionGameState;
@@ -32,6 +34,10 @@ public:
 
 	UFUNCTION()
 	ARedemptionGameState* GetGameState();
+
+public:
+	UFUNCTION()
+	UHackSession* BeginHack(FString InTargetHost);
 
 public:
 	UFUNCTION(BlueprintCallable)

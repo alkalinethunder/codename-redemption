@@ -71,6 +71,11 @@ ARedemptionGameState* UNetworkManager::GetGameState()
 	return this->GameState;
 }
 
+UHackSession* UNetworkManager::BeginHack(FString InTargetHost)
+{
+	return nullptr;
+}
+
 bool UNetworkManager::GetHackables(UNetworkNode* InNetwork, FString InHost, TArray<FHackable>& OutHackables)
 {
 	if (!InNetwork)

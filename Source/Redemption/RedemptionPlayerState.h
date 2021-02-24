@@ -8,6 +8,7 @@
 #include "VirtualFileSystem.h"
 #include "UpgradeAsset.h"
 #include "RedemptionGameState.h"
+#include "UserContext.h"
 #include "Kismet/GameplayStatics.h"
 
 #include "RedemptionPlayerState.generated.h"
@@ -21,6 +22,9 @@ class REDEMPTION_API ARedemptionPlayerState : public APlayerState
 	GENERATED_BODY()
 
 private:
+	UPROPERTY()
+	UUserContext* PlayerUserContext;
+	
 	UPROPERTY()
 	TArray<UDesktopEnvironment*> Desktops;
 	

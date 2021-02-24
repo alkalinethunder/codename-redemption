@@ -81,6 +81,9 @@ void ARedemptionPlayerState::BeginPlay()
 	this->GameState = Cast<ARedemptionGameState>(this->GetWorld()->GetGameState());
 	this->GameInstance = Cast<URedemptionGameInstance>(this->GetGameInstance());
 	this->GameMode = Cast<ARedemptionGameModeBase>(UGameplayStatics::GetGameMode(this));
+
+	this->PlayerUserContext = NewObject<UUserContext>();
+	this->PlayerUserContext->BindToDevice(this->GameInstance->GetSaveGame()->PlayernetworkId, this->GetPlayerDevice().Id, this->GameState);
 	
 	this->GameInstance->OnExperienceAdded.AddUniqueDynamic(this, &ARedemptionPlayerState::UpdateSkillState);
 
