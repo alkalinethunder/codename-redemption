@@ -1,6 +1,11 @@
 ﻿#pragma once
 
 #include "CoreMinimal.h"
+
+
+#include "Device.h"
+#include "Network.h"
+
 #include "UserContext.generated.h"
 
 class ARedemptionGameState;
@@ -26,4 +31,26 @@ private:
 public:
 	UFUNCTION()
 	void BindToDevice(int InNetworkId, int InDeviceId, ARedemptionGameState* InGameState);
+
+	UFUNCTION()
+	FNetwork& GetNetwork();
+
+	UFUNCTION()
+	FDevice& GetDevice();
+	
+public:
+	UFUNCTION(BlueprintPure)
+	bool IsSuperUser();
+
+	UFUNCTION(BlueprintPure)
+	FString GetUsername();
+
+	UFUNCTION(BlueprintPure)
+	FString GetHostName();
+
+	UFUNCTION(BlueprintPure)
+	FString GetLocalIP();
+
+	UFUNCTION(BlueprintPure)
+	FString GetPublicIP();
 };
