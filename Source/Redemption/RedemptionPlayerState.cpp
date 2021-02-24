@@ -37,6 +37,11 @@ void ARedemptionPlayerState::NotifyUpgradeUnlocked()
 	this->OnUpgradeUnlocked.Broadcast();
 }
 
+UUserContext* ARedemptionPlayerState::GetPlayerUserContext()
+{
+	return this->PlayerUserContext;
+}
+
 UDesktopWidget* ARedemptionPlayerState::GetDesktop()
 {
 	return this->Desktop;

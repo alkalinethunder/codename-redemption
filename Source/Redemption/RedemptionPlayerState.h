@@ -118,7 +118,10 @@ public:
 	UFUNCTION()
 	void NotifyUpgradeUnlocked();
 	
-public:	
+public:
+	UFUNCTION()
+	UUserContext* GetPlayerUserContext();
+	
 	UFUNCTION(BlueprintPure)
 	UDesktopWidget* GetDesktop();
 
