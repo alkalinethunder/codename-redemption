@@ -9,6 +9,7 @@
 #include "Components/HorizontalBox.h"
 #include "Components/WidgetSwitcher.h"
 #include "AppWidget.h"
+#include "UserContext.h"
 #include "Components/TextBlock.h"
 
 #include "DesktopWidget.generated.h"
@@ -32,10 +33,14 @@ class REDEMPTION_API UDesktopWidget : public UUserWidget
 
 private:
 	UPROPERTY()
+	UUserContext* CurrentContext = nullptr;
+	
+	UPROPERTY()
 	ARedemptionGameModeBase* GameMode;
 
 	UPROPERTY()
 	ARedemptionGameState* MyGameState;
+	
 protected:
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)
 	TSubclassOf<UAppTabWidget> AppTabWidgetClass;
@@ -110,5 +115,7 @@ public:
 public:
 	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
 	UFileSelectBase* CreateFileDialog(EFileSelectMode InFileSelectMode);
-	
+
+	UFUNCTION(BlueprintPure)
+	UUserContext* GetUserContext();
 };

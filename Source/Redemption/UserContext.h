@@ -12,6 +12,9 @@ class REDEMPTION_API UUserContext : public UObject
 
 private:
 	UPROPERTY()
+	int UserId = 0; // 0 = root
+	
+	UPROPERTY()
 	int DeviceId;
 
 	UPROPERTY()

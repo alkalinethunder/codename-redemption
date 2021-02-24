@@ -10,6 +10,7 @@
 #include "RedemptionGameModeBase.h"
 #include "AppWidget.h"
 #include "RedemptionGameState.h"
+#include "RedemptionPlayerState.h"
 
 void UDesktopWidget::ToggleDND()
 {
@@ -184,6 +185,9 @@ void UDesktopWidget::NativeConstruct()
 	this->MyGameState = Cast<ARedemptionGameState>(this->GetWorld()->GetGameState());
 	this->GameMode = Cast<ARedemptionGameModeBase>(this->GetWorld()->GetAuthGameMode());
 
+	// This is the OS context of the player. Commands and Apps all need this.
+	this->CurrentContext = Cast<ARedemptionPlayerState>(this->GetOwningPlayerState())->GetPlayerUserContext();
+	
 	// launch the login shell.
 	this->LaunchShellInternal(true);
 	
@@ -267,4 +271,9 @@ bool UDesktopWidget::LaunchApp(UGraphicalAppAsset* InApp, UOperatingSystemApp*& 
 	{
 		return false;
 	}
+}
+
+UUserContext* UDesktopWidget::GetUserContext()
+{
+	return this->CurrentContext;
 }
