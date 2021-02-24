@@ -1,11 +1,9 @@
 ﻿#pragma once
 
 #include "CoreMinimal.h"
-
-
 #include "Device.h"
 #include "Network.h"
-
+#include "User.h"
 #include "UserContext.generated.h"
 
 class ARedemptionGameState;
@@ -33,12 +31,18 @@ public:
 	void BindToDevice(int InNetworkId, int InDeviceId, ARedemptionGameState* InGameState);
 
 	UFUNCTION()
+	bool SetUserId(int InUserId);
+	
+	UFUNCTION()
 	FNetwork& GetNetwork();
 
 	UFUNCTION()
 	FDevice& GetDevice();
 	
 public:
+	UFUNCTION(BlueprintPure)
+	TArray<FUser> GetUsers();
+	
 	UFUNCTION(BlueprintPure)
 	bool IsSuperUser();
 

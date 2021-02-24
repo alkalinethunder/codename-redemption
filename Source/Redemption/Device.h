@@ -18,6 +18,9 @@ public:
 	int Id;
 
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)
+	TArray<FString> Users;
+	
+	UPROPERTY(BlueprintReadOnly, EditAnywhere)
 	FString AssetId;
 	
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)

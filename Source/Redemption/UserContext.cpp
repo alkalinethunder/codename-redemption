@@ -13,6 +13,17 @@ void UUserContext::BindToDevice(int InNetworkId, int InDeviceId, ARedemptionGame
 	this->DeviceId = InDeviceId;
 }
 
+bool UUserContext::SetUserId(int InUserId)
+{
+	if (this->GetUsers().Num() > InUserId && InUserId >= 0)
+	{
+		this->UserId = InUserId;
+		return true;
+	}
+
+	return false;
+}
+
 FNetwork& UUserContext::GetNetwork()
 {
 	int index =	this->GameState->GetGameInstance()->GetSaveGame()->MapNetwork(this->NetId);
@@ -25,6 +36,29 @@ FDevice& UUserContext::GetDevice()
 	return this->GameState->GetGameInstance()->GetSaveGame()->Devices[index];
 }
 
+TArray<FUser> UUserContext::GetUsers()
+{
+	TArray<FUser> result;
+
+	FUser root;
+	root.UserId = 0;
+	root.UserName = "root";
+
+	result.Add(root);
+
+	int i = 1;
+	for (FString username : this->GetDevice().Users)
+	{
+		FUser u;
+		u.UserId = i;
+		u.UserName = username;
+		result.Add(u);
+		i++;
+	}
+	
+	return result;
+}
+
 bool UUserContext::IsSuperUser()
 {
 	return this->UserId == 0;
@@ -32,7 +66,8 @@ bool UUserContext::IsSuperUser()
 
 FString UUserContext::GetUsername()
 {
-	return "root"; // TODO.
+	TArray<FUser> users = this->GetUsers();
+	return users[this->UserId].UserName;
 }
 
 FString UUserContext::GetHostName()
