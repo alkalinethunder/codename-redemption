@@ -197,10 +197,13 @@ void UShell::WritePrompt()
 {
 	if (!this->bExited)
 	{
-		this->Console->Write(FText::FromString(this->Hostname));
+		this->Console->Write(FText::FromString(this->UserContext->GetUsername()));
+		this->Console->Write(FText::FromString("@"));
+		this->Console->Write(FText::FromString(this->UserContext->GetHostName()));
 		this->Console->Write(FText::FromString(":"));
 		this->Console->Write(FText::FromString(this->WorkingDirectory));
-		this->Console->Write(FText::FromString("$ "));
+		this->Console->Write(FText::FromString(this->UserContext->IsSuperUser() ? "#" : "$"));
+		this->Console->Write(FText::FromString(" "));
 	}
 }
 
