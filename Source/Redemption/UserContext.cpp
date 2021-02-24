@@ -1,5 +1,7 @@
 ﻿#include "UserContext.h"
 
+
+#include "PathUtils.h"
 #include "RedemptionGameInstance.h"
 #include "RedemptionGameState.h"
 
@@ -34,6 +36,18 @@ FDevice& UUserContext::GetDevice()
 {
 	int index =	this->GameState->GetGameInstance()->GetSaveGame()->MapDevice(this->NetId);
 	return this->GameState->GetGameInstance()->GetSaveGame()->Devices[index];
+}
+
+FString UUserContext::GetHomePath()
+{
+	if (this->IsSuperUser())
+	{
+		return "/root";
+	}
+	else
+	{
+		return UPathUtils::GetAbsolutePath("/home", this->GetUsername());
+	}
 }
 
 TArray<FUser> UUserContext::GetUsers()

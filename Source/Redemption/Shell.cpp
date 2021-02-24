@@ -31,7 +31,36 @@ void UShell::PrepareFileSystem()
 		this->Hostname = this->PlayerController->GetUserNameOfPlayer() + "-pc";
 		fs->TryWritingTextToFile("/etc/hostname", this->Hostname);
 	}
-	
+
+	// Create other required unix paths if they're not there already.
+	if (!fs->DirectoryExists("/home"))
+		fs->MakeDirectory("/home");
+	if (!fs->DirectoryExists("/root"))
+		fs->MakeDirectory("/root");
+
+	// Create the user home folder.
+	if (!fs->DirectoryExists(this->UserContext->GetHomePath()))
+		fs->MakeDirectory(this->UserContext->GetHomePath());
+
+	// Create the usual user folders.
+	TArray<FString> UserFolders = {
+		".local",
+		"Desktop",
+		"Documents",
+		"Downloads",
+		"Music",
+		"Pictures",
+		"Videos"
+	};
+
+	for (FString name : UserFolders)
+	{
+		FString path = UPathUtils::GetAbsolutePath(this->UserContext->GetHomePath(), name);
+		if (!fs->DirectoryExists(path))
+		{
+			fs->MakeDirectory(path);
+		}
+	}
 }
 
 void UShell::PrintUsefulTips()
@@ -181,6 +210,9 @@ void UShell::LinkToConsole(AShellManagementActor* Owner, UConsoleWidget* InConso
 		}
 	}
 
+	// Set the current directory to the user's home directory.
+	this->WorkingDirectory = this->UserContext->GetHomePath();
+	
 	// Prepare the file system.
 	this->PrepareFileSystem();
 	

@@ -40,6 +40,9 @@ public:
 	FDevice& GetDevice();
 	
 public:
+	UFUNCTION()
+	FString GetHomePath();
+	
 	UFUNCTION(BlueprintPure)
 	TArray<FUser> GetUsers();
 	
