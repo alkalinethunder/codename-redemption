@@ -102,7 +102,7 @@ void UDesktopWidget::LaunchShellInternal(bool InLoginShell)
 	this->ConsoleSwitcher->SetActiveWidgetIndex(WidgetIndex);
 	
 	// Initialize the shell.
-	ShellHost->InitShell(InLoginShell);
+	ShellHost->InitShell(this->CurrentContext, InLoginShell);
 }
 
 UOperatingSystemApp* UDesktopWidget::LaunchTabbedApp(UWidgetSwitcher* InWidgetSwitcher, UHorizontalBox* InTabsPanel,

@@ -12,6 +12,7 @@
 
 class ARedemptionPlayerController;
 class AShellManagementActor;
+class UUserContext;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FShellExitedEvent);
 
@@ -24,6 +25,9 @@ class REDEMPTION_API UShell : public UObject
 	GENERATED_BODY()
 
 private:
+	UPROPERTY()
+	UUserContext* UserContext;
+	
 	UPROPERTY()
 	FString Hostname;
 
@@ -100,7 +104,7 @@ public:
 	bool RequestExit();
 	
 	UFUNCTION()
-	void LinkToConsole(AShellManagementActor* Owner, UConsoleWidget* InConsole);
+	void LinkToConsole(AShellManagementActor* Owner, UConsoleWidget* InConsole, UUserContext* InUserContext);
 
 	UFUNCTION()
 	void MakeLoginShell();

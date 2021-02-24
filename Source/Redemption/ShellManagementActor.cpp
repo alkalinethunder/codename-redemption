@@ -4,6 +4,7 @@
 #include "ShellManagementActor.h"
 #include "ConsoleWidget.h"
 #include "Shell.h"
+#include "UserContext.h"
 
 
 // Sets default values
@@ -26,11 +27,13 @@ void AShellManagementActor::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 }
 
-UShell* AShellManagementActor::CreateShell(UConsoleWidget* InConsole, bool InLoginShell)
+UShell* AShellManagementActor::CreateShell(UConsoleWidget* InConsole, UUserContext* InUserContext, bool InLoginShell)
 {
+	check (InUserContext);
+	
 	UShell* NewShell = NewObject<UShell>();
 	this->Shells.Add(NewShell);
-	NewShell->LinkToConsole(this, InConsole);
+	NewShell->LinkToConsole(this, InConsole, InUserContext);
 
 	if (InLoginShell)
 	{

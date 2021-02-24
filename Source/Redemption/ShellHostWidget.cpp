@@ -7,6 +7,7 @@
 #include "RedemptionGameModeBase.h"
 #include "RedemptionPlayerController.h"
 #include "Shell.h"
+#include "UserContext.h"
 
 void UShellHostWidget::HandleShellExited()
 {
@@ -23,13 +24,15 @@ bool UShellHostWidget::RequestExit()
 	return this->Shell->RequestExit();
 }
 
-bool UShellHostWidget::InitShell(bool InLoginShell)
+bool UShellHostWidget::InitShell(UUserContext* InUserContext, bool InLoginShell)
 {
+	check (InUserContext);
+	
 	ARedemptionGameModeBase* GameMode = Cast<ARedemptionGameModeBase>(this->GetWorld()->GetAuthGameMode());
 	
 	if (GameMode)
 	{
-		this->Shell = GameMode->CreateShell(this->Console, InLoginShell);
+		this->Shell = GameMode->CreateShell(this->Console, InUserContext, InLoginShell);
 		this->Shell->OnExited.AddUniqueDynamic(this, &UShellHostWidget::HandleShellExited);
 		return true;
 	}

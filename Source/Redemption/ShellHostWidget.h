@@ -8,6 +8,8 @@
 #include "Blueprint/UserWidget.h"
 #include "ShellHostWidget.generated.h"
 
+class UUserContext;
+
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnShellHostExit);
 
 /**
@@ -42,5 +44,5 @@ public:
 	bool RequestExit();
 	
 	UFUNCTION()
-	bool InitShell(bool InLoginShell);
+	bool InitShell(UUserContext* InUserContext, bool InLoginShell);
 };

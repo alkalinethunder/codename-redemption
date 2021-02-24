@@ -21,6 +21,7 @@ class URedemptionGameInstance;
 class ARedemptionPlayerState;
 class AShellManagementActor;
 class UNetPage;
+class UUserContext;
 
 /**
  * 
@@ -102,7 +103,7 @@ protected:
 
 public:
 	UFUNCTION(BlueprintCallable)
-	UShell* CreateShell(UConsoleWidget* InConsoleWidget, bool InLoginShell = false);
+	UShell* CreateShell(UConsoleWidget* InConsoleWidget, UUserContext* InUserContext, bool InLoginShell = false);
 
 	UFUNCTION()
 	UNetPage* FindNetPage(FString InHost);

@@ -13,6 +13,7 @@
 #include "ShellCommandAsset.h"
 #include "GraphicalAppAsset.h"
 #include "UsefulTip.h"
+#include "UserContext.h"
 
 void UShell::PrepareFileSystem()
 {
@@ -159,8 +160,11 @@ void UShell::HandleCompletedScript()
 	this->WritePrompt();
 }
 
-void UShell::LinkToConsole(AShellManagementActor* Owner, UConsoleWidget* InConsole)
+void UShell::LinkToConsole(AShellManagementActor* Owner, UConsoleWidget* InConsole, UUserContext* InUserContext)
 {
+	check (InUserContext);
+
+	this->UserContext = InUserContext;
 	this->ShellManager = Owner;
 	this->Console = InConsole;
 	this->PlayerController = Cast<ARedemptionPlayerController>(InConsole->GetOwningPlayer());

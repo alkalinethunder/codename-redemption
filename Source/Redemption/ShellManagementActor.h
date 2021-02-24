@@ -8,6 +8,8 @@
 #include "Shell.h"
 #include "ShellManagementActor.generated.h"
 
+class UUserContext;
+
 UCLASS()
 class REDEMPTION_API AShellManagementActor : public AActor
 {
@@ -31,5 +33,5 @@ public:
 
 public:
 	UFUNCTION()
-	UShell* CreateShell(UConsoleWidget* InConsole, bool InLoginShell);
+	UShell* CreateShell(UConsoleWidget* InConsole, UUserContext* InUserContext, bool InLoginShell);
 };

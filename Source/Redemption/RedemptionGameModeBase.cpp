@@ -16,6 +16,7 @@
 #include "ShellCommandAsset.h"
 #include "GraphicalAppAsset.h"
 #include "NetPage.h"
+#include "UserContext.h"
 
 ARedemptionGameModeBase::ARedemptionGameModeBase()
 {
@@ -188,12 +189,13 @@ void ARedemptionGameModeBase::EndPlay(const EEndPlayReason::Type EndPlayReason)
 	this->GameInstance->EndSession();
 }
 
-UShell* ARedemptionGameModeBase::CreateShell(UConsoleWidget* InConsoleWidget, bool InLoginShell)
+UShell* ARedemptionGameModeBase::CreateShell(UConsoleWidget* InConsoleWidget, UUserContext* InUserContext, bool InLoginShell)
 {
 	check(InConsoleWidget);
+	check (InUserContext);
 	check(this->ShellManager);
 
-	return this->ShellManager->CreateShell(InConsoleWidget, InLoginShell);
+	return this->ShellManager->CreateShell(InConsoleWidget, InUserContext, InLoginShell);
 }
 
 UGraphicalAppAsset* ARedemptionGameModeBase::FindApp(FString InName)
