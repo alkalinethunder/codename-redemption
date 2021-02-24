@@ -91,5 +91,8 @@ protected:
 	
 public:
 	UFUNCTION()
+	bool IsCompleted();
+	
+	UFUNCTION()
 	void Begin(FString InCommandName, TArray<FString> InArgs, FString InWorkingDirectory, UConsoleWidget* InConsole, FCommandFlags InFlags, UUserContext* InUserContext);
 };

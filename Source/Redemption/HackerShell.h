@@ -22,6 +22,12 @@ private:
 
 private:
 	UFUNCTION()
+	void UnbindEvents();
+	
+	UFUNCTION()
+	bool HandleCommand(FString InName, TArray<FString> InArguments);
+	
+	UFUNCTION()
 	void HandleCommandLine(FString InCommandLine);
 
 	UFUNCTION()

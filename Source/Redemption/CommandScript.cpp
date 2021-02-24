@@ -100,6 +100,11 @@ UNetworkNode* UCommandScript::GetMyNetwork()
 	return ps->GetMyNetwork();
 }
 
+bool UCommandScript::IsCompleted()
+{
+	return this->bCompleted;
+}
+
 void UCommandScript::Begin(FString InCommandName, TArray<FString> InArgs, FString InWorkingDirectory,
                            UConsoleWidget* InConsole, FCommandFlags InFlags, UUserContext* InUserContext)
 {

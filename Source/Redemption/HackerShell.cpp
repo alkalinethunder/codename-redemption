@@ -2,10 +2,56 @@
 #include "ConsoleWidget.h"
 #include "HackSession.h"
 #include "NetworkManager.h"
+#include "Shell.h"
+
+void UHackerShell::UnbindEvents()
+{
+	// unbind from text submissions to prevent an access violation later on when we return control
+	// to the game's main shell.
+	//
+	// This is a fucking trash way of implementing IO for a terminal but it's the best way of
+	// doing it without doing weird shit.
+	this->GetConsole()->OnTextSubmitted.RemoveDynamic(this, &UHackerShell::HandleCommandLine);
+}
+
+bool UHackerShell::HandleCommand(FString InName, TArray<FString> InArguments)
+{
+	if (InName == "exit")
+	{
+		this->UnbindEvents();
+		this->Complete();
+		return true;
+	}
+
+	return false;
+}
 
 void UHackerShell::HandleCommandLine(FString InCommandLine)
 {
-	this->WritePrompt();
+	TArray<FString> tokens;
+	FString error;
+	if (UShell::BreakCommandLine(InCommandLine, tokens, error))
+	{
+		if (tokens.Num())
+		{
+			FString name = tokens[0];
+			tokens.RemoveAt(0);
+
+			if (!this->HandleCommand(name, tokens))
+			{
+				this->GetConsole()->WriteLine(FText::FromString(this->GetCommandName() + ": " + name + ": unrecognized command"));
+			}
+		}
+	}
+	else
+	{
+		this->GetConsole()->WriteLine(FText::FromString(error));
+	}
+
+	if (!this->IsCompleted())
+	{
+		this->WritePrompt();
+	}
 }
 
 void UHackerShell::WritePrompt()

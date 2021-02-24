@@ -91,9 +91,6 @@ private:
 	void WritePrompt();
 
 	UFUNCTION()
-	bool BreakCommandLine(FString InText, TArray<FString>& OutParts, FString& OutError);
-
-	UFUNCTION()
 	bool ProcessBuiltin(FString InName, TArray<FString> InArgs);
 
 	UFUNCTION()
@@ -108,4 +105,8 @@ public:
 
 	UFUNCTION()
 	void MakeLoginShell();
+
+public:
+	UFUNCTION()
+	static bool BreakCommandLine(FString InText, TArray<FString>& OutParts, FString& OutError);
 };
