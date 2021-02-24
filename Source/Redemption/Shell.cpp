@@ -122,11 +122,12 @@ void UShell::HandleConsoleTextSubmitted(FString InText)
 				if (this->ProcessExtern(name, args))
 				{
 					this->CurrentCommandScript->Begin(
-							name,
-							args,
-							this->WorkingDirectory,
-							this->Console,
- 							this->CurrentCommandFlags
+							name, // command name
+							args, // command arguments
+							this->WorkingDirectory, // where are we?
+							this->Console, // input and output
+ 							this->CurrentCommandFlags, // command flags stored in the asset
+ 							this->UserContext // who are we?
 						);
 					return;
 				}

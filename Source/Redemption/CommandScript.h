@@ -11,6 +11,7 @@ class UConsoleWidget;
 class UVirtualFileSystem;
 class UNetworkManager;
 class UNetworkNode;
+class UUserContext;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FCommandCompletedEvent);
 
@@ -23,6 +24,9 @@ class REDEMPTION_API UCommandScript : public UObject
 	GENERATED_BODY()
 
 private:
+	UPROPERTY()
+	UUserContext* UserContext;
+	
 	UPROPERTY()
 	FCommandFlags CommandFlags;
 	
@@ -49,6 +53,9 @@ protected:
 	virtual UWorld* GetWorld() const override;
 
 protected:
+	UFUNCTION(BlueprintPure)
+	UUserContext* GetUserContext();
+	
 	UFUNCTION(BlueprintCallable)
 	void Complete();
 	
@@ -84,5 +91,5 @@ protected:
 	
 public:
 	UFUNCTION()
-	void Begin(FString InCommandName, TArray<FString> InArgs, FString InWorkingDirectory, UConsoleWidget* InConsole, FCommandFlags InFlags);
+	void Begin(FString InCommandName, TArray<FString> InArgs, FString InWorkingDirectory, UConsoleWidget* InConsole, FCommandFlags InFlags, UUserContext* InUserContext);
 };

@@ -8,6 +8,7 @@
 #include "RedemptionPlayerController.h"
 #include "NetworkNode.h"
 #include "NetworkManager.h"
+#include "UserContext.h"
 #include "RedemptionPlayerState.h"
 
 UWorld* UCommandScript::GetWorld() const
@@ -20,6 +21,11 @@ UWorld* UCommandScript::GetWorld() const
 	{
 		return GEngine->GetWorld();
 	}
+}
+
+UUserContext* UCommandScript::GetUserContext()
+{
+	return this->UserContext;
 }
 
 void UCommandScript::Complete()
@@ -95,8 +101,9 @@ UNetworkNode* UCommandScript::GetMyNetwork()
 }
 
 void UCommandScript::Begin(FString InCommandName, TArray<FString> InArgs, FString InWorkingDirectory,
-                           UConsoleWidget* InConsole, FCommandFlags InFlags)
+                           UConsoleWidget* InConsole, FCommandFlags InFlags, UUserContext* InUserContext)
 {
+	this->UserContext = InUserContext;
 	this->Console = InConsole;
 	this->Arguments = InArgs;
 	this->Name = InCommandName;
