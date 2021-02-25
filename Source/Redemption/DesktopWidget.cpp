@@ -154,6 +154,22 @@ UOperatingSystemApp* UDesktopWidget::LaunchTabbedApp(UWidgetSwitcher* InWidgetSw
 	return NewApp;
 }
 
+UOperatingSystemApp* UDesktopWidget::LaunchInfoApp(UVerticalBox* InInfoBox, UGraphicalAppAsset* InApp)
+{
+	check (InInfoBox);
+	check (InApp);
+
+	UAppWidget* AppWidget = CreateWidget<UAppWidget, APlayerController>(this->GetOwningPlayer(), InApp->WidgetClass);
+
+	InInfoBox->AddChildToVerticalBox(AppWidget);
+	
+	UOperatingSystemApp* NewApp = NewObject<UOperatingSystemApp>();
+	NewApp->AppAsset = InApp;
+	NewApp->AppWidget = AppWidget;
+	
+	return NewApp;
+}
+
 UOperatingSystemApp* UDesktopWidget::LaunchAppInternal(UGraphicalAppAsset* InApp)
 {
 	UOperatingSystemApp* result = nullptr;
@@ -169,6 +185,9 @@ UOperatingSystemApp* UDesktopWidget::LaunchAppInternal(UGraphicalAppAsset* InApp
 			break;
 		case EDisplayTarget::Social:
 			result = this->LaunchTabbedApp(this->SocialSwitcher, this->SocialTabs, InApp);
+			break;
+		case EDisplayTarget::InfoWidgets:
+			result = this->LaunchInfoApp(this->InfoBox, InApp);
 			break;
 		default:
 			result = nullptr;

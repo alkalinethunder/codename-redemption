@@ -11,6 +11,8 @@
 #include "AppWidget.h"
 #include "UserContext.h"
 #include "Components/TextBlock.h"
+#include "Components/VerticalBox.h"
+
 
 #include "DesktopWidget.generated.h"
 
@@ -65,6 +67,9 @@ protected:
 	UWidgetSwitcher* SocialSwitcher;
 
 	UPROPERTY(BlueprintReadOnly, meta=(BindWidget))
+	UVerticalBox* InfoBox;
+	
+	UPROPERTY(BlueprintReadOnly, meta=(BindWidget))
 	UHorizontalBox* SocialTabs;
 
 	UPROPERTY(BlueprintReadOnly, meta=(BindWidget))
@@ -97,6 +102,9 @@ private:
 	
 	UFUNCTION()
 	UOperatingSystemApp* LaunchTabbedApp(UWidgetSwitcher* InWidgetSwitcher, UHorizontalBox* InTabsPanel, UGraphicalAppAsset* InApp);
+
+	UFUNCTION()
+	UOperatingSystemApp* LaunchInfoApp(UVerticalBox* InInfoBox, UGraphicalAppAsset* InApp);
 	
 	UFUNCTION()
 	UOperatingSystemApp* LaunchAppInternal(UGraphicalAppAsset* InApp);
