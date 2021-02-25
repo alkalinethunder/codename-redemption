@@ -17,9 +17,13 @@
 #include "Payload.h"
 #include "RedemptionGameState.generated.h"
 
+class UHackTrace;
+
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FContactAddedEvent);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FDoNotDisturbChanged, bool, InIsDoNotDisturb);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnNewsFeedUpdatedEvent, FNewsFeedEntry, InNewEntry);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FHackTraceBegun, UHackTrace*, InHackTrace);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FHackTraceEnded, UHackTrace*, InHackTrace);
 
 UCLASS(BlueprintType)
 class REDEMPTION_API ARedemptionGameState : public AGameStateBase
@@ -27,6 +31,9 @@ class REDEMPTION_API ARedemptionGameState : public AGameStateBase
 	GENERATED_BODY()
 
 private:
+	UPROPERTY()
+	TArray<UHackTrace*> Traces;
+	
 	UPROPERTY()
 	TArray<UPayload*> Payloads;
 	
@@ -95,6 +102,12 @@ private:
 
 public:
 	UPROPERTY(BlueprintAssignable)
+	FHackTraceBegun HackTraceBegun;
+
+	UPROPERTY(BlueprintAssignable)
+	FHackTraceEnded HackTraceEnded;
+	
+	UPROPERTY(BlueprintAssignable)
 	FDoNotDisturbChanged DoNotDisturbChanged;
 	
 	UPROPERTY(BlueprintAssignable)
@@ -160,6 +173,9 @@ public:
 	UChatContact* GetContactByName(FString InName);
 
 public:
+	UFUNCTION()
+	void BeginTrace(UHackSession* InHackSession, UHackableinfo* InTraceSource);
+	
 	UFUNCTION()
 	void GenerateNetworkHackables(int NetworkId);
 	

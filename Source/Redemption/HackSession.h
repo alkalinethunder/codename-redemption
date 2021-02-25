@@ -72,6 +72,9 @@ private:
 
 public:
 	UFUNCTION()
+	void BeginTrace(UHackableinfo* InTraceSource);
+	
+	UFUNCTION()
 	FNetwork& GetNetwork();
 	
 	UFUNCTION()

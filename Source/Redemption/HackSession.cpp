@@ -1,5 +1,6 @@
 ﻿#include "HackSession.h"
 #include "NetworkManager.h"
+#include "RedemptionGameState.h"
 
 void UHackSession::SetGameState(ARedemptionGameState* InGameState)
 {
@@ -29,6 +30,12 @@ void UHackSession::SetDestinationNetwork(UNetworkNode* InNetwork)
 void UHackSession::SetDestinationAddress(FString InNetworkAddress)
 {
 	this->DestinationAddress = InNetworkAddress;
+}
+
+void UHackSession::BeginTrace(UHackableinfo* InTraceSource)
+{
+	check (InTraceSource);
+	this->GetGameState()->BeginTrace(this, InTraceSource);
 }
 
 FNetwork& UHackSession::GetNetwork()

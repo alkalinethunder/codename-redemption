@@ -14,6 +14,7 @@
 #include "RedemptionGameModeBase.h"
 #include "Kismet/GameplayStatics.h"
 #include "RedemptionSaveGame.h"
+#include "HackTrace.h"
 
 // Sets default values
 ARedemptionGameState::ARedemptionGameState()
@@ -529,6 +530,18 @@ UChatContact* ARedemptionGameState::GetContactByName(FString InName)
 	}
 
 	return result;
+}
+
+void ARedemptionGameState::BeginTrace(UHackSession* InHackSession, UHackableinfo* InTraceSource)
+{
+	check (InHackSession);
+	check (InTraceSource);
+
+	UHackTrace* hackTrace = NewObject<UHackTrace>();
+	hackTrace->BindTrace(this, InHackSession, InTraceSource);
+	this->Traces.Add(hackTrace);
+
+	this->HackTraceBegun.Broadcast(hackTrace);
 }
 
 void ARedemptionGameState::GenerateNetworkHackables(int NetworkId)
