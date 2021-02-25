@@ -30,3 +30,30 @@ void UHackSession::SetDestinationAddress(FString InNetworkAddress)
 {
 	this->DestinationAddress = InNetworkAddress;
 }
+
+FNetwork& UHackSession::GetNetwork()
+{
+	return this->DestinationNetwork->GetNetwork();
+}
+
+TArray<UHackableinfo*> UHackSession::GetHackables()
+{
+	if (!this->bAnalyzedHackables)
+	{
+		for (FNetworkHackable hackable : this->DestinationNetwork->GetNetHackables())
+		{
+			UHackableinfo* hInfo = NewObject<UHackableinfo>();
+			hInfo->BindHackable(this, hackable.DeviceId, hackable.HackableId);
+			this->Hackables.Add(hInfo);
+		}
+		
+		this->bAnalyzedHackables = true;
+	}
+	
+	return this->Hackables;
+}
+
+ARedemptionGameState* UHackSession::GetGameState()
+{
+	return this->GameState;
+}

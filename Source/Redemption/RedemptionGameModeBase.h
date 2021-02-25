@@ -54,6 +54,9 @@ private:
 	URedemptionGameInstance* GameInstance;
 	
 public:
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Hacking")
+	float TraceTimeout = 120.f;
+	
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Progression")
     int StartingExperiencePoints;
 

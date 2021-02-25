@@ -432,6 +432,11 @@ void ARedemptionGameState::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 }
 
+ARedemptionGameModeBase* ARedemptionGameState::GetGameMode()
+{
+	return this->MyGameMode;
+}
+
 void ARedemptionGameState::PostThought(UPerson* InPerson, FString InThoughtText)
 {
 	check (InPerson);

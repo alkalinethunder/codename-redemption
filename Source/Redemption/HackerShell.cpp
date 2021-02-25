@@ -22,6 +22,18 @@ bool UHackerShell::HandleCommand(FString InName, TArray<FString> InArguments)
 		this->Complete();
 		return true;
 	}
+	else if (InName == "analyze")
+	{
+		this->GetConsole()->WriteLine(FText::FromString("Analyzing network for hackables..."));
+		this->GetConsole()->WriteLine(FText::GetEmpty());
+
+		for (UHackableinfo* hackable : this->CurrentHack->GetHackables())
+		{
+			
+		}
+
+		return true;
+	}
 
 	return false;
 }

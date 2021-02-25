@@ -27,15 +27,17 @@ private:
 
 	UPROPERTY()
 	int NetworkId;
-
-private:
-	UFUNCTION()
-	FNetwork& GetNetwork();
 	
 public:
 	UFUNCTION()
+	TArray<FNetworkHackable> GetNetHackables();
+	
+	UFUNCTION()
 	void Init(UNetworkManager* InNetManager, int InNetId);
 
+	UFUNCTION()
+	FNetwork& GetNetwork();
+	
 	UFUNCTION()
 	void AddConnection(UNetworkNode* InNode);
 

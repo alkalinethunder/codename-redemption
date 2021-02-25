@@ -1,6 +1,11 @@
 ﻿#pragma once
 
 #include "CoreMinimal.h"
+#include "HackableInfo.h"
+#include "EntryPoint.h"
+#include "Hackable.h"
+#include "Network.h"
+#include "Payload.h"
 #include "HackSession.generated.h"
 
 class UUserContext;
@@ -16,6 +21,18 @@ class REDEMPTION_API UHackSession : public UObject
 	GENERATED_BODY()
 
 private:
+	UPROPERTY()
+	bool bAnalyzedHackables = false;
+	
+	UPROPERTY()
+	TArray<UHackableinfo*> Hackables;
+	
+	UPROPERTY()
+	UEntryPoint* EntryPoint = nullptr;
+
+	UPROPERTY()
+	UPayload* Payload;
+	
 	UPROPERTY()
 	int HopsCount;
 	
@@ -52,4 +69,14 @@ private:
 
 	UFUNCTION()
 	void SetDestinationAddress(FString InNetworkAddress);
+
+public:
+	UFUNCTION()
+	FNetwork& GetNetwork();
+	
+	UFUNCTION()
+	TArray<UHackableinfo*> GetHackables();
+
+	UFUNCTION()
+	ARedemptionGameState* GetGameState();
 };

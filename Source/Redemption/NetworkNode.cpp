@@ -14,6 +14,11 @@ FNetwork& UNetworkNode::GetNetwork()
 	return this->NetworkManager->GetGameState()->GetGameInstance()->GetSaveGame()->Networks[index];
 }
 
+TArray<FNetworkHackable> UNetworkNode::GetNetHackables()
+{
+	return this->GetNetwork().Hackables;
+}
+
 void UNetworkNode::Init(UNetworkManager* InNetManager, int InNetId)
 {
 	check (InNetManager);

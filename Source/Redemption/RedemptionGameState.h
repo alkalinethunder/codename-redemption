@@ -148,6 +148,9 @@ public:
 
 public:
 	UFUNCTION()
+	ARedemptionGameModeBase* GetGameMode();
+	
+	UFUNCTION()
 	TArray<UUpgradeAsset*> GetAllUpgrades();
 
 	UFUNCTION()
