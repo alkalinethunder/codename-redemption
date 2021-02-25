@@ -29,7 +29,7 @@ bool UHackerShell::HandleCommand(FString InName, TArray<FString> InArguments)
 
 		for (UHackableinfo* hackable : this->CurrentHack->GetHackables())
 		{
-			
+			this->GetConsole()->WriteLine(FText::FromString(hackable->GetHackableId() + "  on port " + FString::FromInt(hackable->GetPort())));
 		}
 
 		return true;
