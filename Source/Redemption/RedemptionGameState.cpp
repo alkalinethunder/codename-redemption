@@ -415,6 +415,17 @@ void ARedemptionGameState::BeginPlay()
 // Called every frame
 void ARedemptionGameState::Tick(float DeltaTime)
 {
+	for (int i = 0; i < this->Traces.Num(); i++)
+	{
+		UHackTrace* trace = this->Traces[i];
+		trace->TraceTimeLeft -= DeltaTime;
+		if (trace->TraceTimeLeft <= 0)
+		{
+			this->HackTraceEnded.Broadcast(trace);
+			this->Traces.RemoveAt(i);
+		}
+	}
+	
 	this->WorldClock += DeltaTime * this->MyGameMode->TimeScale;
 	if (this->WorldClock >= this->SecondsPerDay)
 	{
