@@ -156,16 +156,19 @@ UOperatingSystemApp* UDesktopWidget::LaunchTabbedApp(UWidgetSwitcher* InWidgetSw
 
 UOperatingSystemApp* UDesktopWidget::LaunchInfoApp(UVerticalBox* InInfoBox, UGraphicalAppAsset* InApp)
 {
+	check (this->CollapseableAppClass);
 	check (InInfoBox);
 	check (InApp);
 
+	UCollapseableApp* collapseable = CreateWidget<UCollapseableApp, APlayerController>(this->GetOwningPlayer(), this->CollapseableAppClass);
 	UAppWidget* AppWidget = CreateWidget<UAppWidget, APlayerController>(this->GetOwningPlayer(), InApp->WidgetClass);
-
-	InInfoBox->AddChildToVerticalBox(AppWidget);
 	
 	UOperatingSystemApp* NewApp = NewObject<UOperatingSystemApp>();
 	NewApp->AppAsset = InApp;
 	NewApp->AppWidget = AppWidget;
+
+	InInfoBox->AddChildToVerticalBox(collapseable);
+	collapseable->BindApp(NewApp);
 	
 	return NewApp;
 }

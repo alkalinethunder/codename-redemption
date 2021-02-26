@@ -9,6 +9,7 @@
 #include "Components/HorizontalBox.h"
 #include "Components/WidgetSwitcher.h"
 #include "AppWidget.h"
+#include "CollapseableApp.h"
 #include "UserContext.h"
 #include "Components/TextBlock.h"
 #include "Components/VerticalBox.h"
@@ -47,6 +48,9 @@ protected:
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)
 	TSubclassOf<UAppTabWidget> AppTabWidgetClass;
 
+	UPROPERTY(BlueprintReadOnly, EditAnywhere)
+	TSubclassOf<UCollapseableApp> CollapseableAppClass;
+	
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)
 	TSubclassOf<UShellHostWidget> ShellHostWidgetClass;
 
