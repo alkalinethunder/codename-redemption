@@ -7,6 +7,8 @@
 #include "VirtualFileSystem.h"
 #include "AppWidget.generated.h"
 
+class UUserContext;
+
 /**
  * 
  */
@@ -15,14 +17,25 @@ class REDEMPTION_API UAppWidget : public UUserWidget
 {
 	GENERATED_BODY()
 
+private:
+	UPROPERTY()
+	UUserContext* UserContext;
+
 protected:
 	UFUNCTION(BlueprintPure)
 	UVirtualFileSystem* GetFileSystem();
 
 public:
+	UFUNCTION(BlueprintPure)
+	UUserContext* GetUserContext();
+	
 	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
 	void FileOpened(const FString& InFilePath);
 
 	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
     void FolderOpened(const FString& InFilePath);
+
+public:
+	UFUNCTION()
+	void SetUserContext(UUserContext* InUserContext);
 };

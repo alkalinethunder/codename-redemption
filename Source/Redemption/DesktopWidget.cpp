@@ -116,6 +116,9 @@ UOperatingSystemApp* UDesktopWidget::LaunchTabbedApp(UWidgetSwitcher* InWidgetSw
 	// spawn the app's UI.
 	UAppWidget* AppWidget = CreateWidget<UAppWidget, APlayerController>(this->GetOwningPlayer(), InApp->WidgetClass);
 
+	// Set the user context.
+	AppWidget->SetUserContext(this->CurrentContext);
+	
 	// and assert if it failed.
 	check (AppWidget);
 
@@ -162,6 +165,9 @@ UOperatingSystemApp* UDesktopWidget::LaunchInfoApp(UVerticalBox* InInfoBox, UGra
 
 	UCollapseableApp* collapseable = CreateWidget<UCollapseableApp, APlayerController>(this->GetOwningPlayer(), this->CollapseableAppClass);
 	UAppWidget* AppWidget = CreateWidget<UAppWidget, APlayerController>(this->GetOwningPlayer(), InApp->WidgetClass);
+
+	// Set the user context.
+	AppWidget->SetUserContext(this->CurrentContext);
 	
 	UOperatingSystemApp* NewApp = NewObject<UOperatingSystemApp>();
 	NewApp->AppAsset = InApp;
