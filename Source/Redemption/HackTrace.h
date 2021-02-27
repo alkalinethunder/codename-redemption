@@ -30,4 +30,14 @@ private:
 private:
 	UFUNCTION()
 	void BindTrace(ARedemptionGameState* InGameState, UHackSession* InHack, UHackableinfo* InHackable);
+
+public:
+	UFUNCTION(BlueprintPure)
+	float GetTimeLeft();
+
+	UFUNCTION(BlueprintPure)
+	FString GetTraceName();
+	
+	UFUNCTION(BlueprintPure)
+	FString GetTraceAddress();
 };

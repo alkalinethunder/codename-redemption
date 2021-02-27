@@ -15,3 +15,18 @@ void UHackTrace::BindTrace(ARedemptionGameState* InGameState, UHackSession* InHa
 
 	this->TraceTimeLeft = InHackable->GetTraceTimeout();
 }
+
+float UHackTrace::GetTimeLeft()
+{
+	return this->TraceTimeLeft;
+}
+
+FString UHackTrace::GetTraceName()
+{
+	return this->HackSession->GetNetwork().Name;
+}
+
+FString UHackTrace::GetTraceAddress()
+{
+	return this->HackSession->GetNetwork().IPAddress;
+}
