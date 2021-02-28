@@ -12,11 +12,11 @@ void UCollapseableApp::BindApp(UOperatingSystemApp* InApp)
 
 	if (this->OperatingSystemApp->AppAsset->CommandFlags.IsUserCloseable)
 	{
-		this->CloseButton->SetVisibility(ESlateVisibility::Collapsed);
+		this->CloseButton->SetVisibility(ESlateVisibility::Visible);
 	}
 	else
 	{
-		this->CloseButton->SetVisibility(ESlateVisibility::Visible);
+		this->CloseButton->SetVisibility(ESlateVisibility::Collapsed);
 	}
 
 	this->CollapsePanel->SetIsExpanded(true);
