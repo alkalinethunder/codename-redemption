@@ -107,57 +107,18 @@ void ARedemptionGameModeBase::BeginPlay()
 {
 	this->GameInstance = Cast<URedemptionGameInstance>(this->GetWorld()->GetGameInstance());
 
-	for (UObject* asset : UAssetUtils::LoadAssetsOfClass(UNetworkAsset::StaticClass()))
-	{
-		UNetworkAsset* net = Cast<UNetworkAsset>(asset);
-		if (net)
-		{
-			this->NetworkAssets.Add(net);
-		}
-	}
-	
-	for (UObject* asset : UAssetUtils::LoadAssetsOfClass(USpecialDeviceAsset::StaticClass()))
-	{
-		USpecialDeviceAsset* net = Cast<USpecialDeviceAsset>(asset);
-		if (net)
-		{
-			this->SpecialDevices.Add(net);
-		}
-	}
-
-	
-	for (UObject* commandAsset : UAssetUtils::LoadAssetsOfClass(UShellCommandAsset::StaticClass()))
-	{
-		UShellCommandAsset* asset = Cast<UShellCommandAsset>(commandAsset);
-		if (asset)
-		{
-			this->ShellCommands.Add(asset);
-		}
-	}
-
-	for (UObject* gappAsset : UAssetUtils::LoadAssetsOfClass(UGraphicalAppAsset::StaticClass()))
-	{
-		UGraphicalAppAsset* asset = Cast<UGraphicalAppAsset>(gappAsset);
-		if (asset)
-		{
-			this->Apps.Add(asset);
-		}
-	}
+	// Load assets.
+	UAssetUtils::LoadAssets<UNetworkAsset>(this->NetworkAssets);
+	UAssetUtils::LoadAssets<USpecialDeviceAsset>(this->SpecialDevices);	
+	UAssetUtils::LoadAssets<UShellCommandAsset>(this->ShellCommands);
+	UAssetUtils::LoadAssets<UGraphicalAppAsset>(this->Apps);
+	UAssetUtils::LoadAssets<UNetPage>(this->NetPages);
 	
 	if (this->GameInstance)
 	{
 		this->GameInstance->StartSession(this);
 
 		this->ShellManager = this->GetWorld()->SpawnActor<AShellManagementActor>();
-	}
-
-	for (UObject* asset : UAssetUtils::LoadAssetsOfClass(UNetPage::StaticClass()))
-	{
-		UNetPage* page = Cast<UNetPage>(asset);
-		if (page)
-		{
-			this->NetPages.Add(page);
-		}
 	}
 
 	this->GenerateNetworks();

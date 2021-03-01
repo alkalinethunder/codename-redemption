@@ -73,17 +73,7 @@ ARedemptionPlayerState::ARedemptionPlayerState()
 void ARedemptionPlayerState::BeginPlay()
 {
 	Super::BeginPlay();
-
-	// Load Desktop Environment assets.
-	for (UObject* asset : UAssetUtils::LoadAssetsOfClass(UDesktopEnvironment::StaticClass()))
-	{
-		UDesktopEnvironment* env = Cast<UDesktopEnvironment>(asset);
-		if (env)
-		{
-			this->Desktops.Add(env);
-		}
-	}
-
+	
 	// Get references to game state objects.
 	this->GameState = Cast<ARedemptionGameState>(this->GetWorld()->GetGameState());
 	this->GameInstance = Cast<URedemptionGameInstance>(this->GetGameInstance());
@@ -92,6 +82,9 @@ void ARedemptionPlayerState::BeginPlay()
 	// Receive an event when the player gains experience.
 	this->GameInstance->OnExperienceAdded.AddUniqueDynamic(this, &ARedemptionPlayerState::UpdateSkillState);
 
+	// Load assets.
+	UAssetUtils::LoadAssets<UDesktopEnvironment>(this->Desktops);
+	
 	// Generate/update player data.
 	this->GeneratePlayerNetwork();
 	this->UpdateSkillState();

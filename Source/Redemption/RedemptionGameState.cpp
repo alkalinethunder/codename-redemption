@@ -309,95 +309,16 @@ void ARedemptionGameState::BeginPlay()
 	this->MyGameInstance = Cast<URedemptionGameInstance>(this->GetWorld()->GetGameInstance());
 	this->MyGameMode = Cast<ARedemptionGameModeBase>(this->GetWorld()->GetAuthGameMode());
 
-	// Load payload assets.
-	for (UObject* asset : UAssetUtils::LoadAssetsOfClass(UPayload::StaticClass()))
-	{
-		UPayload* payload = Cast<UPayload>(asset);
-		if (payload)
-		{
-			this->Payloads.Add(payload);
-		}
-	}
-
-	// Load device type rule assets.
-	for (UObject* asset : UAssetUtils::LoadAssetsOfClass(UDeviceTypeRules::StaticClass()))
-	{
-		UDeviceTypeRules* rules = Cast<UDeviceTypeRules>(asset);
-		if (rules)
-		{
-			this->DeviceRules.Add(rules);
-		}
-	}
-
-	// Load network type rule assets.
-	for(UObject* asset : UAssetUtils::LoadAssetsOfClass(UNetworkTypeRules::StaticClass()))
-	{
-		UNetworkTypeRules* rules = Cast<UNetworkTypeRules>(asset);
-		if (rules)
-		{
-			this->NetworkTypeRules.Add(rules);
-		}
-	}
-
-	// Load hackable assets.
-	for (UObject* asset : UAssetUtils::LoadAssetsOfClass(UHackableAsset::StaticClass()))
-	{
-		UHackableAsset* hackable = Cast<UHackableAsset>(asset);
-		if (hackable)
-		{
-			this->Hackables.Add(hackable);
-		}
-	}
-
-	// Load chat conversations.
-	for (UObject* asset : UAssetUtils::LoadAssetsOfClass(UConversation::StaticClass()))
-	{
-		UConversation* convo = Cast<UConversation>(asset);
-		if (convo)
-		{
-			this->Conversations.Add(convo);
-		}
-	}
-
-	// Load chat contacts.
-	for (UObject* asset : UAssetUtils::LoadAssetsOfClass(UChatContact::StaticClass()))
-	{
-		UChatContact* contact = Cast<UChatContact>(asset);
-		if (contact)
-		{
-			this->Contacts.Add(contact);
-		}
-	}
-
-	// Load system upgrades.
-	for (UObject* asset : UAssetUtils::LoadAssetsOfClass(UUpgradeAsset::StaticClass()))
-	{
-		UUpgradeAsset* upgrade = Cast<UUpgradeAsset>(asset);
-		if (upgrade)
-		{
-			this->Upgrades.Add(upgrade);
-		}
-	}
-
-	// Load people.
-	for (UObject* asset : UAssetUtils::LoadAssetsOfClass(UPerson::StaticClass()))
-	{
-		UPerson* person = Cast<UPerson>(asset);
-		if (person)
-		{
-			this->People.Add(person);
-		}
-	}
-
-	// Load Grapevine posts.
-	for (UObject* asset : UAssetUtils::LoadAssetsOfClass(UGrapevinePost::StaticClass()))
-	{
-		UGrapevinePost* post = Cast<UGrapevinePost>(asset);
-		if (post)
-		{
-			this->GrapevinePosts.Add(post);
-		}
-	}
+	// Load most of the game assets here
+	UAssetUtils::LoadAssets<UPayload>(this->Payloads);
+	UAssetUtils::LoadAssets<UDeviceTypeRules>(this->DeviceRules);
+	UAssetUtils::LoadAssets<UNetworkTypeRules>(this->NetworkTypeRules);
+	UAssetUtils::LoadAssets<UHackableAsset>(this->Hackables);
+	UAssetUtils::LoadAssets<UConversation>(this->Conversations);
+	UAssetUtils::LoadAssets<UChatContact>(this->Contacts);	
+	UAssetUtils::LoadAssets<UUpgradeAsset>(this->Upgrades);
+	UAssetUtils::LoadAssets<UPerson>(this->People);
+	UAssetUtils::LoadAssets<UGrapevinePost>(this->GrapevinePosts);
 
 	// Set the Do Not Disturb state based on the game's rules.
 	if (this->MyGameMode)
