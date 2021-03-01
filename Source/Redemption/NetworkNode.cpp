@@ -14,6 +14,24 @@ FNetwork& UNetworkNode::GetNetwork()
 	return this->NetworkManager->GetGameState()->GetGameInstance()->GetSaveGame()->Networks[index];
 }
 
+TArray<UNetworkNode*> UNetworkNode::GetConnections()
+{
+	return this->Connections;
+}
+
+bool UNetworkNode::HasConnection(UNetworkNode* InConnection)
+{
+	return this->Connections.Contains(InConnection);
+}
+
+void UNetworkNode::RemoveConnection(UNetworkNode* InConnection)
+{
+	if (this->HasConnection(InConnection))
+	{
+		this->Connections.Remove(InConnection);
+	}
+}
+
 TArray<FNetworkHackable> UNetworkNode::GetNetHackables()
 {
 	return this->GetNetwork().Hackables;

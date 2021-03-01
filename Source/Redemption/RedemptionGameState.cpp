@@ -298,15 +298,18 @@ void ARedemptionGameState::BeginPlay()
 {
 	Super::BeginPlay();
 
+	// Create default device and network type assets.
 	this->DefaultDeviceTypeRules = NewObject<UDeviceTypeRules>();
-	this->DefaultDeviceTypeRules->Hackables.Add(EHackableType::Ssh);
-	
+	this->DefaultDeviceTypeRules->Hackables.Add(EHackableType::Ssh);	
 	this->DefaultNetworkRules = NewObject<UNetworkTypeRules>();
 	this->DefaultNetworkRules->RequiredDevices.Add(EDeviceType::Workstation);
 	this->DefaultNetworkRules->Hackables.Add(EHackableType::Ssh);
-	
-	this->MyGameInstance = Cast<URedemptionGameInstance>(this->GetWorld()->GetGameInstance());
 
+	// Get a reference to the game instance and game mode.
+	this->MyGameInstance = Cast<URedemptionGameInstance>(this->GetWorld()->GetGameInstance());
+	this->MyGameMode = Cast<ARedemptionGameModeBase>(this->GetWorld()->GetAuthGameMode());
+
+	// Load payload assets.
 	for (UObject* asset : UAssetUtils::LoadAssetsOfClass(UPayload::StaticClass()))
 	{
 		UPayload* payload = Cast<UPayload>(asset);
@@ -315,7 +318,8 @@ void ARedemptionGameState::BeginPlay()
 			this->Payloads.Add(payload);
 		}
 	}
-	
+
+	// Load device type rule assets.
 	for (UObject* asset : UAssetUtils::LoadAssetsOfClass(UDeviceTypeRules::StaticClass()))
 	{
 		UDeviceTypeRules* rules = Cast<UDeviceTypeRules>(asset);
@@ -324,7 +328,8 @@ void ARedemptionGameState::BeginPlay()
 			this->DeviceRules.Add(rules);
 		}
 	}
-	
+
+	// Load network type rule assets.
 	for(UObject* asset : UAssetUtils::LoadAssetsOfClass(UNetworkTypeRules::StaticClass()))
 	{
 		UNetworkTypeRules* rules = Cast<UNetworkTypeRules>(asset);
@@ -333,7 +338,8 @@ void ARedemptionGameState::BeginPlay()
 			this->NetworkTypeRules.Add(rules);
 		}
 	}
-	
+
+	// Load hackable assets.
 	for (UObject* asset : UAssetUtils::LoadAssetsOfClass(UHackableAsset::StaticClass()))
 	{
 		UHackableAsset* hackable = Cast<UHackableAsset>(asset);
@@ -342,7 +348,8 @@ void ARedemptionGameState::BeginPlay()
 			this->Hackables.Add(hackable);
 		}
 	}
-	
+
+	// Load chat conversations.
 	for (UObject* asset : UAssetUtils::LoadAssetsOfClass(UConversation::StaticClass()))
 	{
 		UConversation* convo = Cast<UConversation>(asset);
@@ -352,6 +359,7 @@ void ARedemptionGameState::BeginPlay()
 		}
 	}
 
+	// Load chat contacts.
 	for (UObject* asset : UAssetUtils::LoadAssetsOfClass(UChatContact::StaticClass()))
 	{
 		UChatContact* contact = Cast<UChatContact>(asset);
@@ -360,7 +368,8 @@ void ARedemptionGameState::BeginPlay()
 			this->Contacts.Add(contact);
 		}
 	}
-	
+
+	// Load system upgrades.
 	for (UObject* asset : UAssetUtils::LoadAssetsOfClass(UUpgradeAsset::StaticClass()))
 	{
 		UUpgradeAsset* upgrade = Cast<UUpgradeAsset>(asset);
@@ -370,6 +379,7 @@ void ARedemptionGameState::BeginPlay()
 		}
 	}
 
+	// Load people.
 	for (UObject* asset : UAssetUtils::LoadAssetsOfClass(UPerson::StaticClass()))
 	{
 		UPerson* person = Cast<UPerson>(asset);
@@ -379,6 +389,7 @@ void ARedemptionGameState::BeginPlay()
 		}
 	}
 
+	// Load Grapevine posts.
 	for (UObject* asset : UAssetUtils::LoadAssetsOfClass(UGrapevinePost::StaticClass()))
 	{
 		UGrapevinePost* post = Cast<UGrapevinePost>(asset);
@@ -387,9 +398,8 @@ void ARedemptionGameState::BeginPlay()
 			this->GrapevinePosts.Add(post);
 		}
 	}
-	
-	this->MyGameMode = Cast<ARedemptionGameModeBase>(this->GetWorld()->GetAuthGameMode());
 
+	// Set the Do Not Disturb state based on the game's rules.
 	if (this->MyGameMode)
 	{
 		this->bDoNotDisturb = this->MyGameMode->bDoNotDisturbEnabled;
@@ -402,12 +412,14 @@ void ARedemptionGameState::BeginPlay()
 	this->CurrentDay = static_cast<int>(this->MyGameInstance->GetSaveGame()->CurrentDayOfWeek);
 	this->WorldClock = this->MyGameInstance->GetSaveGame()->CurrentDaySeconds;
 
+	// Start generating networks and devices.
 	this->MakeISPs();
 	this->CreateMissingRouters();
 	this->MakeRoutes();
 	this->AssignIPAddresses();
 	this->AssignLocalIPs();
 
+	// CCreate and initialize the Network Manager.
 	this->NetworkManager = NewObject<UNetworkManager>();
 	this->NetworkManager->Init(this);
 }

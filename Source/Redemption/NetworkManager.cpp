@@ -23,19 +23,21 @@ UNetworkNode* UNetworkManager::MapNetwork(FString InHost)
 	return result;
 }
 
-void UNetworkManager::Init(ARedemptionGameState* InGameState)
-{
-	check (InGameState);
-	check (!this->GameState);
-
-	this->GameState = InGameState;
-
+void UNetworkManager::RefreshNodes()
+{	
 	// let's create all of our nodes.
 	for (FNetwork& net : this->GetGameState()->GetGameInstance()->GetSaveGame()->Networks)
 	{
-		UNetworkNode* node = NewObject<UNetworkNode>();
-		node->Init(this, net.Id);
-		this->Nodes.Add(node);
+		// Get a reference to this network as a node.
+		UNetworkNode* exists = this->GetNetworkNode(net.Id);
+
+		// If we couldn't get a reference then we need to create a new node.
+		if (!exists)
+		{
+			UNetworkNode* node = NewObject<UNetworkNode>();
+			node->Init(this, net.Id);
+			this->Nodes.Add(node);
+		}
 	}
 
 	// now the next step is to go through all of the nodes and link them together.
@@ -55,16 +57,52 @@ void UNetworkManager::Init(ARedemptionGameState* InGameState)
 			}
 		}
 
+		// Find any connected nodes that need to be removed.
+		TArray<UNetworkNode*> removals;
+		for (UNetworkNode* connection : node->GetConnections())
+		{
+			if (!connections.Contains(connection->GetNetworkId()))
+			{
+				removals.Add(connection);
+			}
+		}
+
+		// Remove 'em.
+		while (removals.Num())
+		{
+			node->RemoveConnection(removals[0]);
+			removals.RemoveAt(0);
+		}
+		
 		// And then link the nodes together.
 		for (int connection : connections)
 		{
+			// Get the network node we plan to connect to.
 			UNetworkNode* cNode = this->GetNetworkNode(connection);
-			if (cNode && cNode != node)
+
+			// Add the node as a connection if the connected node is
+				// - not null
+				// - not the same node as the connecting node
+				// - not already connected to by the connecting node.
+			if (cNode && cNode != node && !node->HasConnection(cNode))
 			{
 				node->AddConnection(cNode);
 			}
 		}
 	}
+}
+
+void UNetworkManager::Init(ARedemptionGameState* InGameState)
+{
+	// assertions.
+	check (InGameState);
+	check (!this->GameState);
+
+	// Set the game state so we always have a reference to it.
+	this->GameState = InGameState;
+
+	// "Refresh" the network node list, creating it in the first place.
+	this->RefreshNodes();
 }
 
 ARedemptionGameState* UNetworkManager::GetGameState()

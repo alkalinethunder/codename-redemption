@@ -30,6 +30,9 @@ private:
 	
 public:
 	UFUNCTION()
+	void RefreshNodes();
+	
+	UFUNCTION()
 	void Init(ARedemptionGameState* InGameState);
 
 	UFUNCTION()

@@ -74,6 +74,7 @@ void ARedemptionPlayerState::BeginPlay()
 {
 	Super::BeginPlay();
 
+	// Load Desktop Environment assets.
 	for (UObject* asset : UAssetUtils::LoadAssetsOfClass(UDesktopEnvironment::StaticClass()))
 	{
 		UDesktopEnvironment* env = Cast<UDesktopEnvironment>(asset);
@@ -82,31 +83,34 @@ void ARedemptionPlayerState::BeginPlay()
 			this->Desktops.Add(env);
 		}
 	}
-	
+
+	// Get references to game state objects.
 	this->GameState = Cast<ARedemptionGameState>(this->GetWorld()->GetGameState());
 	this->GameInstance = Cast<URedemptionGameInstance>(this->GetGameInstance());
 	this->GameMode = Cast<ARedemptionGameModeBase>(UGameplayStatics::GetGameMode(this));
-	
+
+	// Receive an event when the player gains experience.
+	this->GameInstance->OnExperienceAdded.AddUniqueDynamic(this, &ARedemptionPlayerState::UpdateSkillState);
+
+	// Generate/update player data.
+	this->GeneratePlayerNetwork();
+	this->UpdateSkillState();
+	this->SortUpgrades();
+
+	// Create the player User Context object.
 	this->PlayerUserContext = NewObject<UUserContext>();
 	this->PlayerUserContext->BindToDevice(this->GameInstance->GetSaveGame()->PlayernetworkId, this->GetPlayerDevice().Id, this->GameState);
-
 	if (!this->PlayerUserContext->GetDevice().Users.Contains(this->GameInstance->GetPlayerName()))
 	{
 		this->PlayerUserContext->GetDevice().Users.Add(this->GameInstance->GetPlayerName());
 	}
-
 	this->PlayerUserContext->SetUserId(1);
-	
-	this->GameInstance->OnExperienceAdded.AddUniqueDynamic(this, &ARedemptionPlayerState::UpdateSkillState);
 
-	this->GeneratePlayerNetwork();
-	
-	this->UpdateSkillState();
-	this->SortUpgrades();
-
+	// TODO: Move this to User Context
 	this->VirtualFileSystem = NewObject<UVirtualFileSystem>();
 	this->VirtualFileSystem->MountRootNode(this->GetSaveGame(), GetPlayerDevice().DiskRoot);
 
+	// Spawn the player desktop environment.
 	if (this->GameInstance->GetSaveGame()->PlayerDesktop)
 	{
 		this->Desktop = CreateWidget<UDesktopWidget, APlayerController>(UGameplayStatics::GetPlayerController(this, 0), this->GameInstance->GetSaveGame()->PlayerDesktop->WidgetClass);
@@ -211,6 +215,10 @@ void ARedemptionPlayerState::GeneratePlayerNetwork()
 
 		this->GameInstance->GetSaveGame()->Networks.Add(newNet);
 		this->GameInstance->GetSaveGame()->PlayernetworkId = newNet.Id;
+
+		// Fixes an issue with new save files where the player network doesn't get a Network Node thus
+		// breaking the hacking system completely.
+		this->GameState->GetNetworkManager()->RefreshNodes();
 	}
 }
 

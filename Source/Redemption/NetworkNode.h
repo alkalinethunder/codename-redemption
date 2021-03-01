@@ -30,6 +30,15 @@ private:
 	
 public:
 	UFUNCTION()
+	TArray<UNetworkNode*> GetConnections();
+
+	UFUNCTION()
+	bool HasConnection(UNetworkNode* InConnection);
+
+	UFUNCTION()
+	void RemoveConnection(UNetworkNode* InConnection);
+	
+	UFUNCTION()
 	TArray<FNetworkHackable> GetNetHackables();
 	
 	UFUNCTION()
