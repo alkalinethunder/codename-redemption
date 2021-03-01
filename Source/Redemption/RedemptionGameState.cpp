@@ -10,6 +10,7 @@
 #include "ConversationAppWidget.h"
 #include "RedemptionGameInstance.h"
 #include "ConversationManager.h"
+#include "GameplayTask.h"
 #include "GameStructUtils.h"
 #include "RedemptionGameModeBase.h"
 #include "Kismet/GameplayStatics.h"
@@ -348,6 +349,21 @@ void ARedemptionGameState::BeginPlay()
 // Called every frame
 void ARedemptionGameState::Tick(float DeltaTime)
 {
+	for (int i = 0; i < this->LatentTasks.Num(); i++)
+	{
+		ULatentGameplayTask* task = this->LatentTasks[i];
+
+		if (task->bBegun)
+		{
+			task->TimeLeft -= DeltaTime;
+			if (task->TimeLeft <= 0)
+			{
+				task->Done.Broadcast();
+				this->LatentTasks.RemoveAt(i);
+			}
+		}
+	}
+	
 	for (int i = 0; i < this->Traces.Num(); i++)
 	{
 		UHackTrace* trace = this->Traces[i];
@@ -375,6 +391,14 @@ void ARedemptionGameState::Tick(float DeltaTime)
 	this->UpdateFriendlyTime();
 
 	Super::Tick(DeltaTime);
+}
+
+ULatentGameplayTask* ARedemptionGameState::CreateLatentTask(float InTime)
+{
+	ULatentGameplayTask* task = NewObject<ULatentGameplayTask>();
+	task->TimeLeft = InTime;
+	this->LatentTasks.Add(task);
+	return task;
 }
 
 ARedemptionGameModeBase* ARedemptionGameState::GetGameMode()

@@ -15,6 +15,7 @@
 #include "NetworkTypeRules.h"
 #include "HackableAsset.h"
 #include "Payload.h"
+#include "LatentGameplayTask.h"
 #include "RedemptionGameState.generated.h"
 
 class UHackTrace;
@@ -31,6 +32,9 @@ class REDEMPTION_API ARedemptionGameState : public AGameStateBase
 	GENERATED_BODY()
 
 private:
+	UPROPERTY()
+	TArray<ULatentGameplayTask*> LatentTasks;
+	
 	UPROPERTY()
 	TArray<UHackTrace*> Traces;
 	
@@ -160,6 +164,9 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 public:
+	UFUNCTION()
+	ULatentGameplayTask* CreateLatentTask(float InTime);
+	
 	UFUNCTION()
 	ARedemptionGameModeBase* GetGameMode();
 	
