@@ -45,6 +45,57 @@ TArray<UDiskNode*> UDirectoryNode::GetChildNodes()
 	return this->Children;
 }
 
+bool UDirectoryNode::DeleteNode()
+{
+	// this is the final result of the recursive delete operation
+	bool result = true;
+
+	// If we don't have a parent, or we do but it's not a DirectoryNode, we are a root directory.
+	UDirectoryNode* pnode = Cast<UDirectoryNode>(this->GetParent());
+	if (!pnode)
+	{
+		result = false;
+		return result;
+	}
+	
+	// delete all directories first.
+	while (this->GetChildDirectories().Num())
+	{
+		UDirectoryNode* dnode = this->GetChildDirectories()[0];
+		result = dnode->DeleteNode();
+		if (!result)
+			return result;
+	}
+
+	// Delete files now.
+	while (this->GetChildFiles().Num())
+	{
+		UFileNode* fnode = this->GetChildFiles()[0];
+		result = fnode->DeleteNode();
+		if (!result)
+			return result;
+	}
+
+	// Delete our ID from the parent node's save data.
+	int parentId = pnode->DirectoryId;
+	int dindex;
+	this->SaveGame->FindDirectoryIndex(parentId, dindex);
+	this->SaveGame->Directories[dindex].Children.Remove(this->DirectoryId);
+
+	// Dirty the parent node.
+	pnode->ChildrenDirty = true;
+
+	// Find and delete our index from the directories in the save file.
+	this->SaveGame->FindDirectoryIndex(this->DirectoryId, dindex);
+	this->SaveGame->Directories.RemoveAt(dindex);
+
+	// detach ourselves from the save game and the parent directory.
+	this->Parent = nullptr;
+	this->SaveGame = nullptr;
+	
+	return result;
+}
+
 void UDirectoryNode::LinkToDirectory(UDiskNode* InParent, URedemptionSaveGame* InSaveGame, int InDirectoryId)
 {
 	this->Parent = InParent;

@@ -18,7 +18,7 @@ public:
 	virtual UDiskNode* GetParent() PURE_VIRTUAL(UDiskNode::GetParent, return nullptr; );
 	virtual FString GetDiskNodeName() PURE_VIRTUAL(UDiskNode::GetDiskNodeName, return ""; );
 	virtual TArray<UDiskNode*> GetChildNodes() PURE_VIRTUAL(UDiskNode::GetChildNodes, return TArray<UDiskNode*>(); );
-
+	virtual bool DeleteNode() PURE_VIRTUAL(UDiskNode::DeleteNode, return false; ); 
 	UFUNCTION()
 	UDiskNode* GetChild(FString InName);
 

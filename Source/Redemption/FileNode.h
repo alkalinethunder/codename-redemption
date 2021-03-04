@@ -31,6 +31,7 @@ public:
 	virtual FString GetDiskNodeName() override;
 	virtual TArray<UDiskNode*> GetChildNodes() override;
 	virtual UDiskNode* GetParent() override;
+	virtual bool DeleteNode() override;
 	
 public:
 	UFUNCTION()

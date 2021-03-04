@@ -190,6 +190,23 @@ bool UVirtualFileSystem::GetChildFilePaths(FString InPath, TArray<FString>& OutC
 
 }
 
+bool UVirtualFileSystem::Delete(FString InPath)
+{
+	UFileNode* fnode = nullptr;
+	UDirectoryNode* dnode = nullptr;
+	
+	if (this->ResolveFile(InPath, fnode))
+	{
+		fnode->DeleteNode();
+	}
+	else if (this->ResolveDirectory(InPath, dnode))
+	{
+		dnode->DeleteNode();
+	}
+
+	return false;
+}
+
 bool UVirtualFileSystem::DirectoryExists(FString InPath)
 {
 	UDiskNode* node = this->MapToNode(InPath);

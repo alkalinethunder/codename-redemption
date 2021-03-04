@@ -50,6 +50,9 @@ public:
 
 	UFUNCTION(BlueprintPure)
 	bool GetChildFilePaths(FString InPath, TArray<FString>& OutChildren);
+
+	UFUNCTION(BlueprintCallable)
+	bool Delete(FString InPath);
 	
 	UFUNCTION(BlueprintPure)
 	bool DirectoryExists(FString InPath);

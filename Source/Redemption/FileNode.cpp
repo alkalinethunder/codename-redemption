@@ -48,6 +48,36 @@ UDiskNode* UFileNode::GetParent()
 	return this->ParentNode;
 }
 
+bool UFileNode::DeleteNode()
+{
+	// get our parent directory, we'll need this.
+	UDirectoryNode* parent = Cast<UDirectoryNode>(this->GetParent());
+
+	// What the fuck!? How did that happen!?
+	if (!parent)
+	{
+		return false;
+	}
+
+	// Get the parent directory index
+	int parentId = parent->DirectoryId;
+	int dindex;
+	this->SaveGame->FindDirectoryIndex(parentId, dindex);
+
+	// Remove our file ID from that directory's files list
+	this->SaveGame->Directories[dindex].Files.Remove(this->FileId);
+
+	// Mark the directory as dirty so it re-generates its child nodes
+	parent->ChildrenDirty = true;
+
+	// Find our file index and remove the file from the save game
+	int findex;
+	this->SaveGame->FindFileIndex(this->FileId, findex);
+	this->SaveGame->Files.RemoveAt(findex);
+
+	return true;
+}
+
 void UFileNode::LinkToFile(UDirectoryNode* InParent, URedemptionSaveGame* InSaveGame, int InFileId)
 {
 	check (InParent);

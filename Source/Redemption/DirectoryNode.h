@@ -16,6 +16,8 @@ class UFileNode;
 UCLASS()
 class REDEMPTION_API UDirectoryNode : public UDiskNode
 {
+	friend UFileNode; // lol
+	
 	GENERATED_BODY()
 	
 private:
@@ -38,7 +40,8 @@ public:
 	virtual UDiskNode* GetParent() override;
 	virtual FString GetDiskNodeName() override;
 	virtual TArray<UDiskNode*> GetChildNodes() override;
-
+	virtual bool DeleteNode() override;
+	
 public:
 	UFUNCTION()
 	void LinkToDirectory(UDiskNode* InParent, URedemptionSaveGame* InSaveGame, int InDirectoryId);
